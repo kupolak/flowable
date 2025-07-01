@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/CMMN/20151109/MODEL"
+             xmlns:flowable="http://flowable.org/cmmn"
+             targetNamespace="http://flowable.org/cmmn">
+
+  <case id="orderProcess" name="Order Processing">
+    
+    <casePlanModel id="orderPlanModel" name="Order Plan">
+      
+      <!-- Stage 1: Order Review -->
+      <stage id="reviewStage" name="Review Stage">
+        <planItem id="planItem_reviewTask" definitionRef="reviewTask"/>
+        <planItem id="planItem_checkInventory" definitionRef="checkInventory"/>
+        
+        <humanTask id="reviewTask" name="Review Order" flowable:assignee="${initiator}">
+          <extensionElements>
+            <flowable:formProperty id="approved" name="Approved" type="boolean" required="true"/>
+            <flowable:formProperty id="comment" name="Comment" type="string"/>
+          </extensionElements>
+        </humanTask>
+        
+        <task id="checkInventory" name="Check Inventory" isBlocking="true"/>
+      </stage>
+      
+      <!-- Stage 2: Processing (only if approved) -->
+      <stage id="processingStage" name="Processing Stage">
+        <planItem id="planItem_prepareShipment" definitionRef="prepareShipment"/>
+        <planItem id="planItem_notifyCustomer" definitionRef="notifyCustomer">
+          <entryCriterion id="afterPrepare" sentryRef="sentry_afterPrepare"/>
+        </planItem>
+        
+        <humanTask id="prepareShipment" name="Prepare Shipment" flowable:candidateGroups="warehouse"/>
+        
+        <task id="notifyCustomer" name="Notify Customer"/>
+        
+        <sentry id="sentry_afterPrepare">
+          <planItemOnPart sourceRef="planItem_prepareShipment">
+            <standardEvent>complete</standardEvent>
+          </planItemOnPart>
+        </sentry>
+      </stage>
+      
+      <!-- Stage 3: Completion -->
+      <stage id="completionStage" name="Completion Stage">
+        <planItem id="planItem_confirmDelivery" definitionRef="confirmDelivery"/>
+        <planItem id="planItem_collectFeedback" definitionRef="collectFeedback"/>
+        
+        <humanTask id="confirmDelivery" name="Confirm Delivery" flowable:assignee="${customer}"/>
+        
+        <humanTask id="collectFeedback" name="Collect Feedback" flowable:assignee="${customer}">
+          <extensionElements>
+            <flowable:formProperty id="rating" name="Rating" type="long"/>
+            <flowable:formProperty id="feedback" name="Feedback" type="string"/>
+          </extensionElements>
+        </humanTask>
+      </stage>
+      
+      <!-- Milestones -->
+      <planItem id="planItem_orderReceived" definitionRef="orderReceived"/>
+      <planItem id="planItem_orderApproved" definitionRef="orderApproved">
+        <entryCriterion id="afterReview" sentryRef="sentry_afterReview"/>
+      </planItem>
+      <planItem id="planItem_orderShipped" definitionRef="orderShipped">
+        <entryCriterion id="afterProcessing" sentryRef="sentry_afterProcessing"/>
+      </planItem>
+      <planItem id="planItem_orderCompleted" definitionRef="orderCompleted">
+        <entryCriterion id="afterCompletion" sentryRef="sentry_afterCompletion"/>
+      </planItem>
+      
+      <milestone id="orderReceived" name="Order Received"/>
+      <milestone id="orderApproved" name="Order Approved"/>
+      <milestone id="orderShipped" name="Order Shipped"/>
+      <milestone id="orderCompleted" name="Order Completed"/>
+      
+      <!-- Plan Items for Stages -->
+      <planItem id="planItem_reviewStage" definitionRef="reviewStage"/>
+      <planItem id="planItem_processingStage" definitionRef="processingStage">
+        <entryCriterion id="startProcessing" sentryRef="sentry_startProcessing"/>
+      </planItem>
+      <planItem id="planItem_completionStage" definitionRef="completionStage">
+        <entryCriterion id="startCompletion" sentryRef="sentry_startCompletion"/>
+      </planItem>
+      
+      <!-- Sentries (conditions) -->
+      <sentry id="sentry_afterReview">
+        <planItemOnPart sourceRef="planItem_reviewStage">
+          <standardEvent>complete</standardEvent>
+        </planItemOnPart>
+        <ifPart>
+          <condition><![CDATA[${approved == true}]]></condition>
+        </ifPart>
+      </sentry>
+      
+      <sentry id="sentry_startProcessing">
+        <planItemOnPart sourceRef="planItem_orderApproved">
+          <standardEvent>occur</standardEvent>
+        </planItemOnPart>
+      </sentry>
+      
+      <sentry id="sentry_afterProcessing">
+        <planItemOnPart sourceRef="planItem_processingStage">
+          <standardEvent>complete</standardEvent>
+        </planItemOnPart>
+      </sentry>
+      
+      <sentry id="sentry_startCompletion">
+        <planItemOnPart sourceRef="planItem_orderShipped">
+          <standardEvent>occur</standardEvent>
+        </planItemOnPart>
+      </sentry>
+      
+      <sentry id="sentry_afterCompletion">
+        <planItemOnPart sourceRef="planItem_completionStage">
+          <standardEvent>complete</standardEvent>
+        </planItemOnPart>
+      </sentry>
+      
+    </casePlanModel>
+  </case>
+  
+</definitions>
+# 2025-09-29T12:19:20Z - Validate credentials on initialization
+# 2025-10-20T11:21:39Z - Document history query usage
+# 2025-11-11T12:27:24Z - Document BPMN history examples
+# 2025-09-29T07:02:56Z - Validate credentials on initialization
+# 2025-10-21T13:12:57Z - Document history query usage
+# 2025-11-14T09:18:23Z - Document BPMN history examples

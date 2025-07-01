@@ -1,0 +1,295 @@
+Add base HTTP client class
+Initialize Flowable::Client
+Add host and port configuration
+Add use_ssl and base_path options
+Add request logging support
+Set default Content-Type headers
+Add retry for transient network errors
+Add configurable timeouts
+Refactor connection initialization
+Add client configuration validation
+Add URL builder helpers
+Add proxy support
+Allow swapping logger implementation
+Add unit tests for client init
+Improve connection error handling
+Add Basic Auth support
+Add authorization header handling
+Read configuration from environment variables
+Allow passing username and password to client
+Document environment variables
+Add local config fallback
+Validate credentials on initialization
+Add integration test for authentication
+Improve error message for missing credentials
+Add token support (future-proof)
+Add example configuration in examples/
+Add YAML config file parser
+Prevent password leaks in logs
+Add skip_ssl_verify option
+Clean up configuration docstrings
+Add create deployment endpoint
+Add list deployments endpoint
+Add get deployment details
+Add delete deployment with cascade option
+Add list resources in deployment
+Add fetch resource content (XML)
+Add tests for deployment CRUD
+Add tenant support for deployments
+Validate files before deployment
+Add retry for file uploads
+Document deployment example
+Log deployment results
+Improve 4xx/5xx error handling for deployments
+Add multipart upload support
+Refactor deployments into a separate module
+Add list case definitions
+Add get case definition by id
+Add get latest definition by key
+Add get CMMN model endpoint
+Add get resource content for definitions
+Add unit tests for case_definitions
+Add tenant_id filtering
+Add sorting and pagination support
+Add conversion of model to JSON
+Improve error handling for missing definitions
+Add versioning endpoint for definitions
+Document case_definitions usage
+Add example fetching model in examples/
+Implement caching for fetched models
+Refactor method names for consistency
+Add start_by_key for case instances
+Add start_by_id for case instances
+Add list case instances
+Add get case instance details
+Add terminate and delete case instance
+Support business_key and variables on start
+Add get/set variables for case instances
+Add endpoints for update/delete variables
+Add integration tests for starting instances
+Support outcome parameter on start
+Add pagination for instance listing
+Document start instance usage
+Validate input for variables
+Fix date mapping in responses
+Add start_and_wait helper for tests
+Add list tasks endpoint
+Add get task details
+Add claim/unclaim task support
+Add complete task with variables and outcome
+Add update task properties (assignee, priority)
+Add delegate/resolve task support
+Add delete task with reason
+Add identity link endpoints for tasks
+Add candidate user/group handling
+Add create/update task variables
+Add unit tests for tasks
+Add pagination and sorting for tasks
+Improve errors for non-existent task id
+Document task usage examples
+Add complete_and_fetch_next helper
+Add list plan item instances
+Add get single plan item
+Add helpers: active/stages/tasks/milestones
+Add trigger/enable/disable/start/terminate actions
+Add integration tests for plan items
+Add filtering by planItemDefinitionType
+Document plan item helpers
+Add pagination for plan items
+Fix mapping of status fields
+Add examples for plan items in examples/
+Add bulk actions endpoint for plan items
+Validate actions (e.g., cannot start if not enabled)
+Improve action logging for plan items
+Add retry for short timeouts
+Refactor plan_item_instances module
+Add history endpoints for case instances
+Add history task instances endpoint
+Add history variable instances endpoint
+Add history plan item instances endpoint
+Add date-range filtering for history queries
+Add pagination and sorting for history
+Document history query usage
+Add integration tests for history
+Add endpoint to delete historic case instances
+Add export history to JSON
+Fix date field mapping in history
+Add advanced query API for history
+Add protections against expensive history queries
+Optionally cache historic results
+Refactor history client into a submodule
+Add BPMN deployment endpoints
+Add fetching resources for BPMN deployments
+Add tests for BPMN deployments
+Add support for diagrams in resources
+Document BPMN deployment usage
+Validate BPMN files before upload
+Add optional conversion of diagrams to PNG
+Add retry for BPMN uploads
+Add tenant support for BPMN deployments
+Log BPMN deployment activity
+Add example BPMN in examples/
+Improve 400 handling for invalid files
+Add bulk deploy endpoint
+Refactor deploy methods to share code
+Add deployment metadata (description)
+Add list process definitions
+Add get process definition by id
+Add get latest process definition by key
+Add get process model endpoint
+Add resource content retrieval for processes
+Add unit tests for process_definitions
+Add filtering by tenant and key
+Add pagination and sorting for definitions
+Document process definitions usage
+Add example fetching model in examples/
+Add caching for frequently fetched definitions
+Improve errors for missing process definitions
+Add endpoint to activate/deactivate versions
+Align method names with case_definitions
+Migrate client API names for consistency
+Add start process by key and by id
+Add list process instances
+Add get process instance details
+Add terminate/delete process instance
+Support variables on process start
+Add pagination for process instances
+Add integration tests for process instances
+Document starting processes examples
+Add start_and_watch_process helper
+Support businessKey for processes
+Add update process variables
+Add fetching tasks related to a process instance
+Fix date and status mapping
+Add endpoint for instance migration (if available)
+Refactor process_instances module
+Add BPMN-specific task helpers
+Support formProperties for tasks
+Add task event listener hooks for tests
+Add manual task creation for tests
+Add form property update support
+Add unit tests for BPMN task helpers
+Add pagination/filtering for BPMN tasks
+Document BPMN task examples
+Add helper to assign tasks by group
+Improve candidate user handling in BPMN tasks
+Add retry on conflict during completion
+Add audit logging for task actions
+Optionally add webhook trigger on completion
+Refactor shared task logic with tasks module
+Add BPMN task flow example in examples/
+Add list executions endpoint
+Add get execution by id
+Add query executions with filters
+Add unit tests for executions
+Document executions API
+Add helper to suspend/trigger execution
+Add pagination and sorting for executions
+Fix variable mapping for executions
+Validate execution actions
+Add logging for execution operations
+Add example for executions in examples/
+Add execution statistics endpoint
+Refactor executions client into clear methods
+Protect against large execution queries
+Add retry for transient execution errors
+Add BPMN history endpoints
+Add history tasks for BPMN
+Add filtering history by time and user
+Add pagination for BPMN history
+Add export history to CSV/JSON
+Add integration tests for BPMN history
+Document BPMN history examples
+Add admin endpoint to purge history
+Add caching and rate limits for history
+Fix mapping of historical statuses
+Add reporting helper for history
+Add protections against expensive queries
+Refactor CMMN/BPMN history common code
+Add tenant support in BPMN history
+Add telemetry/logging for history queries
+Add core DSL in workflow_dsl.rb
+Add sample DSL scripts in examples/
+Implement DSL parser and validator
+Integrate DSL with Flowable client
+Add unit tests for DSL parsing
+Document DSL syntax and usage
+Add dsl.run helper for tests
+Improve error messages for parse failures
+Add advanced workflow examples
+Allow deployment generation from DSL
+Add DSL version validation
+Integrate DSL with workflow.rb core
+Refactor DSL to Workflow::DSL module
+Migrate DSL examples into README
+Add variable and parameter support in DSL
+Add basic CLI in bin/flowable
+Add deploy command to CLI
+Add start-case command to CLI
+Add list-tasks command to CLI
+Allow CLI configuration from env
+Document CLI usage in README
+Add integration tests for CLI
+Add --wait flag for start commands
+Support JSON and human-readable output
+Add optional CLI autocompletion
+Add --help with examples
+Allow piping CLI output to files
+Fix file permissions for bin/flowable
+Add script to create flowable.png (already added)
+Refactor CLI onto Thor/OptionParser
+Add basic_usage.rb example
+Add basic_usage_full.rb example
+Add workflow_dsl.rb example case
+Add deploy+start examples in examples/cases
+Add README for examples directory
+Add script to run examples locally
+Add error handling examples
+Add pagination/filtering example
+Add variable update usage example
+Add Docker Flowable integration example
+Add example showing use_ssl configuration
+Add CLI usage example with output
+Add example integration tests in examples/
+Refactor and organize examples folder
+Add inline comments for beginners in examples
+Add unit tests for flowable_client module
+Add integration tests with local Docker
+Add test coverage config (simplecov)
+Add tests for deployment CRUD
+Add tests for tasks and task variables
+Add tests for history endpoints
+Add tests for workflow DSL parsing
+Add tests for basic CLI commands
+Add edge-case tests for invalid API responses
+Add CI job to run tests (if missing)
+Add test helpers to mock Flowable responses
+Stabilize flaky tests
+Add pagination and sorting tests
+Add auth error handling tests
+Update run_tests.sh with instructions
+Expand README with logo section (added)
+Document modules under lib/flowable
+Add quickstart guide with examples
+Add Contributing and environment requirements
+Add CI badges to README (if available)
+Add changelog entry for local version
+Document client API methods and params
+Add instructions for running integration tests
+Add Docker Compose examples for local Flowable
+Improve README TOC structure
+Add FAQ section for common errors
+Link to official Flowable docs
+Add sample commit guidelines for contributors
+Update flowable.gemspec description
+Add suggested versioning policy in README
+Update Gemfile and gemspec dependencies
+Add Rake task for building gem
+Add publish script with dry-run# 2025-09-29T10:37:25Z - Add authorization header handling
+# 2025-10-20T10:00:03Z - Add history task instances endpoint
+# 2025-11-11T15:25:29Z - Add history tasks for BPMN
+# 2025-11-28T13:23:08Z - Add Rake task for building gem
+# 2025-09-26T08:33:50Z - Add authorization header handling
+# 2025-10-21T14:25:10Z - Add history task instances endpoint
+# 2025-11-13T11:33:52Z - Add history tasks for BPMN
+# 2025-12-09T10:09:49Z - Add Rake task for building gem
