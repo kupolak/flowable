@@ -24,3 +24,18 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   # No runtime dependencies - uses only Ruby standard library
+
+  spec.metadata = {
+    'homepage_uri' => spec.homepage,
+    'source_code_uri' => spec.homepage,
+    'changelog_uri' => "#{spec.homepage}/blob/main/CHANGELOG.md",
+    'documentation_uri' => "#{spec.homepage}#readme",
+    'bug_tracker_uri' => "#{spec.homepage}/issues",
+    'rubygems_mfa_required' => 'true'
+  }
+
+  spec.post_install_message = <<~MSG
+    Thank you for installing flowable!
+
+    Quick start:
+      require 'flowable'
