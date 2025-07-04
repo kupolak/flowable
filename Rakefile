@@ -79,3 +79,91 @@ task :console do
 
   puts 'Flowable loaded. Create a client with:'
   puts "  client = Flowable::Client.new(host: 'localhost', port: 8080, username: 'rest-admin', password: 'test')"
+
+  ARGV.clear
+  IRB.start
+end
+
+# Build gem
+desc 'Build the gem'
+task :build do
+  system('gem build flowable.gemspec')
+end
+
+# Install gem locally
+desc 'Install gem locally'
+task install: :build do
+  system('gem install flowable-*.gem')
+end
+
+# Clean build artifacts
+desc 'Clean build artifacts'
+task :clean do
+  FileUtils.rm_f(Dir['*.gem'])
+  FileUtils.rm_rf('pkg')
+  FileUtils.rm_rf('doc')
+  FileUtils.rm_rf('coverage')
+end
+
+# Generate YARD documentation
+desc 'Generate YARD documentation'
+task :doc do
+  system('yard doc lib/**/*.rb')
+end
+
+# Check code style (if RuboCop is available)
+desc 'Run RuboCop'
+task :rubocop do
+  system('rubocop') || exit(1)
+end
+
+# Run RuboCop with auto-correct
+desc 'Run RuboCop with auto-correct'
+task 'rubocop:fix' do
+  system('rubocop -a')
+end
+
+namespace :flowable do
+  desc 'Check Flowable container status'
+  task :status do
+    response = `curl -s http://localhost:8080/flowable-rest/actuator/health 2>/dev/null`
+    if response.include?('UP')
+      puts '✅ Flowable is running'
+
+      # Show some stats
+      require_relative 'lib/flowable/flowable'
+      client = Flowable::Client.new(
+        host: 'localhost',
+        port: 8080,
+        username: 'rest-admin',
+        password: 'test'
+      )
+
+      deployments = client.deployments.list['total']
+      definitions = client.case_definitions.list['total']
+      instances = client.case_instances.list['total']
+      tasks = client.tasks.list['total']
+
+      puts "   Deployments: #{deployments}"
+      puts "   Case Definitions: #{definitions}"
+      puts "   Active Cases: #{instances}"
+      puts "   Open Tasks: #{tasks}"
+    else
+      puts '❌ Flowable is not running'
+      puts '   Run: rake docker_start'
+    end
+  end
+
+  desc 'Show Flowable logs'
+  task :logs do
+    system('docker-compose logs -f flowable')
+  end
+end
+# 2025-09-26T07:08:09Z - Improve connection error handling
+# 2025-10-17T11:44:26Z - Refactor plan_item_instances module
+# 2025-11-10T10:29:56Z - Add retry for transient execution errors
+# 2025-11-28T08:27:33Z - Add suggested versioning policy in README
+# 2025-09-26T11:53:01Z - Improve connection error handling
+# 2025-10-20T13:29:51Z - Refactor plan_item_instances module
+# 2025-11-12T12:34:19Z - Add retry for transient execution errors
+# 2025-12-09T11:53:21Z - Add suggested versioning policy in README
