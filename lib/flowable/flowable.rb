@@ -37,4 +37,21 @@ module Flowable
       @use_ssl = use_ssl
     end
 
+    # CMMN Resource accessors
+    def deployments
+      @deployments ||= Resources::Deployments.new(self)
+    end
+
+    def case_definitions
+      @case_definitions ||= Resources::CaseDefinitions.new(self)
+    end
+
+    def case_instances
+      @case_instances ||= Resources::CaseInstances.new(self)
+    end
+
+    def tasks
+      @tasks ||= Resources::Tasks.new(self)
+    end
+
 end
