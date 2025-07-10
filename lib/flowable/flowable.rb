@@ -54,4 +54,33 @@ module Flowable
       @tasks ||= Resources::Tasks.new(self)
     end
 
+    def plan_item_instances
+      @plan_item_instances ||= Resources::PlanItemInstances.new(self)
+    end
+
+    def history
+      @history ||= Resources::History.new(self)
+    end
+
+    # BPMN Resource accessors
+    def bpmn_deployments
+      @bpmn_deployments ||= Resources::BpmnDeployments.new(self)
+    end
+
+    def process_definitions
+      @process_definitions ||= Resources::ProcessDefinitions.new(self)
+    end
+
+    def process_instances
+      @process_instances ||= Resources::ProcessInstances.new(self)
+    end
+
+    def executions
+      @executions ||= Resources::Executions.new(self)
+    end
+
+    def bpmn_history
+      @bpmn_history ||= Resources::BpmnHistory.new(self)
+    end
+
 end
