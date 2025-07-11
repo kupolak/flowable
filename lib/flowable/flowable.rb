@@ -83,4 +83,9 @@ module Flowable
       @bpmn_history ||= Resources::BpmnHistory.new(self)
     end
 
+    # HTTP methods
+    def get(path, params = {})
+      request(:get, path, params: params)
+    end
+
 end
