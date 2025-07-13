@@ -88,4 +88,8 @@ module Flowable
       request(:get, path, params: params)
     end
 
+    def post(path, body = nil)
+      request(:post, path, body: body)
+    end
+
 end
