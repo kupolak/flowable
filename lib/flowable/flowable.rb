@@ -92,4 +92,8 @@ module Flowable
       request(:post, path, body: body)
     end
 
+    def put(path, body = nil)
+      request(:put, path, body: body)
+    end
+
 end
