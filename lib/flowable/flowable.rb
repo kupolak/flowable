@@ -96,4 +96,8 @@ module Flowable
       request(:put, path, body: body)
     end
 
+    def delete(path, params = {})
+      request(:delete, path, params: params)
+    end
+
 end
