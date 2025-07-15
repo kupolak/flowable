@@ -100,4 +100,8 @@ module Flowable
       request(:delete, path, params: params)
     end
 
+    def post_multipart(path, file_path, additional_fields = {})
+      uri = build_uri(path)
+      boundary = "----Flowable#{rand(1_000_000)}"
+
 end
