@@ -104,4 +104,15 @@ module Flowable
       uri = build_uri(path)
       boundary = "----Flowable#{rand(1_000_000)}"
 
+      body = build_multipart_body(file_path, additional_fields, boundary)
+
+      http = build_http(uri)
+      request = Net::HTTP::Post.new(uri.request_uri)
+      request['Authorization'] = auth_header
+      request['Content-Type'] = "multipart/form-data; boundary=#{boundary}"
+      request.body = body
+
+      handle_response(http.request(request))
+    end
+
 end
