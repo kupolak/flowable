@@ -115,4 +115,8 @@ module Flowable
       handle_response(http.request(request))
     end
 
+    private
+
+    def request(method, path, params: {}, body: nil)
+      uri = build_uri(path, params)
 end
