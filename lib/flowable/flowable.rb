@@ -125,4 +125,13 @@ module Flowable
       handle_response(http.request(request))
     end
 
+    def build_uri(path, params = {})
+      # Determine base path - BPMN resources use service path
+      effective_base_path = path.start_with?('service/') || path.start_with?('repository/') || path.start_with?('runtime/') || (path.start_with?('history/') && !path.include?('cmmn')) ? @bpmn_base_path : @base_path
+
+      # For BPMN paths, strip the 'service/' prefix if present since it's in base path
+      adjusted_path = path.start_with?('service/') ? path.sub('service/', '') : path
+
+      uri = URI::HTTP.build(
+        host: @host,
 end
