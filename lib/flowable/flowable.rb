@@ -141,4 +141,7 @@ module Flowable
       uri
     end
 
+    def build_http(uri)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = @use_ssl
 end
