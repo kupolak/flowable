@@ -134,4 +134,11 @@ module Flowable
 
       uri = URI::HTTP.build(
         host: @host,
+        port: @port,
+        path: "#{effective_base_path}/#{adjusted_path}".gsub('//', '/')
+      )
+      uri.query = URI.encode_www_form(params) unless params.empty?
+      uri
+    end
+
 end
