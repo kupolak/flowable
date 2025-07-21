@@ -144,4 +144,9 @@ module Flowable
     def build_http(uri)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = @use_ssl
+      http.read_timeout = 30
+      http.open_timeout = 10
+      http
+    end
+
 end
