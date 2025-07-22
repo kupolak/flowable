@@ -164,4 +164,9 @@ module Flowable
 
       if body
         request.body = body.is_a?(String) ? body : body.to_json
+      end
+
+      request
+    end
+
 end
