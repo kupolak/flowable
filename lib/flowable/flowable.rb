@@ -149,4 +149,9 @@ module Flowable
       http
     end
 
+    def build_request(method, uri, body)
+      request_class = {
+        get: Net::HTTP::Get,
+        post: Net::HTTP::Post,
+        put: Net::HTTP::Put,
 end
