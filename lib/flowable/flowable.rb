@@ -159,4 +159,9 @@ module Flowable
 
       request = request_class.new(uri.request_uri)
       request['Authorization'] = auth_header
+      request['Accept'] = 'application/json'
+      request['Content-Type'] = 'application/json'
+
+      if body
+        request.body = body.is_a?(String) ? body : body.to_json
 end
