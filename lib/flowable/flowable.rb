@@ -154,4 +154,9 @@ module Flowable
         get: Net::HTTP::Get,
         post: Net::HTTP::Post,
         put: Net::HTTP::Put,
+        delete: Net::HTTP::Delete
+      }[method]
+
+      request = request_class.new(uri.request_uri)
+      request['Authorization'] = auth_header
 end
