@@ -169,4 +169,9 @@ module Flowable
       request
     end
 
+    def auth_header
+      credentials = Base64.strict_encode64("#{@username}:#{@password}")
+      "Basic #{credentials}"
+    end
+
 end
