@@ -174,4 +174,11 @@ module Flowable
       "Basic #{credentials}"
     end
 
+    def handle_response(response)
+      case response.code.to_i
+      when 200, 201
+        parse_response(response)
+      when 204
+        true
+      when 400
 end
