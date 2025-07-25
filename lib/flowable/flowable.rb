@@ -181,4 +181,16 @@ module Flowable
       when 204
         true
       when 400
+        raise BadRequestError, parse_error_message(response)
+      when 401
+        raise UnauthorizedError, 'Invalid credentials'
+      when 404
+        raise NotFoundError, parse_error_message(response)
+      when 409
+        raise ConflictError, parse_error_message(response)
+      else
+        raise Error, "HTTP #{response.code}: #{parse_error_message(response)}"
+      end
+    end
+
 end
