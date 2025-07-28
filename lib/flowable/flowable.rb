@@ -193,4 +193,10 @@ module Flowable
       end
     end
 
+    def parse_response(response)
+      return nil if response.body.nil? || response.body.empty?
+
+      body = response.body
+      content_type = response['Content-Type'] || ''
+
 end
