@@ -199,4 +199,14 @@ module Flowable
       body = response.body
       content_type = response['Content-Type'] || ''
 
+      # Flowable bug workaround: resourcedata endpoint returns XML with Content-Type: application/json
+      # Check if body starts with XML declaration and return raw body
+      return body if body.start_with?('<?xml')
+
+      if content_type.include?('application/json')
+        # Handle Flowable bug: when Jackson exceeds nesting limit (1000),
+        # it appends an error message to incomplete JSON instead of returning proper error
+        if body.include?('{"message":"Bad request","exception":"Could not write JSON: Document nesting depth')
+          idx = body.index('{"message":"Bad request"')
+          # idx is guaranteed to be non-nil here since we already checked body includes the pattern
 end
