@@ -221,4 +221,13 @@ module Flowable
       end
     end
 
+    def parse_error_message(response)
+      return response.message if response.body.nil? || response.body.empty?
+
+      parsed = JSON.parse(response.body)
+      parsed['errorMessage'] || parsed['message'] || response.body
+    rescue JSON::ParserError
+      response.body
+    end
+
 end
