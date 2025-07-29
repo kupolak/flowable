@@ -209,4 +209,16 @@ module Flowable
         if body.include?('{"message":"Bad request","exception":"Could not write JSON: Document nesting depth')
           idx = body.index('{"message":"Bad request"')
           # idx is guaranteed to be non-nil here since we already checked body includes the pattern
+          if idx.positive?
+            # Try to extract valid JSON before the error
+            body = body[0...(idx - 1)]
+          end
+        end
+
+        JSON.parse(body, max_nesting: 1500)
+      else
+        body
+      end
+    end
+
 end
