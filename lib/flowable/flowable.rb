@@ -239,4 +239,20 @@ module Flowable
 
       body << "--#{boundary}"
       body << "Content-Disposition: form-data; name=\"file\"; filename=\"#{filename}\""
+      body << 'Content-Type: application/octet-stream'
+      body << ''
+      body << file_content
+
+      # Add additional fields
+      additional_fields.each do |name, value|
+        body << "--#{boundary}"
+        body << "Content-Disposition: form-data; name=\"#{name}\""
+        body << ''
+        body << value.to_s
+      end
+
+      body << "--#{boundary}--"
+      body.join("\r\n")
+    end
+  end
 end
