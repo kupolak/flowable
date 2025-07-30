@@ -230,4 +230,13 @@ module Flowable
       response.body
     end
 
+    def build_multipart_body(file_path, additional_fields, boundary)
+      body = []
+
+      # Add file
+      filename = File.basename(file_path)
+      file_content = File.binread(file_path)
+
+      body << "--#{boundary}"
+      body << "Content-Disposition: form-data; name=\"file\"; filename=\"#{filename}\""
 end
