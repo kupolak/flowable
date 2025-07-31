@@ -24,5 +24,15 @@ module Flowable
         return [] unless variables
 
         variables.map do |name, value|
+          var = { name: name.to_s, value: value }
+          var[:type] = infer_type(value)
+          var
+        end
+      end
+
+      def infer_type(value)
+        case value
+        when Integer then 'long'
+        when Float then 'double'
   end
 end
