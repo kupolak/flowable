@@ -22,3 +22,11 @@ module Flowable
         params[:nameLike] = options[:nameLike] if options[:nameLike]
         params[:category] = options[:category] if options[:category]
         params[:tenantId] = options[:tenantId] if options[:tenantId]
+        params[:withoutTenantId] = options[:withoutTenantId] if options[:withoutTenantId]
+
+        client.get(BASE_PATH, params)
+      end
+
+      # Get a specific deployment
+      # @param deployment_id [String] The deployment ID
+      # @return [Hash] Deployment details
