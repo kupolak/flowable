@@ -30,3 +30,11 @@ module Flowable
       # Get a specific deployment
       # @param deployment_id [String] The deployment ID
       # @return [Hash] Deployment details
+      def get(deployment_id)
+        client.get("#{BASE_PATH}/#{deployment_id}")
+      end
+
+      # Create a new deployment from a file
+      # @param file_path [String] Path to CMMN file (.cmmn.xml, .bar, .zip)
+      # @param name [String] Optional deployment name
+      # @param tenant_id [String] Optional tenant ID
