@@ -38,3 +38,11 @@ module Flowable
       # @param file_path [String] Path to CMMN file (.cmmn.xml, .bar, .zip)
       # @param name [String] Optional deployment name
       # @param tenant_id [String] Optional tenant ID
+      # @param category [String] Optional category
+      # @return [Hash] Created deployment
+      def create(file_path, name: nil, tenant_id: nil, category: nil)
+        additional_fields = {}
+        additional_fields[:deploymentName] = name if name
+        additional_fields[:tenantId] = tenant_id if tenant_id
+        additional_fields[:category] = category if category
+
