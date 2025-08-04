@@ -46,3 +46,11 @@ module Flowable
         additional_fields[:tenantId] = tenant_id if tenant_id
         additional_fields[:category] = category if category
 
+        client.post_multipart(BASE_PATH, file_path, additional_fields)
+      end
+
+      # Delete a deployment
+      # @param deployment_id [String] The deployment ID
+      # @param cascade [Boolean] Also delete related case/process instances (default: false)
+      # @return [Boolean] true if successful
+      def delete(deployment_id, cascade: false)
