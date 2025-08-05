@@ -54,3 +54,11 @@ module Flowable
       # @param cascade [Boolean] Also delete related case/process instances (default: false)
       # @return [Boolean] true if successful
       def delete(deployment_id, cascade: false)
+        params = cascade ? { cascade: true } : {}
+        client.delete("#{BASE_PATH}/#{deployment_id}", params)
+      end
+
+      # List resources in a deployment
+      # @param deployment_id [String] The deployment ID
+      # @return [Array<Hash>] List of resources
+      def resources(deployment_id)
