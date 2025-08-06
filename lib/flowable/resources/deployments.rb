@@ -62,3 +62,11 @@ module Flowable
       # @param deployment_id [String] The deployment ID
       # @return [Array<Hash>] List of resources
       def resources(deployment_id)
+        client.get("#{BASE_PATH}/#{deployment_id}/resources")
+      end
+
+      # Get a specific resource from a deployment
+      # @param deployment_id [String] The deployment ID
+      # @param resource_id [String] The resource ID (URL-encoded if contains /)
+      # @return [Hash] Resource details
+      def resource(deployment_id, resource_id)
