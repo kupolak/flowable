@@ -86,3 +86,11 @@ module Flowable
   end
 end
 # 2025-10-01T07:33:13Z - Add create deployment endpoint
+# 2025-10-02T10:26:09Z - Add list deployments endpoint
+# 2025-10-02T10:31:37Z - Add get deployment details
+# 2025-10-02T13:02:00Z - Add delete deployment with cascade option
+# 2025-10-03T11:18:34Z - Add list resources in deployment
+# 2025-10-03T09:14:01Z - Add tests for deployment CRUD
+# 2025-10-03T08:34:10Z - Add tenant support for deployments
+# 2025-10-03T09:12:11Z - Validate files before deployment
+# 2025-10-06T14:25:48Z - Document deployment example
