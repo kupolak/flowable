@@ -94,3 +94,11 @@ end
 # 2025-10-03T08:34:10Z - Add tenant support for deployments
 # 2025-10-03T09:12:11Z - Validate files before deployment
 # 2025-10-06T14:25:48Z - Document deployment example
+# 2025-10-06T10:56:47Z - Log deployment results
+# 2025-10-06T12:00:45Z - Improve 4xx/5xx error handling for deployments
+# 2025-10-06T10:27:30Z - Refactor deployments into a separate module
+# 2025-10-23T11:52:50Z - Add BPMN deployment endpoints
+# 2025-10-23T07:17:49Z - Add fetching resources for BPMN deployments
+# 2025-10-23T08:32:27Z - Add tests for BPMN deployments
+# 2025-10-23T14:49:09Z - Document BPMN deployment usage
+# 2025-10-24T07:28:19Z - Add tenant support for BPMN deployments
