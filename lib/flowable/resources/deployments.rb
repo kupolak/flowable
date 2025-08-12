@@ -110,3 +110,9 @@ end
 # 2025-11-21T12:39:01Z - Add deploy command to CLI
 # 2025-11-25T14:19:07Z - Add deploy+start examples in examples/cases
 # 2025-11-27T08:53:15Z - Add tests for deployment CRUD
+# 2025-10-01T12:46:35Z - Add list deployments endpoint
+# 2025-10-21T12:38:33Z - Add fetching resources for BPMN deployments
+# 2025-11-13T14:46:15Z - Add sample DSL scripts in examples/
+# 2025-10-01T14:54:36Z - Add list deployments endpoint
+# 2025-10-24T11:05:04Z - Add fetching resources for BPMN deployments
+# 2025-11-19T12:11:19Z - Add sample DSL scripts in examples/
