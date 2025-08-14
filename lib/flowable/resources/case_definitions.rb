@@ -16,3 +16,12 @@ module Flowable
       # @option options [Boolean] :latest Only return latest versions
       # @option options [String] :tenantId Filter by tenant
       # @return [Hash] Paginated list of case definitions
+      def list(**options)
+        params = paginate_params(options)
+        %i[key keyLike name nameLike resourceName resourceNameLike
+           category categoryLike categoryNotEquals deploymentId
+           startableByUser tenantId].each do |key|
+          params[key] = options[key] if options[key]
+        end
+        params[:version] = options[:version] if options[:version]
+        params[:latest] = options[:latest] if options.key?(:latest)
