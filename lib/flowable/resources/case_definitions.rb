@@ -25,3 +25,12 @@ module Flowable
         end
         params[:version] = options[:version] if options[:version]
         params[:latest] = options[:latest] if options.key?(:latest)
+        params[:suspended] = options[:suspended] if options.key?(:suspended)
+
+        client.get(BASE_PATH, params)
+      end
+
+      # Get a specific case definition
+      # @param case_definition_id [String] The case definition ID
+      # @return [Hash] Case definition details
+      def get(case_definition_id)
