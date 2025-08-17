@@ -43,3 +43,12 @@ module Flowable
       # @return [Hash] Case definition details
       def get_by_key(key, tenant_id: nil)
         params = { key: key, latest: true }
+        params[:tenantId] = tenant_id if tenant_id
+
+        result = client.get(BASE_PATH, params)
+        result['data']&.first
+      end
+
+      # Update the category of a case definition
+      # @param case_definition_id [String] The case definition ID
+      # @param category [String] The new category
