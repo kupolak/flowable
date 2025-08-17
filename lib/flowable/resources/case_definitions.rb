@@ -34,3 +34,12 @@ module Flowable
       # @param case_definition_id [String] The case definition ID
       # @return [Hash] Case definition details
       def get(case_definition_id)
+        client.get("#{BASE_PATH}/#{case_definition_id}")
+      end
+
+      # Get case definition by key (returns latest version)
+      # @param key [String] The case definition key
+      # @param tenant_id [String] Optional tenant ID
+      # @return [Hash] Case definition details
+      def get_by_key(key, tenant_id: nil)
+        params = { key: key, latest: true }
