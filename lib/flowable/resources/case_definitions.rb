@@ -79,3 +79,12 @@ module Flowable
       def identity_links(case_definition_id)
         client.get("#{BASE_PATH}/#{case_definition_id}/identitylinks")
       end
+
+      # Add a candidate starter (user) to a case definition
+      # @param case_definition_id [String] The case definition ID
+      # @param user_id [String] The user ID
+      # @return [Hash] Created identity link
+      def add_candidate_user(case_definition_id, user_id)
+        client.post(
+          "#{BASE_PATH}/#{case_definition_id}/identitylinks",
+          { user: user_id }
