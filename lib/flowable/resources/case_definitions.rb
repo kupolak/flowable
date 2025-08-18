@@ -70,3 +70,12 @@ module Flowable
       # @param case_definition_id [String] The case definition ID
       # @return [Hash] CMMN model structure
       def model(case_definition_id)
+        client.get("#{BASE_PATH}/#{case_definition_id}/model")
+      end
+
+      # Get all candidate starters for a case definition
+      # @param case_definition_id [String] The case definition ID
+      # @return [Array<Hash>] List of identity links
+      def identity_links(case_definition_id)
+        client.get("#{BASE_PATH}/#{case_definition_id}/identitylinks")
+      end
