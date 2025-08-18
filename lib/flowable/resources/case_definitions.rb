@@ -52,3 +52,12 @@ module Flowable
       # Update the category of a case definition
       # @param case_definition_id [String] The case definition ID
       # @param category [String] The new category
+      # @return [Hash] Updated case definition
+      def update_category(case_definition_id, category)
+        client.put("#{BASE_PATH}/#{case_definition_id}", { category: category })
+      end
+
+      # Get the CMMN XML content of a case definition
+      # @param case_definition_id [String] The case definition ID
+      # @return [String] CMMN XML content
+      def resource_data(case_definition_id)
