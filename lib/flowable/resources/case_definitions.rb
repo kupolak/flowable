@@ -61,3 +61,12 @@ module Flowable
       # @param case_definition_id [String] The case definition ID
       # @return [String] CMMN XML content
       def resource_data(case_definition_id)
+        client.get("#{BASE_PATH}/#{case_definition_id}/resourcedata")
+      end
+
+      alias resource_content resource_data
+
+      # Get the CMMN model as JSON
+      # @param case_definition_id [String] The case definition ID
+      # @return [Hash] CMMN model structure
+      def model(case_definition_id)
