@@ -115,3 +115,12 @@ module Flowable
 end
 # 2025-10-06T09:24:28Z - Add list case definitions
 # 2025-10-07T09:02:35Z - Add get case definition by id
+# 2025-10-07T10:05:12Z - Add get CMMN model endpoint
+# 2025-10-07T11:36:11Z - Add unit tests for case_definitions
+# 2025-10-08T09:37:03Z - Document case_definitions usage
+# 2025-11-05T13:30:39Z - Align method names with case_definitions
+# 2025-11-17T12:50:12Z - Refactor CMMN/BPMN history common code
+# 2025-10-01T12:35:43Z - Clean up configuration docstrings
+# 2025-10-21T13:56:32Z - Refactor history client into a submodule
+# 2025-11-13T12:15:23Z - Add telemetry/logging for history queries
+# 2025-10-01T08:32:46Z - Clean up configuration docstrings
