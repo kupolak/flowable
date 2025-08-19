@@ -124,3 +124,5 @@ end
 # 2025-10-21T13:56:32Z - Refactor history client into a submodule
 # 2025-11-13T12:15:23Z - Add telemetry/logging for history queries
 # 2025-10-01T08:32:46Z - Clean up configuration docstrings
+# 2025-10-23T07:05:37Z - Refactor history client into a submodule
+# 2025-11-19T16:01:21Z - Add telemetry/logging for history queries
