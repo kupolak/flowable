@@ -97,3 +97,12 @@ module Flowable
       # @return [Hash] Created identity link
       def add_candidate_group(case_definition_id, group_id)
         client.post(
+          "#{BASE_PATH}/#{case_definition_id}/identitylinks",
+          { groupId: group_id }
+        )
+      end
+
+      # Remove a candidate starter from a case definition
+      # @param case_definition_id [String] The case definition ID
+      # @param family [String] 'users' or 'groups'
+      # @param identity_id [String] The user or group ID
