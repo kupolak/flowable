@@ -26,3 +26,17 @@ module Flowable
 
         client.get(BASE_PATH, params)
       end
+
+      # Get a specific case instance
+      # @param case_instance_id [String] The case instance ID
+      # @return [Hash] Case instance details
+      def get(case_instance_id)
+        client.get("#{BASE_PATH}/#{case_instance_id}")
+      end
+
+      # Start a new case instance by case definition ID
+      # @param case_definition_id [String] The case definition ID
+      # @param variables [Hash] Optional variables (name => value)
+      # @param business_key [String] Optional business key
+      # @param return_variables [Boolean] Return variables in response
+      # @return [Hash] Created case instance
