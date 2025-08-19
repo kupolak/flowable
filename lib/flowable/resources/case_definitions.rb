@@ -106,3 +106,12 @@ module Flowable
       # @param case_definition_id [String] The case definition ID
       # @param family [String] 'users' or 'groups'
       # @param identity_id [String] The user or group ID
+      # @return [Boolean] true if successful
+      def remove_candidate(case_definition_id, family, identity_id)
+        client.delete("#{BASE_PATH}/#{case_definition_id}/identitylinks/#{family}/#{identity_id}")
+      end
+    end
+  end
+end
+# 2025-10-06T09:24:28Z - Add list case definitions
+# 2025-10-07T09:02:35Z - Add get case definition by id
