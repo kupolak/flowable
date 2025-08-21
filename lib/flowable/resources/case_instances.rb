@@ -152,3 +152,17 @@ module Flowable
         )
       end
 
+      # Create or update variables on a case instance
+      # @param case_instance_id [String] The case instance ID
+      # @param variables [Hash] Variables to set (name => value)
+      # @return [Array<Hash>] Updated variables
+      def set_variables(case_instance_id, variables)
+        client.put(
+          "#{BASE_PATH}/#{case_instance_id}/variables",
+          build_variables_array(variables)
+        )
+      end
+
+      # Update a single variable on a case instance
+      # @param case_instance_id [String] The case instance ID
+      # @param name [String] Variable name
