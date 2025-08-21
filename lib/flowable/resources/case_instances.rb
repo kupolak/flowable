@@ -54,3 +54,17 @@ module Flowable
       # @param variables [Hash] Optional variables (name => value)
       # @param business_key [String] Optional business key
       # @param tenant_id [String] Optional tenant ID
+      # @param return_variables [Boolean] Return variables in response
+      # @return [Hash] Created case instance
+      def start_by_key(case_definition_key, variables: {}, business_key: nil, tenant_id: nil, return_variables: false)
+        body = { caseDefinitionKey: case_definition_key }
+        body[:businessKey] = business_key if business_key
+        body[:tenantId] = tenant_id if tenant_id
+        body[:variables] = build_variables_array(variables) unless variables.empty?
+        body[:returnVariables] = return_variables if return_variables
+
+        client.post(BASE_PATH, body)
+      end
+
+      # Delete a case instance
+      # @param case_instance_id [String] The case instance ID
