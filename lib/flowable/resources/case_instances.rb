@@ -82,3 +82,17 @@ module Flowable
 
       # Get the diagram/image for a case instance
       # @param case_instance_id [String] The case instance ID
+      # @return [String] Binary image data
+      def diagram(case_instance_id)
+        client.get("#{BASE_PATH}/#{case_instance_id}/diagram")
+      end
+
+      # Get the stage overview for a case instance
+      # @param case_instance_id [String] The case instance ID
+      # @return [Array<Hash>] List of stages with their status
+      def stage_overview(case_instance_id)
+        client.get("#{BASE_PATH}/#{case_instance_id}/stage-overview")
+      end
+
+      # --- Identity Links ---
+
