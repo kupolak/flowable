@@ -68,3 +68,17 @@ module Flowable
 
       # Delete a case instance
       # @param case_instance_id [String] The case instance ID
+      # @return [Boolean] true if successful
+      def delete(case_instance_id)
+        client.delete("#{BASE_PATH}/#{case_instance_id}")
+      end
+
+      # Query case instances with complex filters
+      # @param query [Hash] Query body with filters and variable conditions
+      # @return [Hash] Paginated list of case instances
+      def query(query)
+        client.post('query/case-instances', query)
+      end
+
+      # Get the diagram/image for a case instance
+      # @param case_instance_id [String] The case instance ID
