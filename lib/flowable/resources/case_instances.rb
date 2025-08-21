@@ -96,3 +96,17 @@ module Flowable
 
       # --- Identity Links ---
 
+      # Get involved people for a case instance
+      # @param case_instance_id [String] The case instance ID
+      # @return [Array<Hash>] List of identity links
+      def identity_links(case_instance_id)
+        client.get("#{BASE_PATH}/#{case_instance_id}/identitylinks")
+      end
+
+      # Add an involved user to a case instance
+      # @param case_instance_id [String] The case instance ID
+      # @param user_id [String] The user ID
+      # @param type [String] Type of involvement (e.g., 'participant')
+      # @return [Hash] Created identity link
+      def add_involved_user(case_instance_id, user_id, type: 'participant')
+        client.post(
