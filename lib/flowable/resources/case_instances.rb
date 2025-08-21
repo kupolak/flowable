@@ -138,3 +138,17 @@ module Flowable
       # @param variable_name [String] The variable name
       # @return [Hash] Variable details
       def variable(case_instance_id, variable_name)
+        client.get("#{BASE_PATH}/#{case_instance_id}/variables/#{variable_name}")
+      end
+
+      # Create variables on a case instance (fails if exists)
+      # @param case_instance_id [String] The case instance ID
+      # @param variables [Hash] Variables to create (name => value)
+      # @return [Array<Hash>] Created variables
+      def create_variables(case_instance_id, variables)
+        client.post(
+          "#{BASE_PATH}/#{case_instance_id}/variables",
+          build_variables_array(variables)
+        )
+      end
+
