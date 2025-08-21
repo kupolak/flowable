@@ -124,3 +124,17 @@ module Flowable
         client.delete("#{BASE_PATH}/#{case_instance_id}/identitylinks/users/#{user_id}/#{type}")
       end
 
+      # --- Variables ---
+
+      # Get all variables for a case instance
+      # @param case_instance_id [String] The case instance ID
+      # @return [Array<Hash>] List of variables
+      def variables(case_instance_id)
+        client.get("#{BASE_PATH}/#{case_instance_id}/variables")
+      end
+
+      # Get a specific variable from a case instance
+      # @param case_instance_id [String] The case instance ID
+      # @param variable_name [String] The variable name
+      # @return [Hash] Variable details
+      def variable(case_instance_id, variable_name)
