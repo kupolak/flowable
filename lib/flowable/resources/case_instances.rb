@@ -166,3 +166,17 @@ module Flowable
       # Update a single variable on a case instance
       # @param case_instance_id [String] The case instance ID
       # @param name [String] Variable name
+      # @param value [Object] Variable value
+      # @param type [String] Optional explicit type
+      # @return [Hash] Updated variable
+      def update_variable(case_instance_id, name, value, type: nil)
+        body = { name: name, value: value }
+        body[:type] = type || infer_type(value)
+
+        client.put("#{BASE_PATH}/#{case_instance_id}/variables/#{name}", body)
+      end
+
+      # Delete a variable from a case instance
+      # @param case_instance_id [String] The case instance ID
+      # @param variable_name [String] The variable name
+      # @return [Boolean] true if successful
