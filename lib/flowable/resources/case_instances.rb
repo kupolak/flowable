@@ -180,3 +180,17 @@ module Flowable
       # @param case_instance_id [String] The case instance ID
       # @param variable_name [String] The variable name
       # @return [Boolean] true if successful
+      def delete_variable(case_instance_id, variable_name)
+        client.delete("#{BASE_PATH}/#{case_instance_id}/variables/#{variable_name}")
+      end
+    end
+  end
+end
+# 2025-10-08T13:16:21Z - Add start_by_key for case instances
+# 2025-10-08T12:03:53Z - Add start_by_id for case instances
+# 2025-10-08T10:05:08Z - Add list case instances
+# 2025-10-08T13:38:32Z - Add get case instance details
+# 2025-10-08T13:38:39Z - Add terminate and delete case instance
+# 2025-10-10T14:45:07Z - Add get/set variables for case instances
+# 2025-10-20T11:55:41Z - Add history endpoints for case instances
+# 2025-10-21T13:35:13Z - Add endpoint to delete historic case instances
