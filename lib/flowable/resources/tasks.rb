@@ -20,3 +20,25 @@ module Flowable
       # @option options [String] :tenantId Filter by tenant
       # @return [Hash] Paginated list of tasks
       def list(**options)
+        params = paginate_params(options)
+        %i[name nameLike description assignee assigneeLike owner ownerLike
+           candidateUser candidateGroup candidateGroups involvedUser
+           taskDefinitionKey taskDefinitionKeyLike caseInstanceId
+           caseDefinitionId tenantId tenantIdLike category].each do |key|
+          params[key] = options[key] if options[key]
+        end
+
+        # Integer/Date filters
+        params[:priority] = options[:priority] if options[:priority]
+        params[:minimumPriority] = options[:minimumPriority] if options[:minimumPriority]
+        params[:maximumPriority] = options[:maximumPriority] if options[:maximumPriority]
+
+        # Boolean filters
+        %i[unassigned active excludeSubTasks withoutDueDate
+           includeTaskLocalVariables withoutTenantId].each do |key|
+          params[key] = options[key] if options.key?(key)
+        end
+
+        # Date filters
+        %i[createdOn createdBefore createdAfter dueOn dueBefore dueAfter].each do |key|
+          params[key] = format_date(options[key]) if options[key]
