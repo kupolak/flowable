@@ -64,3 +64,25 @@ module Flowable
       # @option attributes [Integer] :priority Priority (default: 50)
       # @option attributes [String] :dueDate Due date (ISO-8601)
       # @option attributes [String] :category Task category
+      # @return [Hash] Updated task
+      def update(task_id, **attributes)
+        body = {}
+        %i[name description assignee owner parentTaskId category
+           formKey delegationState tenantId].each do |key|
+          body[key] = attributes[key] if attributes.key?(key)
+        end
+        body[:priority] = attributes[:priority] if attributes[:priority]
+        body[:dueDate] = format_date(attributes[:dueDate]) if attributes[:dueDate]
+
+        client.put("#{BASE_PATH}/#{task_id}", body)
+      end
+
+      # Delete a task
+      # @param task_id [String] The task ID
+      # @param cascade_history [Boolean] Also delete historic task
+      # @param delete_reason [String] Reason for deletion
+      # @return [Boolean] true if successful
+      def delete(task_id, cascade_history: false, delete_reason: nil)
+        params = {}
+        params[:cascadeHistory] = cascade_history if cascade_history
+        params[:deleteReason] = delete_reason if delete_reason
