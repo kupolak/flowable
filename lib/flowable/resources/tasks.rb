@@ -42,3 +42,25 @@ module Flowable
         # Date filters
         %i[createdOn createdBefore createdAfter dueOn dueBefore dueAfter].each do |key|
           params[key] = format_date(options[key]) if options[key]
+        end
+
+        client.get(BASE_PATH, params)
+      end
+
+      # Get a specific task
+      # @param task_id [String] The task ID
+      # @return [Hash] Task details
+      def get(task_id)
+        client.get("#{BASE_PATH}/#{task_id}")
+      end
+
+      # Update a task
+      # @param task_id [String] The task ID
+      # @param attributes [Hash] Attributes to update
+      # @option attributes [String] :name Task name
+      # @option attributes [String] :description Task description
+      # @option attributes [String] :assignee Assignee user ID
+      # @option attributes [String] :owner Owner user ID
+      # @option attributes [Integer] :priority Priority (default: 50)
+      # @option attributes [String] :dueDate Due date (ISO-8601)
+      # @option attributes [String] :category Task category
