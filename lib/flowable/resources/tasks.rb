@@ -86,3 +86,25 @@ module Flowable
         params = {}
         params[:cascadeHistory] = cascade_history if cascade_history
         params[:deleteReason] = delete_reason if delete_reason
+
+        client.delete("#{BASE_PATH}/#{task_id}", params)
+      end
+
+      # --- Task Actions ---
+
+      # Complete a task
+      # @param task_id [String] The task ID
+      # @param variables [Hash] Optional variables to set (name => value)
+      # @param outcome [String] Optional outcome
+      # @return [Hash] Response
+      def complete(task_id, variables: {}, outcome: nil)
+        body = { action: 'complete' }
+        body[:variables] = build_variables_array(variables) unless variables.empty?
+        body[:outcome] = outcome if outcome
+
+        client.post("#{BASE_PATH}/#{task_id}", body)
+      end
+
+      # Claim a task
+      # @param task_id [String] The task ID
+      # @param assignee [String] User to assign the task to
