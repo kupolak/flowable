@@ -130,3 +130,25 @@ module Flowable
 
       # Resolve a delegated task
       # @param task_id [String] The task ID
+      # @return [Hash] Response
+      def resolve(task_id)
+        client.post("#{BASE_PATH}/#{task_id}", { action: 'resolve' })
+      end
+
+      # --- Variables ---
+
+      # Get all variables for a task
+      # @param task_id [String] The task ID
+      # @param scope [String] 'local', 'global', or nil for both
+      # @return [Array<Hash>] List of variables
+      def variables(task_id, scope: nil)
+        params = {}
+        params[:scope] = scope if scope
+        client.get("#{BASE_PATH}/#{task_id}/variables", params)
+      end
+
+      # Get a specific variable from a task
+      # @param task_id [String] The task ID
+      # @param variable_name [String] The variable name
+      # @param scope [String] 'local' or 'global'
+      # @return [Hash] Variable details
