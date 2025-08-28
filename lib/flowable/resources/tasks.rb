@@ -108,3 +108,25 @@ module Flowable
       # Claim a task
       # @param task_id [String] The task ID
       # @param assignee [String] User to assign the task to
+      # @return [Hash] Response
+      def claim(task_id, assignee)
+        client.post("#{BASE_PATH}/#{task_id}", { action: 'claim', assignee: assignee })
+      end
+
+      # Unclaim a task (set assignee to null)
+      # @param task_id [String] The task ID
+      # @return [Hash] Response
+      def unclaim(task_id)
+        client.post("#{BASE_PATH}/#{task_id}", { action: 'claim', assignee: nil })
+      end
+
+      # Delegate a task to another user
+      # @param task_id [String] The task ID
+      # @param assignee [String] User to delegate to
+      # @return [Hash] Response
+      def delegate(task_id, assignee)
+        client.post("#{BASE_PATH}/#{task_id}", { action: 'delegate', assignee: assignee })
+      end
+
+      # Resolve a delegated task
+      # @param task_id [String] The task ID
