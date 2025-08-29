@@ -152,3 +152,25 @@ module Flowable
       # @param variable_name [String] The variable name
       # @param scope [String] 'local' or 'global'
       # @return [Hash] Variable details
+      def variable(task_id, variable_name, scope: nil)
+        params = {}
+        params[:scope] = scope if scope
+        client.get("#{BASE_PATH}/#{task_id}/variables/#{variable_name}", params)
+      end
+
+      # Create variables on a task
+      # @param task_id [String] The task ID
+      # @param variables [Hash] Variables to create (name => value)
+      # @param scope [String] 'local' or 'global' (default: local)
+      # @return [Array<Hash>] Created variables
+      def create_variables(task_id, variables, scope: 'local')
+        vars = build_variables_array(variables).map { |v| v.merge(scope: scope) }
+        client.post("#{BASE_PATH}/#{task_id}/variables", vars)
+      end
+
+      # Set (update or create) variables on a task
+      # Updates each variable individually using PUT to /variables/{name}
+      # Creates variables that don't exist using POST
+      # @param task_id [String] The task ID
+      # @param variables [Hash] Variables to set (name => value)
+      # @param scope [String] 'local' or 'global' (default: local)
