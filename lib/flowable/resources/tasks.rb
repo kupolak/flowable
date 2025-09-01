@@ -174,3 +174,25 @@ module Flowable
       # @param task_id [String] The task ID
       # @param variables [Hash] Variables to set (name => value)
       # @param scope [String] 'local' or 'global' (default: local)
+      # @return [Array<Hash>] Updated/created variables
+      def set_variables(task_id, variables, scope: 'local')
+        results = []
+        variables.each do |name, value|
+          # Try to update existing variable
+          result = update_variable(task_id, name.to_s, value, scope: scope)
+          results << result
+        rescue Flowable::NotFoundError
+          # Variable doesn't exist, create it
+          vars = [{ name: name.to_s, value: value, scope: scope, type: infer_type(value) }]
+          created = client.post("#{BASE_PATH}/#{task_id}/variables", vars)
+          results.concat(created.is_a?(Array) ? created : [created])
+        end
+        results
+      end
+
+      # Update a variable on a task
+      # @param task_id [String] The task ID
+      # @param name [String] Variable name
+      # @param value [Object] Variable value
+      # @param scope [String] 'local' or 'global'
+      # @return [Hash] Updated variable
