@@ -196,3 +196,25 @@ module Flowable
       # @param value [Object] Variable value
       # @param scope [String] 'local' or 'global'
       # @return [Hash] Updated variable
+      def update_variable(task_id, name, value, scope: 'local')
+        body = { name: name, value: value, scope: scope, type: infer_type(value) }
+        client.put("#{BASE_PATH}/#{task_id}/variables/#{name}", body)
+      end
+
+      # Delete a variable from a task
+      # @param task_id [String] The task ID
+      # @param variable_name [String] The variable name
+      # @param scope [String] 'local' or 'global'
+      # @return [Boolean] true if successful
+      def delete_variable(task_id, variable_name, scope: 'local')
+        client.delete("#{BASE_PATH}/#{task_id}/variables/#{variable_name}", { scope: scope })
+      end
+
+      # Delete all local variables from a task
+      # @param task_id [String] The task ID
+      # @return [Boolean] true if successful
+      def delete_all_local_variables(task_id)
+        client.delete("#{BASE_PATH}/#{task_id}/variables")
+      end
+
+      # --- Identity Links ---
