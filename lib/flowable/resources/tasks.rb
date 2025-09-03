@@ -218,3 +218,25 @@ module Flowable
       end
 
       # --- Identity Links ---
+
+      # Get all identity links for a task
+      # @param task_id [String] The task ID
+      # @return [Array<Hash>] List of identity links
+      def identity_links(task_id)
+        client.get("#{BASE_PATH}/#{task_id}/identitylinks")
+      end
+
+      # Get identity links for users only
+      # @param task_id [String] The task ID
+      # @return [Array<Hash>] List of user identity links
+      def user_identity_links(task_id)
+        client.get("#{BASE_PATH}/#{task_id}/identitylinks/users")
+      end
+
+      # Get identity links for groups only
+      # @param task_id [String] The task ID
+      # @return [Array<Hash>] List of group identity links
+      def group_identity_links(task_id)
+        client.get("#{BASE_PATH}/#{task_id}/identitylinks/groups")
+      end
+
