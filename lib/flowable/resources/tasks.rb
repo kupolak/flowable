@@ -240,3 +240,25 @@ module Flowable
         client.get("#{BASE_PATH}/#{task_id}/identitylinks/groups")
       end
 
+      # Create an identity link (user) on a task
+      # @param task_id [String] The task ID
+      # @param user_id [String] The user ID
+      # @param type [String] Link type (e.g., 'candidate')
+      # @return [Hash] Created identity link
+      def add_user_identity_link(task_id, user_id, type: 'candidate')
+        client.post("#{BASE_PATH}/#{task_id}/identitylinks", { userId: user_id, type: type })
+      end
+
+      # Create an identity link (group) on a task
+      # @param task_id [String] The task ID
+      # @param group_id [String] The group ID
+      # @param type [String] Link type (e.g., 'candidate')
+      # @return [Hash] Created identity link
+      def add_group_identity_link(task_id, group_id, type: 'candidate')
+        client.post("#{BASE_PATH}/#{task_id}/identitylinks", { groupId: group_id, type: type })
+      end
+
+      # Delete an identity link from a task
+      # @param task_id [String] The task ID
+      # @param family [String] 'users' or 'groups'
+      # @param identity_id [String] The user or group ID
