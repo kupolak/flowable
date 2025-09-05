@@ -284,3 +284,25 @@ end
 # 2025-10-13T08:00:04Z - Add claim/unclaim task support
 # 2025-10-13T10:39:47Z - Add complete task with variables and outcome
 # 2025-10-14T12:12:42Z - Add update task properties (assignee, priority)
+# 2025-10-14T12:58:07Z - Add delegate/resolve task support
+# 2025-10-14T13:02:16Z - Add delete task with reason
+# 2025-10-14T09:19:28Z - Add identity link endpoints for tasks
+# 2025-10-14T10:33:18Z - Add create/update task variables
+# 2025-10-15T14:47:22Z - Add unit tests for tasks
+# 2025-10-15T11:47:48Z - Add pagination and sorting for tasks
+# 2025-10-15T13:33:36Z - Improve errors for non-existent task id
+# 2025-10-16T07:57:23Z - Document task usage examples
+# 2025-10-16T07:55:26Z - Add complete_and_fetch_next helper
+# 2025-10-16T14:36:34Z - Add helpers: active/stages/tasks/milestones
+# 2025-10-20T12:50:50Z - Add history task instances endpoint
+# 2025-11-06T12:44:49Z - Add fetching tasks related to a process instance
+# 2025-11-06T15:39:13Z - Add BPMN-specific task helpers
+# 2025-11-06T15:29:46Z - Support formProperties for tasks
+# 2025-11-06T15:19:53Z - Add task event listener hooks for tests
+# 2025-11-07T12:11:26Z - Add manual task creation for tests
+# 2025-11-07T12:10:49Z - Add unit tests for BPMN task helpers
+# 2025-11-07T12:47:07Z - Add pagination/filtering for BPMN tasks
+# 2025-11-07T10:24:47Z - Document BPMN task examples
+# 2025-11-07T15:12:26Z - Add helper to assign tasks by group
+# 2025-11-07T10:59:42Z - Improve candidate user handling in BPMN tasks
+# 2025-11-07T13:01:24Z - Add audit logging for task actions
