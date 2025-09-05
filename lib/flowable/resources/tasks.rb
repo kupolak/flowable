@@ -262,3 +262,25 @@ module Flowable
       # @param task_id [String] The task ID
       # @param family [String] 'users' or 'groups'
       # @param identity_id [String] The user or group ID
+      # @param type [String] Link type
+      # @return [Boolean] true if successful
+      def delete_identity_link(task_id, family, identity_id, type)
+        client.delete("#{BASE_PATH}/#{task_id}/identitylinks/#{family}/#{identity_id}/#{type}")
+      end
+
+      private
+
+      def format_date(date)
+        return date if date.is_a?(String)
+        return date.iso8601 if date.respond_to?(:iso8601)
+
+        date.to_s
+      end
+    end
+  end
+end
+# 2025-10-13T09:05:35Z - Add list tasks endpoint
+# 2025-10-13T10:53:19Z - Add get task details
+# 2025-10-13T08:00:04Z - Add claim/unclaim task support
+# 2025-10-13T10:39:47Z - Add complete task with variables and outcome
+# 2025-10-14T12:12:42Z - Add update task properties (assignee, priority)
