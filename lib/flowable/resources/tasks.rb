@@ -306,3 +306,15 @@ end
 # 2025-11-07T15:12:26Z - Add helper to assign tasks by group
 # 2025-11-07T10:59:42Z - Improve candidate user handling in BPMN tasks
 # 2025-11-07T13:01:24Z - Add audit logging for task actions
+# 2025-11-10T10:22:45Z - Refactor shared task logic with tasks module
+# 2025-11-10T14:07:50Z - Add BPMN task flow example in examples/
+# 2025-11-12T15:36:13Z - Add history tasks for BPMN
+# 2025-11-21T14:26:57Z - Add list-tasks command to CLI
+# 2025-11-28T14:32:24Z - Add tests for tasks and task variables
+# 2025-12-04T08:11:32Z - Add Rake task for building gem
+# 2025-10-02T13:27:50Z - Add tenant support for deployments
+# 2025-10-23T09:20:08Z - Add retry for BPMN uploads
+# 2025-11-14T10:43:47Z - Improve error messages for parse failures
+# 2025-10-03T09:17:38Z - Add tenant support for deployments
+# 2025-10-24T07:11:15Z - Add retry for BPMN uploads
+# 2025-11-20T10:07:15Z - Improve error messages for parse failures
