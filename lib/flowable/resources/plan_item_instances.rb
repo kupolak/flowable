@@ -28,3 +28,13 @@ module Flowable
           params[key] = options[key] if options[key]
         end
 
+        # Date filters
+        %i[createdBefore createdAfter].each do |key|
+          params[key] = format_date(options[key]) if options[key]
+        end
+
+        params[:withoutTenantId] = options[:withoutTenantId] if options.key?(:withoutTenantId)
+
+        client.get(BASE_PATH, params)
+      end
+
