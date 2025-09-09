@@ -58,3 +58,13 @@ module Flowable
       # @return [Hash] Response
       def start(plan_item_instance_id)
         execute_action(plan_item_instance_id, 'start')
+      end
+
+      # Trigger a plan item (for items waiting for trigger)
+      # @param plan_item_instance_id [String] The plan item instance ID
+      # @return [Hash] Response
+      def trigger(plan_item_instance_id)
+        execute_action(plan_item_instance_id, 'trigger')
+      end
+
+      # Enable a plan item (must be currently disabled)
