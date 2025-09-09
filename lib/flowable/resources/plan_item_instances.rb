@@ -48,3 +48,13 @@ module Flowable
       # Execute an action on a plan item instance
       # @param plan_item_instance_id [String] The plan item instance ID
       # @param action [String] Action to execute
+      # @return [Hash] Response
+      def execute_action(plan_item_instance_id, action)
+        client.put("#{BASE_PATH}/#{plan_item_instance_id}", { action: action })
+      end
+
+      # Start a plan item (must be in enabled state)
+      # @param plan_item_instance_id [String] The plan item instance ID
+      # @return [Hash] Response
+      def start(plan_item_instance_id)
+        execute_action(plan_item_instance_id, 'start')
