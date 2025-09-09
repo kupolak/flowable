@@ -18,3 +18,13 @@ module Flowable
       # @option options [String] :name Filter by name
       # @option options [String] :elementId Filter by element ID from model
       # @option options [String] :tenantId Filter by tenant
+      # @return [Hash] Paginated list of plan item instances
+      def list(**options)
+        params = paginate_params(options)
+        %i[id caseDefinitionId caseInstanceId stageInstanceId
+           planItemDefinitionId planItemDefinitionType planItemDefinitionTypes
+           state name elementId referenceId referenceType
+           startUserId tenantId].each do |key|
+          params[key] = options[key] if options[key]
+        end
+
