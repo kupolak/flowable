@@ -68,3 +68,13 @@ module Flowable
       end
 
       # Enable a plan item (must be currently disabled)
+      # @param plan_item_instance_id [String] The plan item instance ID
+      # @return [Hash] Response
+      def enable(plan_item_instance_id)
+        execute_action(plan_item_instance_id, 'enable')
+      end
+
+      # Disable a plan item (must be currently enabled)
+      # @param plan_item_instance_id [String] The plan item instance ID
+      # @return [Hash] Response
+      def disable(plan_item_instance_id)
