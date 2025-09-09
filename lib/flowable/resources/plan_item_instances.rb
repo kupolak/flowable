@@ -38,3 +38,13 @@ module Flowable
         client.get(BASE_PATH, params)
       end
 
+      # Get a specific plan item instance
+      # @param plan_item_instance_id [String] The plan item instance ID
+      # @return [Hash] Plan item instance details
+      def get(plan_item_instance_id)
+        client.get("#{BASE_PATH}/#{plan_item_instance_id}")
+      end
+
+      # Execute an action on a plan item instance
+      # @param plan_item_instance_id [String] The plan item instance ID
+      # @param action [String] Action to execute
