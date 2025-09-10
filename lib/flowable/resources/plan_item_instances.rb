@@ -88,3 +88,13 @@ module Flowable
         execute_action(plan_item_instance_id, 'evaluateCriteria')
       end
 
+      # --- Helper methods ---
+
+      # List all active plan items for a case instance
+      # @param case_instance_id [String] The case instance ID
+      # @return [Hash] Paginated list of active plan items
+      def active_for_case(case_instance_id)
+        list(caseInstanceId: case_instance_id, state: 'active')
+      end
+
+      # List all stages for a case instance
