@@ -78,3 +78,13 @@ module Flowable
       # @param plan_item_instance_id [String] The plan item instance ID
       # @return [Hash] Response
       def disable(plan_item_instance_id)
+        execute_action(plan_item_instance_id, 'disable')
+      end
+
+      # Evaluate criteria on a plan item
+      # @param plan_item_instance_id [String] The plan item instance ID
+      # @return [Hash] Response
+      def evaluate_criteria(plan_item_instance_id)
+        execute_action(plan_item_instance_id, 'evaluateCriteria')
+      end
+
