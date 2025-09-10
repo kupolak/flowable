@@ -108,3 +108,13 @@ module Flowable
       # @param case_instance_id [String] The case instance ID
       # @return [Hash] Paginated list of human tasks
       def human_tasks_for_case(case_instance_id)
+        list(caseInstanceId: case_instance_id, planItemDefinitionType: 'humantask')
+      end
+
+      # List all milestones for a case instance
+      # @param case_instance_id [String] The case instance ID
+      # @return [Hash] Paginated list of milestones
+      def milestones_for_case(case_instance_id)
+        list(caseInstanceId: case_instance_id, planItemDefinitionType: 'milestone')
+      end
+
