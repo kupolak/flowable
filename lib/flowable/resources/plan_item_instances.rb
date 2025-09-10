@@ -98,3 +98,13 @@ module Flowable
       end
 
       # List all stages for a case instance
+      # @param case_instance_id [String] The case instance ID
+      # @return [Hash] Paginated list of stages
+      def stages_for_case(case_instance_id)
+        list(caseInstanceId: case_instance_id, planItemDefinitionType: 'stage')
+      end
+
+      # List all human tasks for a case instance
+      # @param case_instance_id [String] The case instance ID
+      # @return [Hash] Paginated list of human tasks
+      def human_tasks_for_case(case_instance_id)
