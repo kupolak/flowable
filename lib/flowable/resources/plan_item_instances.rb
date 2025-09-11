@@ -118,3 +118,13 @@ module Flowable
         list(caseInstanceId: case_instance_id, planItemDefinitionType: 'milestone')
       end
 
+      private
+
+      def format_date(date)
+        return date if date.is_a?(String)
+        return date.iso8601 if date.respond_to?(:iso8601)
+
+        date.to_s
+      end
+    end
+  end
