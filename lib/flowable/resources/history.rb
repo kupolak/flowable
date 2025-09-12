@@ -38,3 +38,23 @@ module Flowable
 
         client.get('cmmn-history/historic-case-instances', params)
       end
+
+      # Get a specific historic case instance
+      # @param case_instance_id [String] The case instance ID
+      # @return [Hash] Historic case instance details
+      def case_instance(case_instance_id)
+        client.get("cmmn-history/historic-case-instances/#{case_instance_id}")
+      end
+
+      # Delete a historic case instance
+      # @param case_instance_id [String] The case instance ID
+      # @return [Boolean] true if successful
+      def delete_case_instance(case_instance_id)
+        client.delete("cmmn-history/historic-case-instances/#{case_instance_id}")
+      end
+
+      # Query historic case instances with complex filters
+      # Note: CMMN API doesn't support POST query endpoint, uses GET with parameters
+      # @param query [Hash] Query parameters (same as case_instances)
+      # @return [Hash] Paginated list of historic case instances
+      def query_case_instances(query)
