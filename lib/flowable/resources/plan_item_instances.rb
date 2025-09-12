@@ -138,3 +138,10 @@ end
 # 2025-10-17T14:22:21Z - Add bulk actions endpoint for plan items
 # 2025-10-20T14:25:21Z - Improve action logging for plan items
 # 2025-10-20T07:49:15Z - Refactor plan_item_instances module
+# 2025-10-20T13:38:50Z - Add history plan item instances endpoint
+# 2025-10-02T12:30:04Z - Add list resources in deployment
+# 2025-10-23T13:37:46Z - Document BPMN deployment usage
+# 2025-11-13T09:34:33Z - Add unit tests for DSL parsing
+# 2025-10-02T10:54:17Z - Add list resources in deployment
+# 2025-10-24T13:34:53Z - Document BPMN deployment usage
+# 2025-11-19T15:23:56Z - Add unit tests for DSL parsing
