@@ -58,3 +58,23 @@ module Flowable
       # @param query [Hash] Query parameters (same as case_instances)
       # @return [Hash] Paginated list of historic case instances
       def query_case_instances(query)
+        # Convert query hash to keyword arguments for case_instances
+        case_instances(**query.transform_keys(&:to_sym))
+      end
+
+      # Get identity links for a historic case instance
+      # @param case_instance_id [String] The case instance ID
+      # @return [Array<Hash>] List of identity links
+      def case_instance_identity_links(case_instance_id)
+        client.get("cmmn-history/historic-case-instance/#{case_instance_id}/identitylinks")
+      end
+
+      # Get stage overview for a historic case instance
+      # @param case_instance_id [String] The case instance ID
+      # @return [Array<Hash>] List of stages
+      def case_instance_stage_overview(case_instance_id)
+        client.get("cmmn-history/historic-case-instances/#{case_instance_id}/stage-overview")
+      end
+
+      # --- Historic Milestones ---
+
