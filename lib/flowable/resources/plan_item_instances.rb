@@ -128,3 +128,13 @@ module Flowable
       end
     end
   end
+end
+# 2025-10-16T08:01:23Z - Add list plan item instances
+# 2025-10-16T13:56:59Z - Add get single plan item
+# 2025-10-17T13:20:18Z - Add integration tests for plan items
+# 2025-10-17T13:23:57Z - Document plan item helpers
+# 2025-10-17T10:15:50Z - Add pagination for plan items
+# 2025-10-17T14:04:33Z - Add examples for plan items in examples/
+# 2025-10-17T14:22:21Z - Add bulk actions endpoint for plan items
+# 2025-10-20T14:25:21Z - Improve action logging for plan items
+# 2025-10-20T07:49:15Z - Refactor plan_item_instances module
