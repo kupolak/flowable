@@ -78,3 +78,23 @@ module Flowable
 
       # --- Historic Milestones ---
 
+      # List historic milestones
+      # @param options [Hash] Query parameters
+      # @option options [String] :caseInstanceId Filter by case instance
+      # @option options [String] :caseDefinitionId Filter by case definition
+      # @option options [String] :milestoneId Filter by milestone ID
+      # @option options [String] :milestoneName Filter by name
+      # @option options [String] :reachedBefore Reached before date
+      # @option options [String] :reachedAfter Reached after date
+      # @return [Hash] Paginated list of milestones
+      def milestones(**options)
+        params = paginate_params(options)
+        %i[caseInstanceId caseDefinitionId milestoneId milestoneName].each do |key|
+          params[key] = options[key] if options[key]
+        end
+
+        %i[reachedBefore reachedAfter].each do |key|
+          params[key] = format_date(options[key]) if options[key]
+        end
+
+        client.get('cmmn-history/historic-milestone-instances', params)
