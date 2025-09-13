@@ -98,3 +98,23 @@ module Flowable
         end
 
         client.get('cmmn-history/historic-milestone-instances', params)
+      end
+
+      # Get a specific historic milestone
+      # @param milestone_id [String] The milestone instance ID
+      # @return [Hash] Milestone details
+      def milestone(milestone_id)
+        client.get("cmmn-history/historic-milestone-instances/#{milestone_id}")
+      end
+
+      # --- Historic Plan Item Instances ---
+
+      # List historic plan item instances
+      # @param options [Hash] Query parameters
+      # @option options [String] :caseInstanceId Filter by case instance
+      # @option options [String] :caseDefinitionId Filter by case definition
+      # @option options [String] :planItemInstanceId Filter by ID
+      # @option options [String] :planItemInstanceName Filter by name
+      # @option options [String] :planItemInstanceState Filter by state
+      # @option options [String] :stageInstanceId Filter by parent stage
+      # @option options [String] :elementId Filter by element ID
