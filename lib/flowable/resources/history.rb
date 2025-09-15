@@ -118,3 +118,23 @@ module Flowable
       # @option options [String] :planItemInstanceState Filter by state
       # @option options [String] :stageInstanceId Filter by parent stage
       # @option options [String] :elementId Filter by element ID
+      # @option options [String] :planItemDefinitionId Filter by definition ID
+      # @option options [String] :planItemDefinitionType Filter by type
+      # @option options [String] :tenantId Filter by tenant
+      # @return [Hash] Paginated list of historic plan item instances
+      def plan_item_instances(**options)
+        params = paginate_params(options)
+        %i[caseInstanceId caseDefinitionId planItemInstanceId planItemInstanceName
+           planItemInstanceState stageInstanceId elementId planItemDefinitionId
+           planItemDefinitionType referenceId referenceType startUserId tenantId].each do |key|
+          params[key] = options[key] if options[key]
+        end
+
+        # Date filters - there are many for plan items
+        %i[createdBefore createdAfter lastAvailableBefore lastAvailableAfter
+           lastEnabledBefore lastEnabledAfter lastDisabledBefore lastDisabledAfter
+           lastStartedBefore lastStartedAfter lastSuspendedBefore lastSuspendedAfter
+           completedBefore completedAfter terminatedBefore terminatedAfter
+           occurredBefore occurredAfter exitBefore exitAfter
+           endedBefore endedAfter].each do |key|
+          params[key] = format_date(options[key]) if options[key]
