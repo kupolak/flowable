@@ -198,3 +198,23 @@ module Flowable
 
       # Delete a historic task
       # @param task_id [String] The task ID
+      # @return [Boolean] true if successful
+      def delete_task_instance(task_id)
+        client.delete("cmmn-history/historic-task-instances/#{task_id}")
+      end
+
+      # Query historic tasks with complex filters
+      # @param query [Hash] Query body
+      # @return [Hash] Paginated list of historic tasks
+      def query_task_instances(query)
+        client.post('query/historic-task-instances', query)
+      end
+
+      # Get identity links for a historic task
+      # @param task_id [String] The task ID
+      # @return [Array<Hash>] List of identity links
+      def task_instance_identity_links(task_id)
+        client.get("cmmn-history/historic-task-instance/#{task_id}/identitylinks")
+      end
+
+      # --- Historic Variables ---
