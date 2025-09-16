@@ -138,3 +138,23 @@ module Flowable
            occurredBefore occurredAfter exitBefore exitAfter
            endedBefore endedAfter].each do |key|
           params[key] = format_date(options[key]) if options[key]
+        end
+
+        params[:withoutTenantId] = options[:withoutTenantId] if options.key?(:withoutTenantId)
+
+        client.get('cmmn-history/historic-planitem-instances', params)
+      end
+
+      # Get a specific historic plan item instance
+      # @param plan_item_instance_id [String] The plan item instance ID
+      # @return [Hash] Plan item instance details
+      def plan_item_instance(plan_item_instance_id)
+        client.get("cmmn-history/historic-planitem-instances/#{plan_item_instance_id}")
+      end
+
+      # --- Historic Tasks ---
+
+      # List historic task instances
+      # @param options [Hash] Query parameters
+      # @option options [String] :taskId Filter by task ID
+      # @option options [String] :caseInstanceId Filter by case instance
