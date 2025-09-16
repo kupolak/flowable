@@ -178,3 +178,23 @@ module Flowable
         end
 
         %i[finished caseFinished withoutDueDate includeTaskLocalVariables withoutTenantId].each do |key|
+          params[key] = options[key] if options.key?(key)
+        end
+
+        %i[dueDate dueDateAfter dueDateBefore taskCompletedOn taskCompletedAfter
+           taskCompletedBefore taskCreatedOn taskCreatedBefore taskCreatedAfter].each do |key|
+          params[key] = format_date(options[key]) if options[key]
+        end
+
+        client.get('cmmn-history/historic-task-instances', params)
+      end
+
+      # Get a specific historic task
+      # @param task_id [String] The task ID
+      # @return [Hash] Historic task details
+      def task_instance(task_id)
+        client.get("cmmn-history/historic-task-instances/#{task_id}")
+      end
+
+      # Delete a historic task
+      # @param task_id [String] The task ID
