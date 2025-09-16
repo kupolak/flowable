@@ -158,3 +158,23 @@ module Flowable
       # @param options [Hash] Query parameters
       # @option options [String] :taskId Filter by task ID
       # @option options [String] :caseInstanceId Filter by case instance
+      # @option options [String] :caseDefinitionId Filter by case definition
+      # @option options [String] :taskName Filter by name
+      # @option options [String] :taskNameLike Filter by name pattern
+      # @option options [String] :taskAssignee Filter by assignee
+      # @option options [String] :taskOwner Filter by owner
+      # @option options [String] :taskInvolvedUser Filter by involved user
+      # @option options [Boolean] :finished Only finished tasks
+      # @option options [String] :tenantId Filter by tenant
+      # @return [Hash] Paginated list of historic tasks
+      def task_instances(**options)
+        params = paginate_params(options)
+        %i[taskId caseInstanceId caseDefinitionId taskDefinitionKey
+           taskName taskNameLike taskDescription taskDescriptionLike
+           taskCategory taskDeleteReason taskDeleteReasonLike
+           taskAssignee taskAssigneeLike taskOwner taskOwnerLike
+           taskInvolvedUser taskPriority parentTaskId tenantId tenantIdLike].each do |key|
+          params[key] = options[key] if options[key]
+        end
+
+        %i[finished caseFinished withoutDueDate includeTaskLocalVariables withoutTenantId].each do |key|
