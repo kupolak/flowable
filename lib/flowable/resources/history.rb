@@ -218,3 +218,23 @@ module Flowable
       end
 
       # --- Historic Variables ---
+
+      # List historic variable instances
+      # @param options [Hash] Query parameters
+      # @option options [String] :caseInstanceId Filter by case instance
+      # @option options [String] :taskId Filter by task
+      # @option options [Boolean] :excludeTaskVariables Exclude task variables
+      # @option options [String] :variableName Filter by variable name
+      # @option options [String] :variableNameLike Filter by name pattern
+      # @return [Hash] Paginated list of historic variables
+      def variable_instances(**options)
+        params = paginate_params(options)
+        %i[caseInstanceId taskId variableName variableNameLike].each do |key|
+          params[key] = options[key] if options[key]
+        end
+
+        params[:excludeTaskVariables] = options[:excludeTaskVariables] if options.key?(:excludeTaskVariables)
+
+        client.get('cmmn-history/historic-variable-instances', params)
+      end
+
