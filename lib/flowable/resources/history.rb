@@ -238,3 +238,23 @@ module Flowable
         client.get('cmmn-history/historic-variable-instances', params)
       end
 
+      # Query historic variables with complex filters
+      # @param query [Hash] Query body
+      # @return [Hash] Paginated list of historic variables
+      def query_variable_instances(query)
+        client.post('query/historic-variable-instances', query)
+      end
+
+      # Aliases for convenience
+      alias tasks task_instances
+      alias task task_instance
+      alias delete_task delete_task_instance
+      alias variables variable_instances
+
+      private
+
+      def format_date(date)
+        return date if date.is_a?(String)
+        return date.iso8601 if date.respond_to?(:iso8601)
+
+        date.to_s
