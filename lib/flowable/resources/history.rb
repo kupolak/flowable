@@ -258,3 +258,23 @@ module Flowable
         return date.iso8601 if date.respond_to?(:iso8601)
 
         date.to_s
+      end
+    end
+  end
+end
+# 2025-10-20T07:20:16Z - Add history variable instances endpoint
+# 2025-10-20T08:03:56Z - Add date-range filtering for history queries
+# 2025-10-21T14:13:35Z - Add pagination and sorting for history
+# 2025-10-21T11:11:40Z - Document history query usage
+# 2025-10-21T09:56:48Z - Add integration tests for history
+# 2025-10-22T07:39:16Z - Add export history to JSON
+# 2025-10-22T09:00:00Z - Fix date field mapping in history
+# 2025-10-22T13:28:14Z - Add advanced query API for history
+# 2025-10-23T09:40:31Z - Add protections against expensive history queries
+# 2025-10-23T14:24:46Z - Optionally cache historic results
+# 2025-11-12T08:49:38Z - Add BPMN history endpoints
+# 2025-11-12T15:38:47Z - Add filtering history by time and user
+# 2025-11-12T12:18:47Z - Add pagination for BPMN history
+# 2025-11-13T15:22:05Z - Add export history to CSV/JSON
+# 2025-11-13T08:44:28Z - Add integration tests for BPMN history
+# 2025-11-13T10:05:07Z - Document BPMN history examples
