@@ -278,3 +278,16 @@ end
 # 2025-11-13T15:22:05Z - Add export history to CSV/JSON
 # 2025-11-13T08:44:28Z - Add integration tests for BPMN history
 # 2025-11-13T10:05:07Z - Document BPMN history examples
+# 2025-11-13T15:18:19Z - Add admin endpoint to purge history
+# 2025-11-14T14:22:39Z - Add caching and rate limits for history
+# 2025-11-14T13:39:51Z - Fix mapping of historical statuses
+# 2025-11-17T15:09:53Z - Add reporting helper for history
+# 2025-11-17T13:11:37Z - Add tenant support in BPMN history
+# 2025-11-17T11:56:49Z - Add telemetry/logging for history queries
+# 2025-11-28T11:21:17Z - Add tests for history endpoints
+# 2025-10-01T10:38:11Z - Add delete deployment with cascade option
+# 2025-10-22T08:28:48Z - Add support for diagrams in resources
+# 2025-11-13T09:24:22Z - Integrate DSL with Flowable client
+# 2025-10-02T09:01:18Z - Add delete deployment with cascade option
+# 2025-10-24T12:23:57Z - Add support for diagrams in resources
+# 2025-11-19T15:56:44Z - Integrate DSL with Flowable client
