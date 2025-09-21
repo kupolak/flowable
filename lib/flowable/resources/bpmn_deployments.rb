@@ -12,3 +12,10 @@ module Flowable
       # @option options [String] :category Filter by category
       # @option options [String] :tenantId Filter by tenant
       # @option options [Integer] :start Pagination start (default: 0)
+      # @option options [Integer] :size Page size (default: 10)
+      # @option options [String] :sort Sort field (id/name/deployTime/tenantId)
+      # @option options [String] :order Sort order (asc/desc)
+      # @return [Hash] Paginated list of deployments
+      def list(**options)
+        params = paginate_params(options)
+        params[:name] = options[:name] if options[:name]
