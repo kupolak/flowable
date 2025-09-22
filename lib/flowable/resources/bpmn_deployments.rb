@@ -19,3 +19,10 @@ module Flowable
       def list(**options)
         params = paginate_params(options)
         params[:name] = options[:name] if options[:name]
+        params[:nameLike] = options[:nameLike] if options[:nameLike]
+        params[:category] = options[:category] if options[:category]
+        params[:tenantId] = options[:tenantId] if options[:tenantId]
+        params[:withoutTenantId] = options[:withoutTenantId] if options[:withoutTenantId]
+
+        client.get(BASE_PATH, params)
+      end
