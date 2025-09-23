@@ -26,3 +26,10 @@ module Flowable
 
         client.get(BASE_PATH, params)
       end
+
+      # Get a specific deployment
+      # @param deployment_id [String] The deployment ID
+      # @return [Hash] Deployment details
+      def get(deployment_id)
+        client.get("#{BASE_PATH}/#{deployment_id}")
+      end
