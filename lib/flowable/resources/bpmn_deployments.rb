@@ -33,3 +33,10 @@ module Flowable
       def get(deployment_id)
         client.get("#{BASE_PATH}/#{deployment_id}")
       end
+
+      # Create a new deployment from a file
+      # @param file_path [String] Path to BPMN file (.bpmn, .bpmn20.xml, .bar, .zip)
+      # @param name [String] Optional deployment name
+      # @param tenant_id [String] Optional tenant ID
+      # @param category [String] Optional category
+      # @return [Hash] Created deployment
