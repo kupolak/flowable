@@ -47,3 +47,10 @@ module Flowable
         additional_fields[:category] = category if category
 
         client.post_multipart(BASE_PATH, file_path, additional_fields)
+      end
+
+      # Delete a deployment
+      # @param deployment_id [String] The deployment ID
+      # @param cascade [Boolean] Also delete running process instances
+      # @return [Boolean] true if successful
+      def delete(deployment_id, cascade: false)
