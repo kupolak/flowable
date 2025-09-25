@@ -75,3 +75,10 @@ module Flowable
         client.get("#{BASE_PATH}/#{deployment_id}/resources/#{encoded_resource_id}")
       end
 
+      # Get the content of a deployment resource
+      # @param deployment_id [String] The deployment ID
+      # @param resource_id [String] The resource ID
+      # @return [String] Raw resource content
+      def resource_data(deployment_id, resource_id)
+        encoded_resource_id = URI.encode_www_form_component(resource_id)
+        client.get("#{BASE_PATH}/#{deployment_id}/resourcedata/#{encoded_resource_id}")
