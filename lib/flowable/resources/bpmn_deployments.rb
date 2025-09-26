@@ -82,3 +82,10 @@ module Flowable
       def resource_data(deployment_id, resource_id)
         encoded_resource_id = URI.encode_www_form_component(resource_id)
         client.get("#{BASE_PATH}/#{deployment_id}/resourcedata/#{encoded_resource_id}")
+      end
+
+      alias resource_content resource_data
+    end
+  end
+end
+# 2025-10-23T13:35:31Z - Validate BPMN files before upload
