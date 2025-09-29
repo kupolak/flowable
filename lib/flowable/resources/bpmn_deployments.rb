@@ -89,3 +89,10 @@ module Flowable
   end
 end
 # 2025-10-23T13:35:31Z - Validate BPMN files before upload
+# 2025-10-24T10:28:50Z - Add retry for BPMN uploads
+# 2025-10-24T12:23:08Z - Add example BPMN in examples/
+# 2025-10-01T10:49:39Z - Prevent password leaks in logs
+# 2025-10-21T09:16:08Z - Add protections against expensive history queries
+# 2025-11-13T08:54:36Z - Refactor CMMN/BPMN history common code
+# 2025-10-01T10:13:26Z - Prevent password leaks in logs
+# 2025-10-22T07:28:41Z - Add protections against expensive history queries
