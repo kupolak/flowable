@@ -42,3 +42,14 @@ module Flowable
       # Get process definition by key (returns latest version)
       # @param key [String] The process definition key
       # @param tenant_id [String] Optional tenant ID
+      # @return [Hash] Process definition details
+      def get_by_key(key, tenant_id: nil)
+        params = { key: key, latest: true }
+        params[:tenantId] = tenant_id if tenant_id
+
+        result = client.get(BASE_PATH, params)
+        result['data']&.first
+      end
+
+      # Update the category of a process definition
+      # @param process_definition_id [String] The process definition ID
