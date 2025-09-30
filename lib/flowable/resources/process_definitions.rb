@@ -53,3 +53,14 @@ module Flowable
 
       # Update the category of a process definition
       # @param process_definition_id [String] The process definition ID
+      # @param category [String] The new category
+      # @return [Hash] Updated process definition
+      def update_category(process_definition_id, category)
+        client.put("#{BASE_PATH}/#{process_definition_id}", { category: category })
+      end
+
+      # Suspend a process definition
+      # @param process_definition_id [String] The process definition ID
+      # @param include_instances [Boolean] Also suspend running instances
+      # @param date [String] Effective date (ISO-8601)
+      # @return [Hash] Updated process definition
