@@ -31,3 +31,14 @@ module Flowable
 
         client.get(BASE_PATH, params)
       end
+
+      # Get a specific process definition
+      # @param process_definition_id [String] The process definition ID
+      # @return [Hash] Process definition details
+      def get(process_definition_id)
+        client.get("#{BASE_PATH}/#{process_definition_id}")
+      end
+
+      # Get process definition by key (returns latest version)
+      # @param key [String] The process definition key
+      # @param tenant_id [String] Optional tenant ID
