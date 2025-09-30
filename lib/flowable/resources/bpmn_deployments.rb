@@ -96,3 +96,4 @@ end
 # 2025-11-13T08:54:36Z - Refactor CMMN/BPMN history common code
 # 2025-10-01T10:13:26Z - Prevent password leaks in logs
 # 2025-10-22T07:28:41Z - Add protections against expensive history queries
+# 2025-11-19T11:52:48Z - Refactor CMMN/BPMN history common code
