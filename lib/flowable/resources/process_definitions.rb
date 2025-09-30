@@ -20,3 +20,14 @@ module Flowable
       def list(**options)
         params = paginate_params(options)
         %i[key keyLike name nameLike resourceName resourceNameLike
+           category categoryLike categoryNotEquals deploymentId
+           startableByUser tenantId tenantIdLike].each do |key|
+          params[key] = options[key] if options[key]
+        end
+        params[:version] = options[:version] if options[:version]
+        params[:latest] = options[:latest] if options.key?(:latest)
+        params[:suspended] = options[:suspended] if options.key?(:suspended)
+        params[:withoutTenantId] = options[:withoutTenantId] if options.key?(:withoutTenantId)
+
+        client.get(BASE_PATH, params)
+      end
