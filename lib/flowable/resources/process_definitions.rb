@@ -64,3 +64,14 @@ module Flowable
       # @param include_instances [Boolean] Also suspend running instances
       # @param date [String] Effective date (ISO-8601)
       # @return [Hash] Updated process definition
+      def suspend(process_definition_id, include_instances: false, date: nil)
+        body = { action: 'suspend', includeProcessInstances: include_instances }
+        body[:date] = date if date
+        client.put("#{BASE_PATH}/#{process_definition_id}", body)
+      end
+
+      # Activate a process definition
+      # @param process_definition_id [String] The process definition ID
+      # @param include_instances [Boolean] Also activate suspended instances
+      # @param date [String] Effective date (ISO-8601)
+      # @return [Hash] Updated process definition
