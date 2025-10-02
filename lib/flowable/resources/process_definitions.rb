@@ -86,3 +86,14 @@ module Flowable
       # @return [String] BPMN XML content
       def resource_data(process_definition_id)
         client.get("#{BASE_PATH}/#{process_definition_id}/resourcedata")
+      end
+
+      alias resource_content resource_data
+
+      # Get the BPMN model as JSON
+      # @param process_definition_id [String] The process definition ID
+      # @return [Hash] BPMN model structure
+      def model(process_definition_id)
+        client.get("#{BASE_PATH}/#{process_definition_id}/model")
+      end
+
