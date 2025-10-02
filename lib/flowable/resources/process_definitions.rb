@@ -75,3 +75,14 @@ module Flowable
       # @param include_instances [Boolean] Also activate suspended instances
       # @param date [String] Effective date (ISO-8601)
       # @return [Hash] Updated process definition
+      def activate(process_definition_id, include_instances: false, date: nil)
+        body = { action: 'activate', includeProcessInstances: include_instances }
+        body[:date] = date if date
+        client.put("#{BASE_PATH}/#{process_definition_id}", body)
+      end
+
+      # Get the BPMN XML content of a process definition
+      # @param process_definition_id [String] The process definition ID
+      # @return [String] BPMN XML content
+      def resource_data(process_definition_id)
+        client.get("#{BASE_PATH}/#{process_definition_id}/resourcedata")
