@@ -119,3 +119,14 @@ module Flowable
       # @return [Hash] Created identity link
       def add_candidate_user(process_definition_id, user_id)
         client.post("#{BASE_PATH}/#{process_definition_id}/identitylinks", { user: user_id })
+      end
+
+      # Add a candidate starter (group) to a process definition
+      # @param process_definition_id [String] The process definition ID
+      # @param group_id [String] The group ID
+      # @return [Hash] Created identity link
+      def add_candidate_group(process_definition_id, group_id)
+        client.post("#{BASE_PATH}/#{process_definition_id}/identitylinks", { group: group_id })
+      end
+
+      # Remove a candidate starter from a process definition
