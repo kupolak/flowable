@@ -97,3 +97,14 @@ module Flowable
         client.get("#{BASE_PATH}/#{process_definition_id}/model")
       end
 
+      # Get process diagram image (PNG)
+      # @param process_definition_id [String] The process definition ID
+      # @return [String] Binary image data
+      def diagram(process_definition_id)
+        client.get("#{BASE_PATH}/#{process_definition_id}/image")
+      end
+
+      alias image diagram
+
+      # Get all candidate starters for a process definition
+      # @param process_definition_id [String] The process definition ID
