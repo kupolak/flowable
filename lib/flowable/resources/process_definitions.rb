@@ -108,3 +108,14 @@ module Flowable
 
       # Get all candidate starters for a process definition
       # @param process_definition_id [String] The process definition ID
+      # @return [Array<Hash>] List of identity links
+      def identity_links(process_definition_id)
+        client.get("#{BASE_PATH}/#{process_definition_id}/identitylinks")
+      end
+
+      # Add a candidate starter (user) to a process definition
+      # @param process_definition_id [String] The process definition ID
+      # @param user_id [String] The user ID
+      # @return [Hash] Created identity link
+      def add_candidate_user(process_definition_id, user_id)
+        client.post("#{BASE_PATH}/#{process_definition_id}/identitylinks", { user: user_id })
