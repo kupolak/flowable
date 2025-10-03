@@ -130,3 +130,14 @@ module Flowable
       end
 
       # Remove a candidate starter from a process definition
+      # @param process_definition_id [String] The process definition ID
+      # @param family [String] 'users' or 'groups'
+      # @param identity_id [String] The user or group ID
+      # @return [Boolean] true if successful
+      def remove_candidate(process_definition_id, family, identity_id)
+        client.delete("#{BASE_PATH}/#{process_definition_id}/identitylinks/#{family}/#{identity_id}")
+      end
+    end
+  end
+end
+# 2025-10-27T12:55:49Z - Add list process definitions
