@@ -28,3 +28,18 @@ module Flowable
         client.get(BASE_PATH, params)
       end
 
+      # Get a specific process instance
+      # @param process_instance_id [String] The process instance ID
+      # @return [Hash] Process instance details
+      def get(process_instance_id)
+        client.get("#{BASE_PATH}/#{process_instance_id}")
+      end
+
+      # Start a new process instance by process definition ID
+      # @param process_definition_id [String] The process definition ID
+      # @param variables [Hash] Optional variables (name => value)
+      # @param business_key [String] Optional business key
+      # @param return_variables [Boolean] Return variables in response
+      # @return [Hash] Created process instance
+      def start_by_id(process_definition_id, variables: {}, business_key: nil, return_variables: false)
+        body = { processDefinitionId: process_definition_id }
