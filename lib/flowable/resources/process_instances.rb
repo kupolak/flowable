@@ -43,3 +43,18 @@ module Flowable
       # @return [Hash] Created process instance
       def start_by_id(process_definition_id, variables: {}, business_key: nil, return_variables: false)
         body = { processDefinitionId: process_definition_id }
+        body[:businessKey] = business_key if business_key
+        body[:variables] = build_variables_array(variables) unless variables.empty?
+        body[:returnVariables] = return_variables if return_variables
+
+        client.post(BASE_PATH, body)
+      end
+
+      # Start a new process instance by process definition key
+      # @param process_definition_key [String] The process definition key
+      # @param variables [Hash] Optional variables (name => value)
+      # @param business_key [String] Optional business key
+      # @param tenant_id [String] Optional tenant ID
+      # @param return_variables [Boolean] Return variables in response
+      # @return [Hash] Created process instance
+      def start_by_key(process_definition_key, variables: {}, business_key: nil, tenant_id: nil,
