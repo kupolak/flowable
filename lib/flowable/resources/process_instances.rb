@@ -73,3 +73,18 @@ module Flowable
       # @param delete_reason [String] Reason for deletion
       # @return [Boolean] true if successful
       def delete(process_instance_id, delete_reason: nil)
+        params = {}
+        params[:deleteReason] = delete_reason if delete_reason
+        client.delete("#{BASE_PATH}/#{process_instance_id}", params)
+      end
+
+      # Suspend a process instance
+      # @param process_instance_id [String] The process instance ID
+      # @return [Hash] Updated process instance
+      def suspend(process_instance_id)
+        client.put("#{BASE_PATH}/#{process_instance_id}", { action: 'suspend' })
+      end
+
+      # Activate a suspended process instance
+      # @param process_instance_id [String] The process instance ID
+      # @return [Hash] Updated process instance
