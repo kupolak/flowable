@@ -58,3 +58,18 @@ module Flowable
       # @param return_variables [Boolean] Return variables in response
       # @return [Hash] Created process instance
       def start_by_key(process_definition_key, variables: {}, business_key: nil, tenant_id: nil,
+                       return_variables: false)
+        body = { processDefinitionKey: process_definition_key }
+        body[:businessKey] = business_key if business_key
+        body[:tenantId] = tenant_id if tenant_id
+        body[:variables] = build_variables_array(variables) unless variables.empty?
+        body[:returnVariables] = return_variables if return_variables
+
+        client.post(BASE_PATH, body)
+      end
+
+      # Delete a process instance
+      # @param process_instance_id [String] The process instance ID
+      # @param delete_reason [String] Reason for deletion
+      # @return [Boolean] true if successful
+      def delete(process_instance_id, delete_reason: nil)
