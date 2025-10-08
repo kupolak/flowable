@@ -88,3 +88,18 @@ module Flowable
       # Activate a suspended process instance
       # @param process_instance_id [String] The process instance ID
       # @return [Hash] Updated process instance
+      def activate(process_instance_id)
+        client.put("#{BASE_PATH}/#{process_instance_id}", { action: 'activate' })
+      end
+
+      # Query process instances with complex filters
+      # @param query [Hash] Query body with filters and variable conditions
+      # @return [Hash] Paginated list of process instances
+      def query(query)
+        client.post('service/query/process-instances', query)
+      end
+
+      # Get the diagram/image for a process instance
+      # @param process_instance_id [String] The process instance ID
+      # @return [String] Binary image data
+      def diagram(process_instance_id)
