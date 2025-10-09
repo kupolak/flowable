@@ -118,3 +118,18 @@ module Flowable
       # Add an involved user to a process instance
       # @param process_instance_id [String] The process instance ID
       # @param user_id [String] The user ID
+      # @param type [String] Type of involvement (e.g., 'participant')
+      # @return [Hash] Created identity link
+      def add_involved_user(process_instance_id, user_id, type: 'participant')
+        client.post(
+          "#{BASE_PATH}/#{process_instance_id}/identitylinks",
+          { userId: user_id, type: type }
+        )
+      end
+
+      # Remove an involved user from a process instance
+      # @param process_instance_id [String] The process instance ID
+      # @param user_id [String] The user ID
+      # @param type [String] Type of involvement
+      # @return [Boolean] true if successful
+      def remove_involved_user(process_instance_id, user_id, type)
