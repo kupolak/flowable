@@ -103,3 +103,18 @@ module Flowable
       # @param process_instance_id [String] The process instance ID
       # @return [String] Binary image data
       def diagram(process_instance_id)
+        client.get("#{BASE_PATH}/#{process_instance_id}/diagram")
+      end
+
+      # --- Identity Links ---
+
+      # Get involved people for a process instance
+      # @param process_instance_id [String] The process instance ID
+      # @return [Array<Hash>] List of identity links
+      def identity_links(process_instance_id)
+        client.get("#{BASE_PATH}/#{process_instance_id}/identitylinks")
+      end
+
+      # Add an involved user to a process instance
+      # @param process_instance_id [String] The process instance ID
+      # @param user_id [String] The user ID
