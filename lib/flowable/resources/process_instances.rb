@@ -133,3 +133,18 @@ module Flowable
       # @param type [String] Type of involvement
       # @return [Boolean] true if successful
       def remove_involved_user(process_instance_id, user_id, type)
+        client.delete("#{BASE_PATH}/#{process_instance_id}/identitylinks/users/#{user_id}/#{type}")
+      end
+
+      # --- Variables ---
+
+      # Get all variables for a process instance
+      # @param process_instance_id [String] The process instance ID
+      # @return [Array<Hash>] List of variables
+      def variables(process_instance_id)
+        client.get("#{BASE_PATH}/#{process_instance_id}/variables")
+      end
+
+      # Get a specific variable from a process instance
+      # @param process_instance_id [String] The process instance ID
+      # @param variable_name [String] The variable name
