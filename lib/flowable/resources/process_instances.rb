@@ -148,3 +148,18 @@ module Flowable
       # Get a specific variable from a process instance
       # @param process_instance_id [String] The process instance ID
       # @param variable_name [String] The variable name
+      # @return [Hash] Variable details
+      def variable(process_instance_id, variable_name)
+        client.get("#{BASE_PATH}/#{process_instance_id}/variables/#{variable_name}")
+      end
+
+      # Create variables on a process instance (fails if exists)
+      # @param process_instance_id [String] The process instance ID
+      # @param variables [Hash] Variables to create (name => value)
+      # @return [Array<Hash>] Created variables
+      def create_variables(process_instance_id, variables)
+        client.post(
+          "#{BASE_PATH}/#{process_instance_id}/variables",
+          build_variables_array(variables)
+        )
+      end
