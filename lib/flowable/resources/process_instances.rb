@@ -163,3 +163,18 @@ module Flowable
           build_variables_array(variables)
         )
       end
+
+      # Create or update variables on a process instance
+      # @param process_instance_id [String] The process instance ID
+      # @param variables [Hash] Variables to set (name => value)
+      # @return [Array<Hash>] Updated variables
+      def set_variables(process_instance_id, variables)
+        client.put(
+          "#{BASE_PATH}/#{process_instance_id}/variables",
+          build_variables_array(variables)
+        )
+      end
+
+      # Update a single variable on a process instance
+      # @param process_instance_id [String] The process instance ID
+      # @param name [String] Variable name
