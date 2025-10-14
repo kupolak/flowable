@@ -178,3 +178,18 @@ module Flowable
       # Update a single variable on a process instance
       # @param process_instance_id [String] The process instance ID
       # @param name [String] Variable name
+      # @param value [Object] Variable value
+      # @param type [String] Optional explicit type
+      # @return [Hash] Updated variable
+      def update_variable(process_instance_id, name, value, type: nil)
+        body = { name: name, value: value }
+        body[:type] = type || infer_type(value)
+
+        client.put("#{BASE_PATH}/#{process_instance_id}/variables/#{name}", body)
+      end
+
+      # Delete a variable from a process instance
+      # @param process_instance_id [String] The process instance ID
+      # @param variable_name [String] The variable name
+      # @return [Boolean] true if successful
+      def delete_variable(process_instance_id, variable_name)
