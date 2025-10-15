@@ -208,3 +208,5 @@ end
 # 2025-10-23T08:11:25Z - Add optional conversion of diagrams to PNG
 # 2025-11-14T10:44:19Z - Add dsl.run helper for tests
 # 2025-10-02T10:09:50Z - Add tests for deployment CRUD
+# 2025-10-24T08:00:59Z - Add optional conversion of diagrams to PNG
+# 2025-11-20T14:03:02Z - Add dsl.run helper for tests
