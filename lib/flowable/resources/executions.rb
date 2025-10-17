@@ -20,3 +20,14 @@ module Flowable
         %i[id processDefinitionKey processDefinitionId processInstanceId
            activityId parentId signalEventSubscriptionName
            messageEventSubscriptionName tenantId tenantIdLike].each do |key|
+          params[key] = options[key] if options[key]
+        end
+        params[:withoutTenantId] = options[:withoutTenantId] if options.key?(:withoutTenantId)
+
+        client.get(BASE_PATH, params)
+      end
+
+      # Get a specific execution
+      # @param execution_id [String] The execution ID
+      # @return [Hash] Execution details
+      def get(execution_id)
