@@ -53,3 +53,14 @@ module Flowable
         body = { action: 'signal' }
         body[:variables] = build_variables_array(variables) unless variables.empty?
         client.put("#{BASE_PATH}/#{execution_id}", body)
+      end
+
+      # Trigger a message event
+      # @param execution_id [String] The execution ID
+      # @param message_name [String] The message name
+      # @param variables [Hash] Optional variables
+      # @return [Hash] Response
+      def message_event(execution_id, message_name, variables: {})
+        body = { action: 'messageEventReceived', messageName: message_name }
+        body[:variables] = build_variables_array(variables) unless variables.empty?
+        client.put("#{BASE_PATH}/#{execution_id}", body)
