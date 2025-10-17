@@ -31,3 +31,14 @@ module Flowable
       # @param execution_id [String] The execution ID
       # @return [Hash] Execution details
       def get(execution_id)
+        client.get("#{BASE_PATH}/#{execution_id}")
+      end
+
+      # Execute an action on an execution
+      # @param execution_id [String] The execution ID
+      # @param action [String] Action type
+      # @param options [Hash] Additional action parameters
+      # @return [Hash] Response
+      def execute_action(execution_id, action, **options)
+        body = { action: action }
+        body.merge!(options)
