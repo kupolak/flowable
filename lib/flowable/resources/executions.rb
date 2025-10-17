@@ -42,3 +42,14 @@ module Flowable
       def execute_action(execution_id, action, **options)
         body = { action: action }
         body.merge!(options)
+        client.put("#{BASE_PATH}/#{execution_id}", body)
+      end
+
+      # Signal an execution
+      # @param execution_id [String] The execution ID
+      # @param variables [Hash] Optional variables
+      # @return [Hash] Response
+      def signal(execution_id, variables: {})
+        body = { action: 'signal' }
+        body[:variables] = build_variables_array(variables) unless variables.empty?
+        client.put("#{BASE_PATH}/#{execution_id}", body)
