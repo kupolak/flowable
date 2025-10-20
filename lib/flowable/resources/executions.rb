@@ -75,3 +75,14 @@ module Flowable
         body = { action: 'signalEventReceived', signalName: signal_name }
         body[:variables] = build_variables_array(variables) unless variables.empty?
         client.put("#{BASE_PATH}/#{execution_id}", body)
+      end
+
+      # --- Variables ---
+
+      # Get all variables for an execution
+      # @param execution_id [String] The execution ID
+      # @param scope [String] 'local' or 'global'
+      # @return [Array<Hash>] List of variables
+      def variables(execution_id, scope: nil)
+        params = {}
+        params[:scope] = scope if scope
