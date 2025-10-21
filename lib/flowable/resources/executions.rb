@@ -86,3 +86,14 @@ module Flowable
       def variables(execution_id, scope: nil)
         params = {}
         params[:scope] = scope if scope
+        client.get("#{BASE_PATH}/#{execution_id}/variables", params)
+      end
+
+      # Get a specific variable from an execution
+      # @param execution_id [String] The execution ID
+      # @param variable_name [String] The variable name
+      # @param scope [String] 'local' or 'global'
+      # @return [Hash] Variable details
+      def variable(execution_id, variable_name, scope: nil)
+        params = {}
+        params[:scope] = scope if scope
