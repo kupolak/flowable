@@ -97,3 +97,14 @@ module Flowable
       def variable(execution_id, variable_name, scope: nil)
         params = {}
         params[:scope] = scope if scope
+        client.get("#{BASE_PATH}/#{execution_id}/variables/#{variable_name}", params)
+      end
+
+      # Create variables on an execution
+      # @param execution_id [String] The execution ID
+      # @param variables [Hash] Variables to create (name => value)
+      # @return [Array<Hash>] Created variables
+      def create_variables(execution_id, variables)
+        client.post("#{BASE_PATH}/#{execution_id}/variables", build_variables_array(variables))
+      end
+
