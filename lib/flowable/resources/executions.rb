@@ -119,3 +119,14 @@ module Flowable
       # Query executions with complex filters
       # @param query [Hash] Query body
       # @return [Hash] Paginated list of executions
+      def query(query)
+        client.post('service/query/executions', query)
+      end
+
+      # Get active activities in an execution
+      # @param execution_id [String] The execution ID
+      # @return [Array<Hash>] List of activities
+      def activities(execution_id)
+        client.get("#{BASE_PATH}/#{execution_id}/activities")
+      end
+    end
