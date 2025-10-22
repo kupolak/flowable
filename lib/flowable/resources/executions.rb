@@ -108,3 +108,14 @@ module Flowable
         client.post("#{BASE_PATH}/#{execution_id}/variables", build_variables_array(variables))
       end
 
+      # Update variables on an execution
+      # @param execution_id [String] The execution ID
+      # @param variables [Hash] Variables to update (name => value)
+      # @return [Array<Hash>] Updated variables
+      def update_variables(execution_id, variables)
+        client.put("#{BASE_PATH}/#{execution_id}/variables", build_variables_array(variables))
+      end
+
+      # Query executions with complex filters
+      # @param query [Hash] Query body
+      # @return [Hash] Paginated list of executions
