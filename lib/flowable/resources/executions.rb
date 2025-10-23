@@ -130,3 +130,14 @@ module Flowable
         client.get("#{BASE_PATH}/#{execution_id}/activities")
       end
     end
+  end
+end
+# 2025-11-10T12:04:13Z - Add list executions endpoint
+# 2025-11-10T15:30:11Z - Add get execution by id
+# 2025-11-10T10:48:30Z - Add query executions with filters
+# 2025-11-10T11:31:21Z - Add unit tests for executions
+# 2025-11-10T14:29:09Z - Document executions API
+# 2025-11-11T15:02:44Z - Add helper to suspend/trigger execution
+# 2025-11-11T09:59:16Z - Add pagination and sorting for executions
+# 2025-11-11T09:21:28Z - Fix variable mapping for executions
+# 2025-11-11T14:51:22Z - Validate execution actions
