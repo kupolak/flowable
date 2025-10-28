@@ -78,3 +78,19 @@ module Flowable
         %i[activityId activityName activityType processInstanceId processDefinitionId
            executionId taskAssignee tenantId tenantIdLike].each do |key|
           params[key] = options[key] if options[key]
+        end
+
+        params[:finished] = options[:finished] if options.key?(:finished)
+        params[:withoutTenantId] = options[:withoutTenantId] if options.key?(:withoutTenantId)
+
+        client.get('service/history/historic-activity-instances', params)
+      end
+
+      # Query historic activities with complex filters
+      # @param query [Hash] Query body
+      # @return [Hash] Paginated list of historic activities
+      def query_activity_instances(query)
+        client.post('service/query/historic-activity-instances', query)
+      end
+
+      # --- Historic Task Instances ---
