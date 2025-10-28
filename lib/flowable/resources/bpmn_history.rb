@@ -62,3 +62,19 @@ module Flowable
         client.get("service/history/historic-process-instances/#{process_instance_id}/identitylinks")
       end
 
+      # --- Historic Activity Instances ---
+
+      # List historic activity instances
+      # @param options [Hash] Query parameters
+      # @option options [String] :activityId Filter by activity ID
+      # @option options [String] :activityName Filter by activity name
+      # @option options [String] :activityType Filter by type (userTask, serviceTask, etc.)
+      # @option options [String] :processInstanceId Filter by process instance
+      # @option options [String] :processDefinitionId Filter by process definition
+      # @option options [Boolean] :finished Only finished activities
+      # @return [Hash] Paginated list of historic activities
+      def activity_instances(**options)
+        params = paginate_params(options)
+        %i[activityId activityName activityType processInstanceId processDefinitionId
+           executionId taskAssignee tenantId tenantIdLike].each do |key|
+          params[key] = options[key] if options[key]
