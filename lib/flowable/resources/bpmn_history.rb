@@ -30,3 +30,19 @@ module Flowable
         %i[finishedAfter finishedBefore startedAfter startedBefore].each do |key|
           params[key] = format_date(options[key]) if options[key]
         end
+
+        client.get('service/history/historic-process-instances', params)
+      end
+
+      # Get a specific historic process instance
+      # @param process_instance_id [String] The process instance ID
+      # @return [Hash] Historic process instance details
+      def process_instance(process_instance_id)
+        client.get("service/history/historic-process-instances/#{process_instance_id}")
+      end
+
+      # Delete a historic process instance
+      # @param process_instance_id [String] The process instance ID
+      # @return [Boolean] true if successful
+      def delete_process_instance(process_instance_id)
+        client.delete("service/history/historic-process-instances/#{process_instance_id}")
