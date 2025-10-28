@@ -46,3 +46,19 @@ module Flowable
       # @return [Boolean] true if successful
       def delete_process_instance(process_instance_id)
         client.delete("service/history/historic-process-instances/#{process_instance_id}")
+      end
+
+      # Query historic process instances with complex filters
+      # @param query [Hash] Query body
+      # @return [Hash] Paginated list of historic process instances
+      def query_process_instances(query)
+        client.post('service/query/historic-process-instances', query)
+      end
+
+      # Get identity links for a historic process instance
+      # @param process_instance_id [String] The process instance ID
+      # @return [Array<Hash>] List of identity links
+      def process_instance_identity_links(process_instance_id)
+        client.get("service/history/historic-process-instances/#{process_instance_id}/identitylinks")
+      end
+
