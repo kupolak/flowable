@@ -94,3 +94,19 @@ module Flowable
       end
 
       # --- Historic Task Instances ---
+
+      # List historic task instances
+      # @param options [Hash] Query parameters
+      # @option options [String] :taskId Filter by task ID
+      # @option options [String] :processInstanceId Filter by process instance
+      # @option options [String] :processDefinitionId Filter by process definition
+      # @option options [String] :taskName Filter by name
+      # @option options [String] :taskAssignee Filter by assignee
+      # @option options [Boolean] :finished Only finished tasks
+      # @return [Hash] Paginated list of historic tasks
+      def task_instances(**options)
+        params = paginate_params(options)
+        %i[taskId processInstanceId processDefinitionId processDefinitionKey
+           taskName taskNameLike taskDescription taskDescriptionLike
+           taskDefinitionKey taskDeleteReason taskDeleteReasonLike
+           taskAssignee taskAssigneeLike taskOwner taskOwnerLike
