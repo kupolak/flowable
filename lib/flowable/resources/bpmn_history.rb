@@ -158,3 +158,19 @@ module Flowable
       # @return [Hash] Paginated list of historic variables
       def variable_instances(**options)
         params = paginate_params(options)
+        %i[processInstanceId taskId variableName variableNameLike].each do |key|
+          params[key] = options[key] if options[key]
+        end
+
+        params[:excludeTaskVariables] = options[:excludeTaskVariables] if options.key?(:excludeTaskVariables)
+
+        client.get('service/history/historic-variable-instances', params)
+      end
+
+      # Query historic variables with complex filters
+      # @param query [Hash] Query body
+      # @return [Hash] Paginated list of historic variables
+      def query_variable_instances(query)
+        client.post('service/query/historic-variable-instances', query)
+      end
+
