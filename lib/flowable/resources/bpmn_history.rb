@@ -126,3 +126,19 @@ module Flowable
         client.get('service/history/historic-task-instances', params)
       end
 
+      # Get a specific historic task
+      # @param task_id [String] The task ID
+      # @return [Hash] Historic task details
+      def task_instance(task_id)
+        client.get("service/history/historic-task-instances/#{task_id}")
+      end
+
+      # Delete a historic task
+      # @param task_id [String] The task ID
+      # @return [Boolean] true if successful
+      def delete_task_instance(task_id)
+        client.delete("service/history/historic-task-instances/#{task_id}")
+      end
+
+      # Query historic tasks with complex filters
+      # @param query [Hash] Query body
