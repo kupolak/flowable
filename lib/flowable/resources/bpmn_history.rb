@@ -110,3 +110,19 @@ module Flowable
            taskName taskNameLike taskDescription taskDescriptionLike
            taskDefinitionKey taskDeleteReason taskDeleteReasonLike
            taskAssignee taskAssigneeLike taskOwner taskOwnerLike
+           taskInvolvedUser taskPriority parentTaskId tenantId tenantIdLike].each do |key|
+          params[key] = options[key] if options[key]
+        end
+
+        %i[finished processFinished withoutDueDate includeTaskLocalVariables withoutTenantId].each do |key|
+          params[key] = options[key] if options.key?(key)
+        end
+
+        %i[dueDate dueDateAfter dueDateBefore taskCompletedOn taskCompletedAfter
+           taskCompletedBefore taskCreatedOn taskCreatedBefore taskCreatedAfter].each do |key|
+          params[key] = format_date(options[key]) if options[key]
+        end
+
+        client.get('service/history/historic-task-instances', params)
+      end
+
