@@ -142,3 +142,19 @@ module Flowable
 
       # Query historic tasks with complex filters
       # @param query [Hash] Query body
+      # @return [Hash] Paginated list of historic tasks
+      def query_task_instances(query)
+        client.post('service/query/historic-task-instances', query)
+      end
+
+      # --- Historic Variable Instances ---
+
+      # List historic variable instances
+      # @param options [Hash] Query parameters
+      # @option options [String] :processInstanceId Filter by process instance
+      # @option options [String] :taskId Filter by task
+      # @option options [Boolean] :excludeTaskVariables Exclude task variables
+      # @option options [String] :variableName Filter by variable name
+      # @return [Hash] Paginated list of historic variables
+      def variable_instances(**options)
+        params = paginate_params(options)
