@@ -174,3 +174,19 @@ module Flowable
         client.post('service/query/historic-variable-instances', query)
       end
 
+      # --- Historic Detail ---
+
+      # List historic details (variable updates, form properties)
+      # @param options [Hash] Query parameters
+      # @option options [String] :processInstanceId Filter by process instance
+      # @option options [String] :executionId Filter by execution
+      # @option options [String] :activityInstanceId Filter by activity instance
+      # @option options [String] :taskId Filter by task
+      # @option options [Boolean] :selectOnlyFormProperties Only form properties
+      # @option options [Boolean] :selectOnlyVariableUpdates Only variable updates
+      # @return [Hash] Paginated list of historic details
+      def details(**options)
+        params = paginate_params(options)
+        %i[processInstanceId executionId activityInstanceId taskId].each do |key|
+          params[key] = options[key] if options[key]
+        end
