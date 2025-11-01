@@ -190,3 +190,19 @@ module Flowable
         %i[processInstanceId executionId activityInstanceId taskId].each do |key|
           params[key] = options[key] if options[key]
         end
+
+        if options.key?(:selectOnlyFormProperties)
+          params[:selectOnlyFormProperties] =
+            options[:selectOnlyFormProperties]
+        end
+        if options.key?(:selectOnlyVariableUpdates)
+          params[:selectOnlyVariableUpdates] =
+            options[:selectOnlyVariableUpdates]
+        end
+
+        client.get('service/history/historic-detail', params)
+      end
+
+      # Query historic details with complex filters
+      # @param query [Hash] Query body
+      # @return [Hash] Paginated list of historic details
