@@ -206,3 +206,19 @@ module Flowable
       # Query historic details with complex filters
       # @param query [Hash] Query body
       # @return [Hash] Paginated list of historic details
+      def query_details(query)
+        client.post('service/query/historic-detail', query)
+      end
+
+      # Aliases for backward compatibility
+      alias tasks task_instances
+      alias activities activity_instances
+      alias variables variable_instances
+
+      private
+
+      def format_date(date)
+        return date if date.is_a?(String)
+        return date.iso8601 if date.respond_to?(:iso8601)
+
+        date.to_s
