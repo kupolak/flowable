@@ -22,3 +22,27 @@ module Flowable
       # Start a new case instance
       # @param variables [Hash] Initial variables
       # @param business_key [String] Business key
+      # @return [self]
+      def start(variables: {}, business_key: nil)
+        @instance = client.case_instances.start_by_key(
+          case_key,
+          variables: variables,
+          business_key: business_key,
+          return_variables: true
+        )
+        self
+      end
+
+      # Load an existing case instance
+      # @param case_instance_id [String] Case instance ID
+      # @return [self]
+      def load(case_instance_id)
+        @instance = client.case_instances.get(case_instance_id)
+        self
+      end
+
+      # Find case by business key
+      # @param business_key [String] Business key
+      # @return [self, nil]
+      def find_by_business_key(business_key)
+        result = client.case_instances.list(
