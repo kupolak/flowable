@@ -70,3 +70,27 @@ module Flowable
       # Check if case is active
       def active?
         state == 'active'
+      end
+
+      # Check if case is completed
+      def completed?
+        instance&.dig('ended') == true || instance&.dig('completed') == true
+      end
+
+      # Refresh case instance data from server
+      def refresh!
+        @instance = client.case_instances.get(id) if id
+        self
+      end
+
+      # Get all variables
+      def variables
+        return {} unless id
+
+        client.case_instances.variables(id).each_with_object({}) do |var, hash|
+          hash[var['name'].to_sym] = var['value']
+        end
+      end
+
+      # Get a single variable
+      def [](name)
