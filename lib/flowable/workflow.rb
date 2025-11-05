@@ -118,3 +118,27 @@ module Flowable
       end
 
       # Get current stage
+      def current_stage
+        stages.find(&:current?)
+      end
+
+      # Get all tasks for this case
+      def tasks
+        return [] unless id
+
+        result = client.tasks.list(caseInstanceId: id)
+        result['data'].map { |t| Task.new(client, t) }
+      end
+
+      # Get pending tasks (unassigned or assigned to current user)
+      def pending_tasks
+        tasks.reject(&:completed?)
+      end
+
+      # Find task by name
+      def task(name)
+        tasks.find { |t| t.name == name }
+      end
+
+      # Wait for a task to appear (polling)
+      # @param name [String] Task name
