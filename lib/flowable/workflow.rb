@@ -46,3 +46,27 @@ module Flowable
       # @return [self, nil]
       def find_by_business_key(business_key)
         result = client.case_instances.list(
+          caseDefinitionKey: case_key,
+          businessKey: business_key,
+          size: 1
+        )
+        return nil if result['data'].empty?
+
+        @instance = result['data'].first
+        self
+      end
+
+      # Get case instance ID
+      def id
+        instance&.dig('id')
+      end
+
+      # Get case state
+      def state
+        refresh! if instance
+        instance&.dig('state')
+      end
+
+      # Check if case is active
+      def active?
+        state == 'active'
