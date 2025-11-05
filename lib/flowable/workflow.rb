@@ -142,3 +142,27 @@ module Flowable
 
       # Wait for a task to appear (polling)
       # @param name [String] Task name
+      # @param timeout [Integer] Timeout in seconds
+      # @param interval [Integer] Poll interval in seconds
+      # @yield [Task] Block to execute when task is found
+      def wait_for_task(name, timeout: 30, interval: 1)
+        start_time = Time.now
+        loop do
+          task = self.task(name)
+          if task
+            yield task if block_given?
+            return task
+          end
+
+          if Time.now - start_time > timeout
+            raise Error, "Timeout waiting for task '#{name}'"
+          end
+
+          sleep interval
+          refresh!
+        end
+      end
+
+      # Register a task handler
+      # @param task_name [String] Task name to handle
+      # @yield [Task] Block to execute when task is available
