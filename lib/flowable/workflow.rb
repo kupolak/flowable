@@ -166,3 +166,27 @@ module Flowable
       # Register a task handler
       # @param task_name [String] Task name to handle
       # @yield [Task] Block to execute when task is available
+      def on_task(task_name, &block)
+        @task_handlers[task_name] = block
+        self
+      end
+
+      # Process all pending tasks with registered handlers
+      def process_tasks!
+        pending_tasks.each do |task|
+          handler = @task_handlers[task.name]
+          handler&.call(task)
+        end
+        self
+      end
+
+      # Delete the case instance
+      def delete!
+        client.case_instances.delete(id) if id
+        @instance = nil
+      end
+
+      # Get identity links
+      def involved_users
+        return [] unless id
+
