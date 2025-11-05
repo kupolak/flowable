@@ -94,3 +94,27 @@ module Flowable
 
       # Get a single variable
       def [](name)
+        variables[name.to_sym]
+      end
+
+      # Set variables
+      def []=(name, value)
+        set(name => value)
+      end
+
+      # Set multiple variables
+      def set(vars)
+        client.case_instances.set_variables(id, vars)
+        self
+      end
+
+      # Get stage overview
+      def stages
+        return [] unless id
+
+        client.case_instances.stage_overview(id).map do |stage|
+          Stage.new(stage)
+        end
+      end
+
+      # Get current stage
