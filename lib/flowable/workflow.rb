@@ -214,3 +214,27 @@ module Flowable
       # Start a new process instance
       def start(variables: {}, business_key: nil)
         @instance = client.process_instances.start_by_key(
+          process_key,
+          variables: variables,
+          business_key: business_key,
+          return_variables: true
+        )
+        self
+      end
+
+      # Load an existing process instance
+      def load(process_instance_id)
+        @instance = client.process_instances.get(process_instance_id)
+        self
+      end
+
+      def id
+        instance&.dig('id')
+      end
+
+      def ended?
+        instance&.dig('ended') == true
+      end
+
+      def suspended?
+        instance&.dig('suspended') == true
