@@ -190,3 +190,27 @@ module Flowable
       def involved_users
         return [] unless id
 
+        client.case_instances.identity_links(id)
+      end
+
+      # Add involved user
+      def involve(user_id, type: 'participant')
+        client.case_instances.add_involved_user(id, user_id, type: type)
+        self
+      end
+    end
+
+    class Process
+      attr_reader :client
+      attr_reader :process_key
+      attr_reader :instance
+
+      def initialize(client, process_key)
+        @client = client
+        @process_key = process_key
+        @instance = nil
+      end
+
+      # Start a new process instance
+      def start(variables: {}, business_key: nil)
+        @instance = client.process_instances.start_by_key(
