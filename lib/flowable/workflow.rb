@@ -238,3 +238,27 @@ module Flowable
 
       def suspended?
         instance&.dig('suspended') == true
+      end
+
+      def refresh!
+        @instance = client.process_instances.get(id) if id
+        self
+      end
+
+      def variables
+        return {} unless id
+
+        client.process_instances.variables(id).each_with_object({}) do |var, hash|
+          hash[var['name'].to_sym] = var['value']
+        end
+      end
+
+      def set(vars)
+        client.process_instances.set_variables(id, vars)
+        self
+      end
+
+      def suspend!
+        client.process_instances.suspend(id)
+        refresh!
+      end
