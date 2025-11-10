@@ -262,3 +262,27 @@ module Flowable
         client.process_instances.suspend(id)
         refresh!
       end
+
+      def activate!
+        client.process_instances.activate(id)
+        refresh!
+      end
+
+      def delete!(reason: nil)
+        client.process_instances.delete(id, delete_reason: reason)
+        @instance = nil
+      end
+    end
+
+    class Task
+      attr_reader :client
+      attr_reader :data
+
+      def initialize(client, data)
+        @client = client
+        @data = data
+      end
+
+      def id
+        data['id']
+      end
