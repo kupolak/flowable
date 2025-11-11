@@ -286,3 +286,27 @@ module Flowable
       def id
         data['id']
       end
+
+      def name
+        data['name']
+      end
+
+      def description
+        data['description']
+      end
+
+      def assignee
+        data['assignee']
+      end
+
+      def owner
+        data['owner']
+      end
+
+      def priority
+        data['priority']
+      end
+
+      def due_date
+        data['dueDate']
+      end
