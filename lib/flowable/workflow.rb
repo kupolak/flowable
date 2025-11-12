@@ -310,3 +310,27 @@ module Flowable
       def due_date
         data['dueDate']
       end
+
+      def created_at
+        data['createTime']
+      end
+
+      def case_instance_id
+        data['caseInstanceId']
+      end
+
+      def process_instance_id
+        data['processInstanceId']
+      end
+
+      def completed?
+        !data['endTime'].nil? && !data['endTime'].to_s.empty?
+      end
+
+      def assigned?
+        !assignee.nil?
+      end
+
+      # Claim the task
+      def claim(user)
+        client.tasks.claim(id, user)
