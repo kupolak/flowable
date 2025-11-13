@@ -334,3 +334,27 @@ module Flowable
       # Claim the task
       def claim(user)
         client.tasks.claim(id, user)
+        @data['assignee'] = user
+        self
+      end
+
+      # Unclaim the task
+      def unclaim
+        client.tasks.unclaim(id)
+        @data['assignee'] = nil
+        self
+      end
+
+      # Complete the task
+      def complete(variables: {}, outcome: nil)
+        client.tasks.complete(id, variables: variables, outcome: outcome)
+        self
+      end
+
+      # Delegate to another user
+      def delegate_to(user)
+        client.tasks.delegate(id, user)
+        self
+      end
+
+      # Resolve delegated task
