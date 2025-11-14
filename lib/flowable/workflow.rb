@@ -358,3 +358,27 @@ module Flowable
       end
 
       # Resolve delegated task
+      def resolve
+        client.tasks.resolve(id)
+        self
+      end
+
+      # Get task variables
+      def variables(scope: nil)
+        client.tasks.variables(id, scope: scope).each_with_object({}) do |var, hash|
+          hash[var['name'].to_sym] = var['value']
+        end
+      end
+
+      # Set task variables
+      def set(vars, scope: 'local')
+        vars.each do |name, value|
+          client.tasks.update_variable(id, name.to_s, value, scope: scope)
+        end
+        self
+      end
+
+      # Update task properties
+      def update(attrs)
+        client.tasks.update(id, **attrs)
+        attrs.each { |k, v| @data[k.to_s] = v }
