@@ -382,3 +382,27 @@ module Flowable
       def update(attrs)
         client.tasks.update(id, **attrs)
         attrs.each { |k, v| @data[k.to_s] = v }
+        self
+      end
+
+      # Add candidate user
+      def add_candidate(user_id)
+        client.tasks.add_user_identity_link(id, user_id, type: 'candidate')
+        self
+      end
+
+      # Add candidate group
+      def add_candidate_group(group_id)
+        client.tasks.add_group_identity_link(id, group_id, type: 'candidate')
+        self
+      end
+    end
+
+    class Stage
+      attr_reader :data
+
+      def initialize(data)
+        @data = data
+      end
+
+      def id
