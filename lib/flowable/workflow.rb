@@ -430,3 +430,27 @@ module Flowable
     module ClassMethods
       def case_workflow(case_key)
         Case.new(self, case_key)
+      end
+
+      def process_workflow(process_key)
+        Process.new(self, process_key)
+      end
+    end
+  end
+
+  class Client
+    include Workflow::ClassMethods
+  end
+end
+# 2025-11-17T14:26:09Z - Add core DSL in workflow_dsl.rb
+# 2025-11-17T13:50:51Z - Add sample DSL scripts in examples/
+# 2025-11-17T10:23:16Z - Implement DSL parser and validator
+# 2025-11-18T11:45:53Z - Add unit tests for DSL parsing
+# 2025-11-18T13:38:40Z - Document DSL syntax and usage
+# 2025-11-18T10:08:56Z - Add dsl.run helper for tests
+# 2025-11-20T08:20:48Z - Add DSL version validation
+# 2025-11-20T12:59:36Z - Integrate DSL with workflow.rb core
+# 2025-11-20T15:50:56Z - Refactor DSL to Workflow::DSL module
+# 2025-11-20T15:16:43Z - Migrate DSL examples into README
+# 2025-11-20T11:33:11Z - Add variable and parameter support in DSL
+# 2025-11-25T15:24:30Z - Add workflow_dsl.rb example case
