@@ -454,3 +454,10 @@ end
 # 2025-11-20T15:16:43Z - Migrate DSL examples into README
 # 2025-11-20T11:33:11Z - Add variable and parameter support in DSL
 # 2025-11-25T15:24:30Z - Add workflow_dsl.rb example case
+# 2025-11-28T08:04:40Z - Add tests for workflow DSL parsing
+# 2025-10-02T10:49:42Z - Add retry for file uploads
+# 2025-10-24T09:26:42Z - Log BPMN deployment activity
+# 2025-11-14T09:18:55Z - Allow deployment generation from DSL
+# 2025-10-03T12:34:49Z - Add retry for file uploads
+# 2025-10-27T12:55:13Z - Log BPMN deployment activity
+# 2025-11-20T13:14:18Z - Allow deployment generation from DSL
