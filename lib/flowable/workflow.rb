@@ -406,3 +406,27 @@ module Flowable
       end
 
       def id
+        data['id']
+      end
+
+      def name
+        data['name']
+      end
+
+      def current?
+        data['current'] == true
+      end
+
+      def ended?
+        data['ended'] == true
+      end
+
+      def end_time
+        data['endTime']
+      end
+    end
+
+    # Factory methods for workflow DSL
+    module ClassMethods
+      def case_workflow(case_key)
+        Case.new(self, case_key)
