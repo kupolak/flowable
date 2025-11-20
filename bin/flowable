@@ -34,3 +34,39 @@ module FlowableCLI
       when 'tasks'
         list_tasks(args)
       when 'task'
+        show_task(args)
+      when 'claim'
+        claim_task(args)
+      when 'complete'
+        complete_task(args)
+      when 'vars'
+        show_variables(args)
+      when 'set'
+        set_variable(args)
+      when 'history'
+        show_history(args)
+      when 'process-start'
+        start_process(args)
+      when 'processes'
+        list_processes(args)
+      when 'help', '-h', '--help'
+        show_help
+      else
+        puts "Unknown command: #{command}"
+        show_help
+        exit 1
+      end
+    rescue Flowable::Error => e
+      puts "Error: #{e.message}"
+      exit 1
+    end
+
+    private
+
+    def client
+      @client ||= Flowable::Client.new(
+        host: @options[:host] || 'localhost',
+        port: @options[:port] || 8080,
+        username: @options[:username] || 'rest-admin',
+        password: @options[:password] || 'test',
+        use_ssl: @options[:use_ssl] || false
