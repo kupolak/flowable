@@ -70,3 +70,39 @@ module FlowableCLI
         username: @options[:username] || 'rest-admin',
         password: @options[:password] || 'test',
         use_ssl: @options[:use_ssl] || false
+      )
+    end
+
+    def load_config
+      return {} unless File.exist?(CONFIG_FILE)
+
+      YAML.load_file(CONFIG_FILE, symbolize_names: true) || {}
+    rescue StandardError
+      {}
+    end
+
+    def save_config
+      File.write(CONFIG_FILE, @options.to_yaml)
+      puts "Config saved to #{CONFIG_FILE}"
+    end
+
+    # === Commands ===
+
+    def configure(args)
+      opts = OptionParser.new do |o|
+        o.banner = 'Usage: flowable config [options]'
+        o.on('--host HOST', 'Flowable host') { |v| @options[:host] = v }
+        o.on('--port PORT', Integer, 'Flowable port') { |v| @options[:port] = v }
+        o.on('--username USER', 'Username') { |v| @options[:username] = v }
+        o.on('--password PASS', 'Password') { |v| @options[:password] = v }
+        o.on('--ssl', 'Use HTTPS') { @options[:use_ssl] = true }
+        o.on('--show', 'Show current config') do
+          puts 'Current configuration:'
+          puts "  Host: #{@options[:host] || 'localhost'}"
+          puts "  Port: #{@options[:port] || 8080}"
+          puts "  Username: #{@options[:username] || 'rest-admin'}"
+          puts "  SSL: #{@options[:use_ssl] || false}"
+          exit 0
+        end
+      end
+      opts.parse!(args)
