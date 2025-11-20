@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'optparse'
+require 'json'
+require 'yaml'
+require_relative '../lib/flowable'
+
+module FlowableCLI
+  class CLI
+    CONFIG_FILE = File.expand_path('~/.flowable.yml')
+
+    def initialize
+      @options = load_config
+    end
+
+    def run(args)
+      return show_help if args.empty?
+
+      command = args.shift
+      case command
+      when 'config'
+        configure(args)
+      when 'deploy'
+        deploy(args)
+      when 'definitions', 'defs'
+        definitions(args)
+      when 'start'
+        start_case(args)
+      when 'cases'
+        list_cases(args)
+      when 'case'
+        show_case(args)
+      when 'tasks'
+        list_tasks(args)
+      when 'task'
