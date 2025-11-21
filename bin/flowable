@@ -142,3 +142,39 @@ module FlowableCLI
       puts "  Time: #{result['deploymentTime']}"
     end
 
+    def definitions(args)
+      type = 'cmmn'
+      opts = OptionParser.new do |o|
+        o.banner = 'Usage: flowable definitions [options]'
+        o.on('--bpmn', 'Show BPMN process definitions') { type = 'bpmn' }
+        o.on('--cmmn', 'Show CMMN case definitions (default)') { type = 'cmmn' }
+      end
+      opts.parse!(args)
+
+      if type == 'bpmn'
+        result = client.process_definitions.list
+        puts "Process Definitions (#{result['total']}):"
+      else
+        result = client.case_definitions.list
+        puts "Case Definitions (#{result['total']}):"
+      end
+      result['data'].each do |d|
+        puts "  #{d['key']} v#{d['version']} - #{d['name']} [#{d['id']}]"
+      end
+    end
+
+    def start_case(args)
+      if args.empty?
+        puts 'Usage: flowable start <caseKey> [--var key=value ...] [--business-key KEY]'
+        exit 1
+      end
+
+      case_key = args.shift
+      variables = {}
+      business_key = nil
+
+      opts = OptionParser.new do |o|
+        o.on('--var VAR', 'Variable (key=value)') do |v|
+          key, value = v.split('=', 2)
+          variables[key.to_sym] = parse_value(value)
+        end
