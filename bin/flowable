@@ -106,3 +106,39 @@ module FlowableCLI
         end
       end
       opts.parse!(args)
+      save_config
+    end
+
+    def deploy(args)
+      if args.empty?
+        puts 'Usage: flowable deploy <file.cmmn.xml|file.bpmn.xml> [--tenant TENANT]'
+        exit 1
+      end
+
+      file_path = args.shift
+      tenant_id = nil
+
+      opts = OptionParser.new do |o|
+        o.on('--tenant TENANT', 'Tenant ID') { |v| tenant_id = v }
+      end
+      opts.parse!(args)
+
+      unless File.exist?(file_path)
+        puts "File not found: #{file_path}"
+        exit 1
+      end
+
+      # Determine if CMMN or BPMN based on extension
+      if file_path.include?('.cmmn')
+        result = client.deployments.create(file_path, tenant_id: tenant_id)
+        puts 'CMMN Deployment created:'
+      else
+        result = client.bpmn_deployments.create(file_path, tenant_id: tenant_id)
+        puts 'BPMN Deployment created:'
+      end
+
+      puts "  ID: #{result['id']}"
+      puts "  Name: #{result['name']}"
+      puts "  Time: #{result['deploymentTime']}"
+    end
+
