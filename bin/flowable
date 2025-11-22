@@ -178,3 +178,39 @@ module FlowableCLI
           key, value = v.split('=', 2)
           variables[key.to_sym] = parse_value(value)
         end
+        o.on('--business-key KEY', 'Business key') { |v| business_key = v }
+      end
+      opts.parse!(args)
+
+      result = client.case_instances.start_by_key(
+        case_key,
+        variables: variables,
+        business_key: business_key
+      )
+
+      puts 'Case started:'
+      puts "  ID: #{result['id']}"
+      puts "  State: #{result['state']}"
+      puts "  Definition: #{result['caseDefinitionName']}"
+    end
+
+    def start_process(args)
+      if args.empty?
+        puts 'Usage: flowable process-start <processKey> [--var key=value ...] [--business-key KEY]'
+        exit 1
+      end
+
+      process_key = args.shift
+      variables = {}
+      business_key = nil
+
+      opts = OptionParser.new do |o|
+        o.on('--var VAR', 'Variable (key=value)') do |v|
+          key, value = v.split('=', 2)
+          variables[key.to_sym] = parse_value(value)
+        end
+        o.on('--business-key KEY', 'Business key') { |v| business_key = v }
+      end
+      opts.parse!(args)
+
+      result = client.process_instances.start_by_key(
