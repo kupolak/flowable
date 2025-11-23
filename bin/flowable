@@ -214,3 +214,39 @@ module FlowableCLI
       opts.parse!(args)
 
       result = client.process_instances.start_by_key(
+        process_key,
+        variables: variables,
+        business_key: business_key
+      )
+
+      puts 'Process started:'
+      puts "  ID: #{result['id']}"
+      puts "  Ended: #{result['ended']}"
+      puts "  Definition: #{result['processDefinitionId']}"
+    end
+
+    def list_cases(args)
+      filters = {}
+      opts = OptionParser.new do |o|
+        o.banner = 'Usage: flowable cases [options]'
+        o.on('--key KEY', 'Filter by case definition key') { |v| filters[:caseDefinitionKey] = v }
+        o.on('--business-key KEY', 'Filter by business key') { |v| filters[:businessKey] = v }
+      end
+      opts.parse!(args)
+
+      result = client.case_instances.list(**filters)
+      puts "Case Instances (#{result['total']}):"
+      result['data'].each do |c|
+        puts "  [#{c['state']}] #{c['id']} - #{c['caseDefinitionName']} (#{c['businessKey'] || 'no business key'})"
+      end
+    end
+
+    def list_processes(args)
+      filters = {}
+      opts = OptionParser.new do |o|
+        o.banner = 'Usage: flowable processes [options]'
+        o.on('--key KEY', 'Filter by process definition key') { |v| filters[:processDefinitionKey] = v }
+        o.on('--business-key KEY', 'Filter by business key') { |v| filters[:businessKey] = v }
+      end
+      opts.parse!(args)
+
