@@ -250,3 +250,39 @@ module FlowableCLI
       end
       opts.parse!(args)
 
+      result = client.process_instances.list(**filters)
+      puts "Process Instances (#{result['total']}):"
+      result['data'].each do |p|
+        status = if p['suspended']
+                   'SUSPENDED'
+                 else
+                   (p['ended'] ? 'ENDED' : 'ACTIVE')
+                 end
+        puts "  [#{status}] #{p['id']} - #{p['processDefinitionId']} (#{p['businessKey'] || 'no business key'})"
+      end
+    end
+
+    def show_case(args)
+      if args.empty?
+        puts 'Usage: flowable case <caseInstanceId>'
+        exit 1
+      end
+
+      case_id = args.shift
+      result = client.case_instances.get(case_id)
+
+      puts "Case Instance: #{result['id']}"
+      puts "  Name: #{result['name']}"
+      puts "  State: #{result['state']}"
+      puts "  Definition: #{result['caseDefinitionName']}"
+      puts "  Business Key: #{result['businessKey']}"
+      puts "  Start Time: #{result['startTime']}"
+      puts "  Start User: #{result['startUserId']}"
+
+      # Show stages
+      stages = client.case_instances.stage_overview(case_id) rescue []
+      unless stages.empty?
+        puts "\n  Stages:"
+        stages.each do |stage|
+          status = if stage['current']
+                     '▶'
