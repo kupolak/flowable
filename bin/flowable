@@ -286,3 +286,39 @@ module FlowableCLI
         stages.each do |stage|
           status = if stage['current']
                      '▶'
+                   else
+                     (stage['ended'] ? '✓' : '○')
+                   end
+          puts "    #{status} #{stage['name']}"
+        end
+      end
+    end
+
+    def list_tasks(args)
+      filters = {}
+      opts = OptionParser.new do |o|
+        o.banner = 'Usage: flowable tasks [options]'
+        o.on('--assignee USER', 'Filter by assignee') { |v| filters[:assignee] = v }
+        o.on('--candidate USER', 'Filter by candidate user') { |v| filters[:candidateUser] = v }
+        o.on('--case ID', 'Filter by case instance ID') { |v| filters[:caseInstanceId] = v }
+        o.on('--unassigned', 'Only unassigned tasks') { filters[:unassigned] = true }
+      end
+      opts.parse!(args)
+
+      result = client.tasks.list(**filters)
+      puts "Tasks (#{result['total']}):"
+      result['data'].each do |t|
+        assignee = t['assignee'] || 'unassigned'
+        puts "  #{t['id']} - #{t['name']} [#{assignee}]"
+        puts "    Case: #{t['caseInstanceId']}" if t['caseInstanceId']
+        puts "    Due: #{t['dueDate']}" if t['dueDate']
+      end
+    end
+
+    def show_task(args)
+      if args.empty?
+        puts 'Usage: flowable task <taskId>'
+        exit 1
+      end
+
+      task_id = args.shift
