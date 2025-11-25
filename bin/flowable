@@ -322,3 +322,39 @@ module FlowableCLI
       end
 
       task_id = args.shift
+      result = client.tasks.get(task_id)
+
+      puts "Task: #{result['id']}"
+      puts "  Name: #{result['name']}"
+      puts "  Description: #{result['description']}"
+      puts "  Assignee: #{result['assignee'] || 'unassigned'}"
+      puts "  Owner: #{result['owner']}"
+      puts "  Priority: #{result['priority']}"
+      puts "  Due Date: #{result['dueDate']}"
+      puts "  Created: #{result['createTime']}"
+      puts "  Case Instance: #{result['caseInstanceId']}"
+    end
+
+    def claim_task(args)
+      if args.length < 2
+        puts 'Usage: flowable claim <taskId> <assignee>'
+        exit 1
+      end
+
+      task_id = args.shift
+      assignee = args.shift
+
+      client.tasks.claim(task_id, assignee)
+      puts "Task #{task_id} claimed by #{assignee}"
+    end
+
+    def complete_task(args)
+      if args.empty?
+        puts 'Usage: flowable complete <taskId> [--var key=value ...] [--outcome OUTCOME]'
+        exit 1
+      end
+
+      task_id = args.shift
+      variables = {}
+      outcome = nil
+
