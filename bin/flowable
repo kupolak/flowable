@@ -358,3 +358,39 @@ module FlowableCLI
       variables = {}
       outcome = nil
 
+      opts = OptionParser.new do |o|
+        o.on('--var VAR', 'Variable (key=value)') do |v|
+          key, value = v.split('=', 2)
+          variables[key.to_sym] = parse_value(value)
+        end
+        o.on('--outcome OUTCOME', 'Task outcome') { |v| outcome = v }
+      end
+      opts.parse!(args)
+
+      client.tasks.complete(task_id, variables: variables, outcome: outcome)
+      puts "Task #{task_id} completed"
+    end
+
+    def show_variables(args)
+      if args.empty?
+        puts 'Usage: flowable vars <caseInstanceId|taskId> [--task]'
+        exit 1
+      end
+
+      id = args.shift
+      is_task = args.include?('--task')
+
+      result = if is_task
+                 client.tasks.variables(id)
+               else
+                 client.case_instances.variables(id)
+               end
+
+      puts 'Variables:'
+      result.each do |v|
+        puts "  #{v['name']} = #{v['value']} (#{v['type']})"
+      end
+    end
+
+    def set_variable(args)
+      if args.length < 2
