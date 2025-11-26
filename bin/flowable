@@ -430,3 +430,39 @@ module FlowableCLI
         result['data'].each do |c|
           status = c['endTime'] ? 'ENDED' : 'ACTIVE'
           puts "  [#{status}] #{c['id']} - #{c['caseDefinitionName']}"
+          puts "    Started: #{c['startTime']} by #{c['startUserId']}"
+          puts "    Ended: #{c['endTime']}" if c['endTime']
+        end
+      when 'tasks'
+        result = client.history.task_instances(size: limit)
+        puts "Historic Task Instances (showing #{[limit, result['total']].min} of #{result['total']}):"
+        result['data'].each do |t|
+          status = t['endTime'] ? 'COMPLETED' : 'ACTIVE'
+          puts "  [#{status}] #{t['id']} - #{t['name']}"
+          puts "    Assignee: #{t['assignee']}, Duration: #{t['durationInMillis']}ms"
+        end
+      when 'processes'
+        result = client.bpmn_history.process_instances(size: limit)
+        puts "Historic Process Instances (showing #{[limit, result['total']].min} of #{result['total']}):"
+        result['data'].each do |p|
+          status = p['endTime'] ? 'ENDED' : 'ACTIVE'
+          puts "  [#{status}] #{p['id']} - #{p['processDefinitionId']}"
+          puts "    Started: #{p['startTime']} by #{p['startUserId']}"
+        end
+      end
+    end
+
+    def show_help
+      puts <<~HELP
+        Flowable CLI - Command line interface for Flowable REST API
+
+        Configuration:
+          flowable config --host HOST --port PORT --username USER --password PASS
+          flowable config --show
+
+        Deployments:
+          flowable deploy <file.cmmn.xml|file.bpmn.xml> [--tenant TENANT]
+
+        Definitions:
+          flowable definitions [--cmmn|--bpmn]
+          flowable defs
