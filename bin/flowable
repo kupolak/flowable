@@ -394,3 +394,39 @@ module FlowableCLI
 
     def set_variable(args)
       if args.length < 2
+        puts 'Usage: flowable set <caseInstanceId> <key=value> [key=value ...]'
+        exit 1
+      end
+
+      case_id = args.shift
+      variables = {}
+
+      args.each do |arg|
+        key, value = arg.split('=', 2)
+        variables[key.to_sym] = parse_value(value)
+      end
+
+      client.case_instances.set_variables(case_id, variables)
+      puts "Variables updated on case #{case_id}"
+    end
+
+    def show_history(args)
+      type = 'cases'
+      limit = 10
+
+      opts = OptionParser.new do |o|
+        o.banner = 'Usage: flowable history [options]'
+        o.on('--cases', 'Show case history (default)') { type = 'cases' }
+        o.on('--tasks', 'Show task history') { type = 'tasks' }
+        o.on('--processes', 'Show process history') { type = 'processes' }
+        o.on('--limit N', Integer, 'Limit results') { |v| limit = v }
+      end
+      opts.parse!(args)
+
+      case type
+      when 'cases'
+        result = client.history.case_instances(size: limit)
+        puts "Historic Case Instances (showing #{[limit, result['total']].min} of #{result['total']}):"
+        result['data'].each do |c|
+          status = c['endTime'] ? 'ENDED' : 'ACTIVE'
+          puts "  [#{status}] #{c['id']} - #{c['caseDefinitionName']}"
