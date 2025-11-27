@@ -466,3 +466,39 @@ module FlowableCLI
         Definitions:
           flowable definitions [--cmmn|--bpmn]
           flowable defs
+
+        CMMN Cases:
+          flowable start <caseKey> [--var key=value] [--business-key KEY]
+          flowable cases [--key KEY] [--business-key KEY]
+          flowable case <caseInstanceId>
+
+        BPMN Processes:
+          flowable process-start <processKey> [--var key=value] [--business-key KEY]
+          flowable processes [--key KEY] [--business-key KEY]
+
+        Tasks:
+          flowable tasks [--assignee USER] [--candidate USER] [--case ID] [--unassigned]
+          flowable task <taskId>
+          flowable claim <taskId> <assignee>
+          flowable complete <taskId> [--var key=value] [--outcome OUTCOME]
+
+        Variables:
+          flowable vars <caseInstanceId>
+          flowable vars <taskId> --task
+          flowable set <caseInstanceId> key=value [key=value ...]
+
+        History:
+          flowable history [--cases|--tasks|--processes] [--limit N]
+
+        Help:
+          flowable help
+      HELP
+    end
+
+    def parse_value(value)
+      return true if value == 'true'
+      return false if value == 'false'
+      return value.to_i if value =~ /^\d+$/
+      return value.to_f if value =~ /^\d+\.\d+$/
+
+      value
