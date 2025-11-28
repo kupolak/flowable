@@ -502,3 +502,28 @@ module FlowableCLI
       return value.to_f if value =~ /^\d+\.\d+$/
 
       value
+    end
+  end
+end
+
+# Run CLI
+FlowableCLI::CLI.new.run(ARGV)
+2025-11-20T11:09:41Z - Add basic CLI in bin/flowable
+2025-11-21T10:40:32Z - Add start-case command to CLI
+2025-11-21T12:49:51Z - Allow CLI configuration from env
+2025-11-21T09:13:34Z - Document CLI usage in README
+2025-11-21T10:14:51Z - Add integration tests for CLI
+2025-11-21T08:53:17Z - Add optional CLI autocompletion
+2025-11-24T13:28:18Z - Allow piping CLI output to files
+2025-11-24T12:14:29Z - Fix file permissions for bin/flowable
+2025-11-24T12:29:48Z - Refactor CLI onto Thor/OptionParser
+2025-11-26T12:27:13Z - Add CLI usage example with output
+2025-11-28T11:20:04Z - Add tests for basic CLI commands
+# 2025-09-29T12:49:33Z - Add Basic Auth support
+# 2025-10-17T10:42:18Z - Add history endpoints for case instances
+# 2025-11-11T14:58:54Z - Add BPMN history endpoints
+# 2025-11-28T12:40:58Z - Update Gemfile and gemspec dependencies
+# 2025-09-26T13:40:02Z - Add Basic Auth support
+# 2025-10-21T11:17:04Z - Add history endpoints for case instances
+# 2025-11-13T09:28:22Z - Add BPMN history endpoints
+# 2025-12-09T09:22:50Z - Update Gemfile and gemspec dependencies
