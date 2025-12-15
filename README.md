@@ -599,3 +599,203 @@ results = client.history.query_case_instances({
 ```
 
 ### Supported Operations
+
+| Operation | Description |
+|-----------|-------------|
+| `equals` | Exact match |
+| `notEquals` | Not equal |
+| `greaterThan` | Greater than (numeric) |
+| `greaterThanOrEquals` | Greater than or equal |
+| `lessThan` | Less than (numeric) |
+| `lessThanOrEquals` | Less than or equal |
+| `like` | Pattern match (use `%` as wildcard) |
+| `likeIgnoreCase` | Case-insensitive pattern match |
+
+---
+
+## Error Handling
+
+The client raises specific exceptions for different error conditions:
+
+```ruby
+begin
+  client.case_instances.get('non-existent-id')
+rescue Flowable::NotFoundError => e
+  # 404 - Resource not found
+  puts "Not found: #{e.message}"
+rescue Flowable::UnauthorizedError => e
+  # 401 - Authentication failed
+  puts "Auth failed: #{e.message}"
+rescue Flowable::ForbiddenError => e
+  # 403 - Access denied
+  puts "Forbidden: #{e.message}"
+rescue Flowable::BadRequestError => e
+  # 400 - Invalid request
+  puts "Bad request: #{e.message}"
+rescue Flowable::ConflictError => e
+  # 409 - Conflict (e.g., duplicate resource)
+  puts "Conflict: #{e.message}"
+rescue Flowable::Error => e
+  # Other errors
+  puts "Error: #{e.message}"
+end
+```
+
+### Exception Hierarchy
+
+```
+Flowable::Error
+├── Flowable::BadRequestError (400)
+├── Flowable::UnauthorizedError (401)
+├── Flowable::ForbiddenError (403)
+├── Flowable::NotFoundError (404)
+└── Flowable::ConflictError (409)
+```
+
+---
+
+## Pagination
+
+### Basic Pagination
+
+```ruby
+# First page (default size: 10)
+page1 = client.tasks.list(start: 0, size: 10)
+# => { 'data' => [...], 'total' => 100, 'start' => 0, 'size' => 10 }
+
+# Second page
+page2 = client.tasks.list(start: 10, size: 10)
+
+# With sorting
+sorted = client.tasks.list(
+  sort: 'createTime',
+  order: 'desc',
+  size: 20
+)
+```
+
+### Iterating All Results
+
+```ruby
+def each_task(client)
+  start = 0
+  size = 100
+  
+  loop do
+    result = client.tasks.list(start: start, size: size)
+    result['data'].each { |task| yield task }
+    
+    break if start + size >= result['total']
+    start += size
+  end
+end
+
+# Usage
+each_task(client) do |task|
+  puts "#{task['id']}: #{task['name']}"
+end
+```
+
+### Sorting Options
+
+| Resource | Available Sort Fields |
+|----------|----------------------|
+| Tasks | `id`, `name`, `priority`, `assignee`, `createTime`, `dueDate` |
+| Case Instances | `id`, `caseDefinitionId`, `startTime`, `businessKey` |
+| Process Instances | `id`, `processDefinitionId`, `startTime`, `businessKey` |
+| Deployments | `id`, `name`, `deployTime`, `tenantId` |
+
+---
+
+## CLI Tool
+
+The gem includes a command-line interface for common operations:
+
+```bash
+# Set connection details
+export FLOWABLE_HOST=localhost
+export FLOWABLE_PORT=8080
+export FLOWABLE_USER=rest-admin
+export FLOWABLE_PASSWORD=test
+
+# List deployments
+bin/flowable deployments list
+
+# Deploy a case
+bin/flowable deployments create my-case.cmmn
+
+# List case definitions
+bin/flowable case-definitions list
+
+# Start a case
+bin/flowable case-instances start --key myCase --variables '{"amount":1000}'
+
+# List tasks
+bin/flowable tasks list
+
+# Complete a task
+bin/flowable tasks complete TASK_ID --variables '{"approved":true}'
+
+# Get help
+bin/flowable --help
+bin/flowable tasks --help
+```
+
+### CLI Commands
+
+| Command | Description |
+|---------|-------------|
+| `deployments list` | List all deployments |
+| `deployments create FILE` | Deploy a CMMN/BPMN file |
+| `deployments delete ID` | Delete a deployment |
+| `case-definitions list` | List case definitions |
+| `case-definitions get ID` | Get case definition details |
+| `case-instances list` | List case instances |
+| `case-instances start` | Start a new case instance |
+| `case-instances get ID` | Get case instance details |
+| `tasks list` | List tasks |
+| `tasks get ID` | Get task details |
+| `tasks claim ID USER` | Claim a task |
+| `tasks complete ID` | Complete a task |
+
+---
+
+## Workflow DSL
+
+For complex workflows, use the DSL:
+
+```ruby
+require 'flowable/dsl'
+
+workflow = Flowable::Workflow.define do
+  name 'Order Processing'
+  
+  on_start do |ctx|
+    ctx[:started_at] = Time.now
+  end
+  
+  step :validate_order do |ctx|
+    raise 'Invalid amount' if ctx.variable(:amount) <= 0
+  end
+  
+  step :process_payment do |ctx|
+    # Process payment logic
+    ctx.set_variable(:payment_status, 'completed')
+  end
+  
+  step :ship_order do |ctx|
+    # Shipping logic
+  end
+  
+  on_error do |ctx, error|
+    puts "Error: #{error.message}"
+    ctx.set_variable(:error, error.message)
+  end
+  
+  on_complete do |ctx|
+    puts "Completed in #{Time.now - ctx[:started_at]} seconds"
+  end
+end
+
+# Execute
+client = Flowable::Client.new(...)
