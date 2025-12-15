@@ -199,3 +199,203 @@ case_instance = client.case_instances.start_by_key('myCase',
 
 # Start by definition ID
 case_instance = client.case_instances.start_by_id('definition-id',
+  variables: { foo: 'bar' }
+)
+
+# Get case instance details
+instance = client.case_instances.get('instance-id')
+
+# Get stage overview
+stages = client.case_instances.stage_overview('instance-id')
+stages.each do |stage|
+  status = stage['current'] ? 'ACTIVE' : (stage['ended'] ? 'COMPLETED' : 'AVAILABLE')
+  puts "#{stage['name']}: #{status}"
+end
+
+# Terminate case instance
+client.case_instances.terminate('instance-id')
+
+# Delete case instance
+client.case_instances.delete('instance-id')
+```
+
+#### Case Instance Variables
+
+```ruby
+# Get all variables
+variables = client.case_instances.variables('instance-id')
+
+# Get single variable
+variable = client.case_instances.variable('instance-id', 'customerName')
+
+# Set/update multiple variables
+client.case_instances.set_variables('instance-id', {
+  status: 'processing',
+  reviewedBy: 'kermit',
+  reviewDate: Time.now.iso8601
+})
+
+# Create variables (fails if already exist)
+client.case_instances.create_variables('instance-id', {
+  newVariable: 'value'
+})
+
+# Update single variable
+client.case_instances.update_variable('instance-id', 'status', 'completed')
+
+# Delete variable
+client.case_instances.delete_variable('instance-id', 'temporaryVar')
+```
+
+### Tasks
+
+```ruby
+# List tasks
+tasks = client.tasks.list
+tasks = client.tasks.list(
+  caseInstanceId: 'instance-id',
+  assignee: 'kermit',
+  active: true
+)
+
+# List claimable tasks
+claimable = client.tasks.list(candidateUser: 'kermit')
+claimable = client.tasks.list(candidateGroup: 'managers')
+
+# Get task details
+task = client.tasks.get('task-id')
+
+# Claim task
+client.tasks.claim('task-id', 'kermit')
+
+# Unclaim task
+client.tasks.unclaim('task-id')
+
+# Complete task
+client.tasks.complete('task-id')
+client.tasks.complete('task-id',
+  variables: { decision: 'approved', comment: 'Looks good!' },
+  outcome: 'approve'
+)
+
+# Update task properties
+client.tasks.update('task-id',
+  assignee: 'gonzo',
+  priority: 80,
+  dueDate: (Time.now + 86400).iso8601,
+  name: 'Updated Task Name',
+  description: 'New description'
+)
+
+# Delegate task
+client.tasks.delegate('task-id', 'fozzie')
+
+# Resolve delegated task
+client.tasks.resolve('task-id')
+
+# Delete task
+client.tasks.delete('task-id')
+client.tasks.delete('task-id', delete_reason: 'No longer needed')
+```
+
+#### Task Variables
+
+```ruby
+# Get task variables
+variables = client.tasks.variables('task-id')
+variables = client.tasks.variables('task-id', scope: 'local')  # local or global
+
+# Create task variables
+client.tasks.create_variables('task-id', { note: 'Important!' }, scope: 'local')
+
+# Update variable
+client.tasks.update_variable('task-id', 'note', 'Very important!', scope: 'local')
+
+# Set multiple variables (create or update)
+client.tasks.set_variables('task-id', { var1: 'a', var2: 'b' }, scope: 'local')
+
+# Delete variable
+client.tasks.delete_variable('task-id', 'note', scope: 'local')
+```
+
+#### Task Identity Links
+
+```ruby
+# Get identity links
+links = client.tasks.identity_links('task-id')
+
+# Add candidate user
+client.tasks.add_identity_link('task-id', user: 'kermit', type: 'candidate')
+
+# Add candidate group
+client.tasks.add_identity_link('task-id', group: 'managers', type: 'candidate')
+
+# Delete identity link
+client.tasks.delete_identity_link('task-id', user: 'kermit', type: 'candidate')
+```
+
+### Plan Item Instances
+
+```ruby
+# List plan items for a case
+items = client.plan_item_instances.list(caseInstanceId: 'instance-id')
+items = client.plan_item_instances.list(
+  caseInstanceId: 'instance-id',
+  planItemDefinitionType: 'humantask',
+  state: 'active'
+)
+
+# Get specific plan item
+item = client.plan_item_instances.get('plan-item-id')
+
+# Helper methods
+active = client.plan_item_instances.active_for_case('instance-id')
+stages = client.plan_item_instances.stages_for_case('instance-id')
+tasks = client.plan_item_instances.human_tasks_for_case('instance-id')
+milestones = client.plan_item_instances.milestones_for_case('instance-id')
+
+# Trigger actions
+client.plan_item_instances.trigger('plan-item-id')   # Trigger user event listener
+client.plan_item_instances.enable('plan-item-id')    # Enable manual activation item
+client.plan_item_instances.disable('plan-item-id')   # Disable enabled item
+client.plan_item_instances.start('plan-item-id')     # Start enabled item
+client.plan_item_instances.terminate('plan-item-id') # Terminate active item
+```
+
+### History
+
+```ruby
+# Historic case instances
+historic = client.history.case_instances
+historic = client.history.case_instances(
+  finished: true,
+  caseDefinitionKey: 'myCase',
+  involvedUser: 'kermit'
+)
+
+# Get specific historic case instance
+instance = client.history.case_instance('instance-id')
+
+# Delete historic case instance
+client.history.delete_case_instance('instance-id')
+
+# Historic tasks
+tasks = client.history.task_instances(caseInstanceId: 'instance-id')
+tasks = client.history.task_instances(
+  finished: true,
+  taskAssignee: 'kermit'
+)
+
+# Historic milestones
+milestones = client.history.milestones(caseInstanceId: 'instance-id')
+
+# Historic plan item instances
+items = client.history.plan_item_instances(caseInstanceId: 'instance-id')
+
+# Historic variables
+variables = client.history.variable_instances(caseInstanceId: 'instance-id')
+
+# Query with filters
+results = client.history.query_case_instances(
+  caseDefinitionKey: 'myCase',
+  finished: true
