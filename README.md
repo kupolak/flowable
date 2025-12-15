@@ -399,3 +399,203 @@ variables = client.history.variable_instances(caseInstanceId: 'instance-id')
 results = client.history.query_case_instances(
   caseDefinitionKey: 'myCase',
   finished: true
+)
+```
+
+---
+
+## BPMN API
+
+The client also provides full support for Flowable's BPMN engine.
+
+### BPMN Deployments
+
+```ruby
+# List deployments
+deployments = client.bpmn_deployments.list
+
+# Deploy BPMN file
+deployment = client.bpmn_deployments.create('/path/to/process.bpmn20.xml')
+
+# Get deployment
+deployment = client.bpmn_deployments.get('deployment-id')
+
+# Delete deployment
+client.bpmn_deployments.delete('deployment-id', cascade: true)
+```
+
+### Process Definitions
+
+```ruby
+# List process definitions
+definitions = client.process_definitions.list
+definitions = client.process_definitions.list(key: 'myProcess', latest: true)
+
+# Get by ID
+definition = client.process_definitions.get('definition-id')
+
+# Get latest by key
+definition = client.process_definitions.get_by_key('myProcess')
+
+# Get BPMN model
+model = client.process_definitions.model('definition-id')
+
+# Get resource content
+xml = client.process_definitions.resource_content('definition-id')
+
+# Suspend/Activate
+client.process_definitions.suspend('definition-id')
+client.process_definitions.activate('definition-id')
+```
+
+### Process Instances
+
+```ruby
+# List process instances
+instances = client.process_instances.list
+instances = client.process_instances.list(
+  processDefinitionKey: 'myProcess',
+  includeProcessVariables: true
+)
+
+# Start process instance
+instance = client.process_instances.start_by_key('myProcess',
+  variables: { orderId: 'ORD-123', amount: 500 },
+  business_key: 'ORDER-123'
+)
+
+# Get process instance
+instance = client.process_instances.get('instance-id')
+
+# Get diagram (PNG)
+diagram = client.process_instances.diagram('instance-id')
+
+# Suspend/Activate
+client.process_instances.suspend('instance-id')
+client.process_instances.activate('instance-id')
+
+# Delete
+client.process_instances.delete('instance-id')
+```
+
+#### Process Instance Variables
+
+```ruby
+# Get variables
+variables = client.process_instances.variables('instance-id')
+
+# Get single variable
+variable = client.process_instances.variable('instance-id', 'orderId')
+
+# Set variables
+client.process_instances.set_variables('instance-id', {
+  status: 'processing',
+  updatedAt: Time.now.iso8601
+})
+
+# Update single variable
+client.process_instances.update_variable('instance-id', 'status', 'completed')
+
+# Delete variable
+client.process_instances.delete_variable('instance-id', 'tempVar')
+```
+
+### BPMN Tasks
+
+BPMN tasks use the same `client.tasks` interface as CMMN. The API automatically routes requests based on the context.
+
+```ruby
+# List all tasks (both CMMN and BPMN)
+tasks = client.tasks.list
+
+# Filter by process instance
+tasks = client.tasks.list(processInstanceId: 'process-instance-id')
+
+# All task operations work the same way
+client.tasks.claim('task-id', 'kermit')
+client.tasks.complete('task-id', variables: { approved: true })
+```
+
+### Executions
+
+```ruby
+# List executions
+executions = client.executions.list(processInstanceId: 'instance-id')
+
+# Get execution
+execution = client.executions.get('execution-id')
+
+# Get active activities
+activities = client.executions.activities('execution-id')
+
+# Signal execution
+client.executions.signal('execution-id', variables: { signalData: 'value' })
+
+# Trigger execution
+client.executions.trigger('execution-id')
+```
+
+### BPMN History
+
+```ruby
+# Historic process instances
+historic = client.bpmn_history.process_instances
+historic = client.bpmn_history.process_instances(
+  finished: true,
+  processDefinitionKey: 'myProcess'
+)
+
+# Historic activities
+activities = client.bpmn_history.activity_instances(processInstanceId: 'instance-id')
+
+# Historic tasks
+tasks = client.bpmn_history.task_instances(processInstanceId: 'instance-id')
+
+# Historic variables
+variables = client.bpmn_history.variable_instances(processInstanceId: 'instance-id')
+
+# Query process instances
+results = client.bpmn_history.query_process_instances({
+  processDefinitionKey: 'myProcess',
+  finished: true,
+  variables: [
+    { name: 'amount', value: 1000, operation: 'greaterThan', type: 'long' }
+  ]
+})
+```
+
+---
+
+## Working with Variables
+
+### Automatic Type Inference
+
+The client automatically infers variable types:
+
+```ruby
+client.case_instances.set_variables('instance-id', {
+  stringVar: 'hello',        # string
+  intVar: 42,                # integer
+  floatVar: 3.14,            # double
+  boolVar: true,             # boolean
+  dateVar: Time.now,         # date (ISO-8601)
+  arrayVar: [1, 2, 3],       # json
+  hashVar: { a: 1, b: 2 }    # json
+})
+```
+
+### Explicit Type Specification
+
+For query operations, specify types explicitly:
+
+```ruby
+results = client.history.query_case_instances({
+  variables: [
+    { name: 'amount', value: 1000, operation: 'greaterThan', type: 'long' },
+    { name: 'status', value: 'completed', operation: 'equals', type: 'string' },
+    { name: 'approved', value: true, operation: 'equals', type: 'boolean' }
+  ]
+})
+```
+
+### Supported Operations
