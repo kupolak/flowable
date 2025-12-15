@@ -99,3 +99,103 @@ client = Flowable::Client.new(
 
 For integration tests and CLI, you can use environment variables:
 
+```bash
+export FLOWABLE_HOST=localhost
+export FLOWABLE_PORT=8080
+export FLOWABLE_USER=rest-admin
+export FLOWABLE_PASSWORD=test
+```
+
+### Running Flowable
+
+Using Docker:
+
+```bash
+docker run -p 8080:8080 flowable/flowable-rest:7.1.0
+```
+
+Using Docker Compose (recommended for development):
+
+```bash
+docker-compose up -d
+```
+
+---
+
+## CMMN API
+
+### Deployments
+
+```ruby
+# List all deployments
+deployments = client.deployments.list
+deployments = client.deployments.list(tenantId: 'acme', sort: 'deployTime', order: 'desc')
+
+# Deploy a CMMN file
+deployment = client.deployments.create('/path/to/case.cmmn')
+deployment = client.deployments.create('/path/to/case.cmmn', tenant_id: 'acme')
+
+# Get deployment details
+deployment = client.deployments.get('deployment-id')
+
+# List resources in deployment
+resources = client.deployments.resources('deployment-id')
+
+# Get resource content (XML)
+xml_content = client.deployments.resource_data('deployment-id', 'case.cmmn')
+
+# Delete deployment
+client.deployments.delete('deployment-id')
+client.deployments.delete('deployment-id', cascade: true)  # Also delete instances
+```
+
+### Case Definitions
+
+```ruby
+# List case definitions
+definitions = client.case_definitions.list
+definitions = client.case_definitions.list(
+  key: 'myCase',
+  latest: true,
+  tenantId: 'acme'
+)
+
+# Get by ID
+definition = client.case_definitions.get('definition-id')
+
+# Get latest version by key
+definition = client.case_definitions.get_by_key('myCase')
+definition = client.case_definitions.get_by_key('myCase', tenant_id: 'acme')
+
+# Get CMMN model (JSON representation)
+model = client.case_definitions.model('definition-id')
+
+# Get resource content (XML)
+xml = client.case_definitions.resource_content('definition-id')
+```
+
+### Case Instances
+
+```ruby
+# List case instances
+instances = client.case_instances.list
+instances = client.case_instances.list(
+  caseDefinitionKey: 'myCase',
+  businessKey: 'ORDER-12345',
+  includeCaseVariables: true
+)
+
+# Start case instance by definition key
+case_instance = client.case_instances.start_by_key('myCase',
+  variables: {
+    customerName: 'John Doe',
+    amount: 1000,
+    approved: false
+  },
+  business_key: 'ORDER-12345',
+  tenant_id: 'acme',
+  outcome: 'startOutcome'
+)
+
+# Start by definition ID
+case_instance = client.case_instances.start_by_id('definition-id',
