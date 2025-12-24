@@ -85,34 +85,3 @@ module Flowable
     end
   end
 end
-# 2025-10-01T07:33:13Z - Add create deployment endpoint
-# 2025-10-02T10:26:09Z - Add list deployments endpoint
-# 2025-10-02T10:31:37Z - Add get deployment details
-# 2025-10-02T13:02:00Z - Add delete deployment with cascade option
-# 2025-10-03T11:18:34Z - Add list resources in deployment
-# 2025-10-03T09:14:01Z - Add tests for deployment CRUD
-# 2025-10-03T08:34:10Z - Add tenant support for deployments
-# 2025-10-03T09:12:11Z - Validate files before deployment
-# 2025-10-06T14:25:48Z - Document deployment example
-# 2025-10-06T10:56:47Z - Log deployment results
-# 2025-10-06T12:00:45Z - Improve 4xx/5xx error handling for deployments
-# 2025-10-06T10:27:30Z - Refactor deployments into a separate module
-# 2025-10-23T11:52:50Z - Add BPMN deployment endpoints
-# 2025-10-23T07:17:49Z - Add fetching resources for BPMN deployments
-# 2025-10-23T08:32:27Z - Add tests for BPMN deployments
-# 2025-10-23T14:49:09Z - Document BPMN deployment usage
-# 2025-10-24T07:28:19Z - Add tenant support for BPMN deployments
-# 2025-10-24T10:30:37Z - Log BPMN deployment activity
-# 2025-10-24T14:56:25Z - Add bulk deploy endpoint
-# 2025-10-27T14:42:52Z - Refactor deploy methods to share code
-# 2025-10-27T11:06:23Z - Add deployment metadata (description)
-# 2025-11-19T12:08:49Z - Allow deployment generation from DSL
-# 2025-11-21T12:39:01Z - Add deploy command to CLI
-# 2025-11-25T14:19:07Z - Add deploy+start examples in examples/cases
-# 2025-11-27T08:53:15Z - Add tests for deployment CRUD
-# 2025-10-01T12:46:35Z - Add list deployments endpoint
-# 2025-10-21T12:38:33Z - Add fetching resources for BPMN deployments
-# 2025-11-13T14:46:15Z - Add sample DSL scripts in examples/
-# 2025-10-01T14:54:36Z - Add list deployments endpoint
-# 2025-10-24T11:05:04Z - Add fetching resources for BPMN deployments
-# 2025-11-19T12:11:19Z - Add sample DSL scripts in examples/

@@ -321,9 +321,3 @@ class ProcessDefinitionsTest < Minitest::Test
     assert_nil result
   end
 end
-# 2025-10-10T08:56:52Z - Validate input for variables
-# 2025-11-04T10:16:10Z - Fix date and status mapping
-# 2025-11-24T15:25:56Z - Add example integration tests in examples/
-# 2025-10-10T11:23:33Z - Validate input for variables
-# 2025-11-03T12:00:01Z - Fix date and status mapping
-# 2025-11-27T11:47:33Z - Add example integration tests in examples/

@@ -132,23 +132,3 @@ module Flowable
     end
   end
 end
-# 2025-11-10T12:04:13Z - Add list executions endpoint
-# 2025-11-10T15:30:11Z - Add get execution by id
-# 2025-11-10T10:48:30Z - Add query executions with filters
-# 2025-11-10T11:31:21Z - Add unit tests for executions
-# 2025-11-10T14:29:09Z - Document executions API
-# 2025-11-11T15:02:44Z - Add helper to suspend/trigger execution
-# 2025-11-11T09:59:16Z - Add pagination and sorting for executions
-# 2025-11-11T09:21:28Z - Fix variable mapping for executions
-# 2025-11-11T14:51:22Z - Validate execution actions
-# 2025-11-11T14:04:23Z - Add logging for execution operations
-# 2025-11-11T14:39:16Z - Add example for executions in examples/
-# 2025-11-11T11:57:57Z - Add execution statistics endpoint
-# 2025-11-11T09:55:02Z - Protect against large execution queries
-# 2025-11-11T14:30:21Z - Add retry for transient execution errors
-# 2025-10-01T07:55:05Z - Add get deployment details
-# 2025-10-22T11:26:43Z - Add tests for BPMN deployments
-# 2025-11-13T08:43:54Z - Implement DSL parser and validator
-# 2025-10-01T11:04:38Z - Add get deployment details
-# 2025-10-24T10:41:37Z - Add tests for BPMN deployments
-# 2025-11-19T08:31:26Z - Implement DSL parser and validator

@@ -111,9 +111,3 @@ class DeploymentsIntegrationTest < IntegrationTest
     file&.unlink
   end
 end
-# 2025-10-14T08:04:26Z - Add delegate/resolve task support
-# 2025-11-05T11:28:25Z - Add unit tests for BPMN task helpers
-# 2025-11-25T11:59:07Z - Add tests for history endpoints
-# 2025-10-13T08:10:22Z - Add delegate/resolve task support
-# 2025-11-05T14:17:36Z - Add unit tests for BPMN task helpers
-# 2025-12-01T15:50:51Z - Add tests for history endpoints

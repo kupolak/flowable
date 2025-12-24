@@ -82,9 +82,3 @@ class ProcessDefinitionsIntegrationTest < IntegrationTest
     refute activated['suspended']
   end
 end
-# 2025-10-14T14:19:27Z - Add unit tests for tasks
-# 2025-11-05T10:17:08Z - Add retry on conflict during completion
-# 2025-11-25T12:11:28Z - Add test helpers to mock Flowable responses
-# 2025-10-14T08:03:05Z - Add unit tests for tasks
-# 2025-11-07T14:00:42Z - Add retry on conflict during completion
-# 2025-12-02T10:49:50Z - Add test helpers to mock Flowable responses

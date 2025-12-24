@@ -421,9 +421,3 @@ class ProcessInstancesTest < Minitest::Test
     assert result
   end
 end
-# 2025-10-10T14:22:25Z - Fix date mapping in responses
-# 2025-11-04T11:27:46Z - Add endpoint for instance migration (if available)
-# 2025-11-24T11:53:49Z - Refactor and organize examples folder
-# 2025-10-10T09:29:20Z - Fix date mapping in responses
-# 2025-11-03T08:17:40Z - Add endpoint for instance migration (if available)
-# 2025-11-27T08:39:51Z - Refactor and organize examples folder

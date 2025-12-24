@@ -271,39 +271,3 @@ require_relative 'resources/process_instances'
 require_relative 'resources/executions'
 require_relative 'resources/bpmn_history'
 require_relative 'workflow'
-# 2025-09-24T11:08:30Z - Add base HTTP client class
-# 2025-09-24T09:30:58Z - Initialize Flowable::Client
-# 2025-09-24T11:14:42Z - Add client configuration validation
-# 2025-09-25T07:07:40Z - Add unit tests for client init
-# 2025-09-29T10:05:36Z - Add Basic Auth support
-# 2025-09-29T10:24:43Z - Add authorization header handling
-# 2025-09-29T12:48:31Z - Allow passing username and password to client
-# 2025-09-29T09:34:54Z - Validate credentials on initialization
-# 2025-09-29T12:10:32Z - Add integration test for authentication
-# 2025-09-30T10:56:19Z - Improve error message for missing credentials
-# 2025-09-30T09:11:27Z - Add token support (future-proof)
-# 2025-09-24T08:35:04Z - Add base HTTP client class
-# 2025-09-24T09:42:15Z - Initialize Flowable::Client
-# 2025-09-25T13:36:13Z - Add client configuration validation
-# 2025-09-26T09:50:03Z - Add unit tests for client init
-# 2025-09-26T13:42:57Z - Add Basic Auth support
-# 2025-09-26T14:29:59Z - Add authorization header handling
-# 2025-09-29T09:56:39Z - Allow passing username and password to client
-# 2025-09-30T12:04:45Z - Validate credentials on initialization
-# 2025-09-30T12:30:37Z - Add integration test for authentication
-# 2025-09-30T12:44:51Z - Improve error message for missing credentials
-# 2025-09-30T09:09:20Z - Add token support (future-proof)
-# 2025-09-30T09:23:38Z - Prevent password leaks in logs
-# 2025-10-23T12:21:01Z - Refactor history client into a submodule
-# 2025-11-05T12:17:29Z - Migrate client API names for consistency
-# 2025-11-11T12:53:20Z - Refactor executions client into clear methods
-# 2025-11-17T08:35:39Z - Integrate DSL with Flowable client
-# 2025-11-26T14:57:36Z - Add unit tests for flowable_client module
-# 2025-11-28T12:29:35Z - Add auth error handling tests
-# 2025-12-03T13:11:54Z - Document client API methods and params
-# 2025-10-01T13:27:14Z - Add example configuration in examples/
-# 2025-10-20T08:20:00Z - Fix date field mapping in history
-# 2025-11-12T14:46:43Z - Add reporting helper for history
-# 2025-09-30T13:29:35Z - Add example configuration in examples/
-# 2025-10-22T07:25:08Z - Fix date field mapping in history
-# 2025-11-17T10:12:20Z - Add reporting helper for history

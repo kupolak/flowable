@@ -115,9 +115,3 @@ if [ "$STOP_CONTAINER" = true ]; then
 fi
 
 echo -e "${GREEN}All tests completed successfully!${NC}"
-# 2025-10-02T07:31:12Z - Add multipart upload support
-# 2025-10-27T10:59:41Z - Refactor deploy methods to share code
-# 2025-11-14T14:57:57Z - Migrate DSL examples into README
-# 2025-10-06T09:14:20Z - Add multipart upload support
-# 2025-10-28T11:47:11Z - Refactor deploy methods to share code
-# 2025-11-21T12:55:40Z - Migrate DSL examples into README

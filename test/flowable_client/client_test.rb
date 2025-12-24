@@ -157,9 +157,3 @@ class FlowableClientTest < Minitest::Test
     assert_equal [], result['data']
   end
 end
-# 2025-10-08T09:58:31Z - Add endpoints for update/delete variables
-# 2025-10-30T13:05:32Z - Document starting processes examples
-# 2025-11-21T12:44:33Z - Add pagination/filtering example
-# 2025-10-09T13:25:59Z - Add endpoints for update/delete variables
-# 2025-11-03T11:54:14Z - Document starting processes examples
-# 2025-11-26T13:10:52Z - Add pagination/filtering example

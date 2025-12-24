@@ -150,9 +150,3 @@ class BaseTest < Minitest::Test
     assert_equal 'case-1', result['id']
   end
 end
-# 2025-10-03T07:50:50Z - Add get latest definition by key
-# 2025-10-27T13:03:25Z - Add get latest process definition by key
-# 2025-11-17T08:06:44Z - Add start-case command to CLI
-# 2025-10-06T12:33:50Z - Add get latest definition by key
-# 2025-10-29T10:50:06Z - Add get latest process definition by key
-# 2025-11-21T14:00:24Z - Add start-case command to CLI

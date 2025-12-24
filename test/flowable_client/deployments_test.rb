@@ -215,9 +215,3 @@ class DeploymentsTest < Minitest::Test
     file.unlink
   end
 end
-# 2025-10-08T13:50:39Z - Add integration tests for starting instances
-# 2025-10-30T12:39:49Z - Add start_and_watch_process helper
-# 2025-11-24T08:07:20Z - Add variable update usage example
-# 2025-10-09T14:39:02Z - Add integration tests for starting instances
-# 2025-11-03T13:17:47Z - Add start_and_watch_process helper
-# 2025-11-27T12:25:38Z - Add variable update usage example

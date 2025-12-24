@@ -344,9 +344,3 @@ class CaseInstancesTest < Minitest::Test
     assert_equal 'case-4', result['id']
   end
 end
-# 2025-10-08T08:49:40Z - Add get/set variables for case instances
-# 2025-10-30T08:24:44Z - Add integration tests for process instances
-# 2025-11-20T11:20:00Z - Add error handling examples
-# 2025-10-09T07:50:07Z - Add get/set variables for case instances
-# 2025-11-03T08:50:50Z - Add integration tests for process instances
-# 2025-11-26T14:45:32Z - Add error handling examples

@@ -140,9 +140,3 @@ module FlowableClient
     end
   end
 end
-# 2025-10-02T14:40:00Z - Log deployment results
-# 2025-10-24T12:17:32Z - Improve 400 handling for invalid files
-# 2025-11-14T12:17:09Z - Integrate DSL with workflow.rb core
-# 2025-10-03T09:28:25Z - Log deployment results
-# 2025-10-27T14:12:52Z - Improve 400 handling for invalid files
-# 2025-11-20T15:14:19Z - Integrate DSL with workflow.rb core

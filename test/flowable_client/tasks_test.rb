@@ -506,9 +506,3 @@ class TasksTest < Minitest::Test
     assert_equal 'newVar', result[0]['name']
   end
 end
-# 2025-10-10T09:44:56Z - Add start_and_wait helper for tests
-# 2025-11-04T09:22:25Z - Refactor process_instances module
-# 2025-11-24T14:52:11Z - Add inline comments for beginners in examples
-# 2025-10-10T08:21:13Z - Add start_and_wait helper for tests
-# 2025-11-04T13:35:10Z - Refactor process_instances module
-# 2025-11-28T10:10:57Z - Add inline comments for beginners in examples

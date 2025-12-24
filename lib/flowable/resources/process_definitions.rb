@@ -140,15 +140,3 @@ module Flowable
     end
   end
 end
-# 2025-10-27T12:55:49Z - Add list process definitions
-# 2025-10-27T11:18:14Z - Add get process definition by id
-# 2025-10-27T15:39:45Z - Add get latest process definition by key
-# 2025-10-29T11:17:27Z - Add unit tests for process_definitions
-# 2025-10-31T15:51:42Z - Document process definitions usage
-# 2025-11-04T12:28:10Z - Improve errors for missing process definitions
-# 2025-10-02T12:03:54Z - Add fetch resource content (XML)
-# 2025-10-23T12:14:46Z - Validate BPMN files before upload
-# 2025-11-13T10:07:13Z - Document DSL syntax and usage
-# 2025-10-02T10:13:48Z - Add fetch resource content (XML)
-# 2025-10-24T10:39:44Z - Validate BPMN files before upload
-# 2025-11-20T09:14:47Z - Document DSL syntax and usage

@@ -285,11 +285,4 @@ Update flowable.gemspec description
 Add suggested versioning policy in README
 Update Gemfile and gemspec dependencies
 Add Rake task for building gem
-Add publish script with dry-run# 2025-09-29T10:37:25Z - Add authorization header handling
-# 2025-10-20T10:00:03Z - Add history task instances endpoint
-# 2025-11-11T15:25:29Z - Add history tasks for BPMN
-# 2025-11-28T13:23:08Z - Add Rake task for building gem
-# 2025-09-26T08:33:50Z - Add authorization header handling
-# 2025-10-21T14:25:10Z - Add history task instances endpoint
-# 2025-11-13T11:33:52Z - Add history tasks for BPMN
-# 2025-12-09T10:09:49Z - Add Rake task for building gem
+Add publish script with dry-run

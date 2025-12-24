@@ -233,9 +233,3 @@ class BpmnDeploymentsTest < Minitest::Test
     assert result
   end
 end
-# 2025-10-03T14:31:32Z - Add get CMMN model endpoint
-# 2025-10-27T10:43:46Z - Add get process model endpoint
-# 2025-11-17T10:45:26Z - Add list-tasks command to CLI
-# 2025-10-06T10:06:47Z - Add get CMMN model endpoint
-# 2025-10-29T15:52:33Z - Add get process model endpoint
-# 2025-11-21T08:44:23Z - Add list-tasks command to CLI

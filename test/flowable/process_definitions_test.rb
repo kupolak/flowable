@@ -321,9 +321,3 @@ class ProcessDefinitionsTest < Minitest::Test
     assert_nil result
   end
 end
-# 2025-10-07T08:56:27Z - Add example fetching model in examples/
-# 2025-10-29T11:26:20Z - Add endpoint to activate/deactivate versions
-# 2025-11-18T14:40:39Z - Fix file permissions for bin/flowable
-# 2025-10-08T14:19:34Z - Add example fetching model in examples/
-# 2025-10-31T15:30:56Z - Add endpoint to activate/deactivate versions
-# 2025-11-24T13:21:47Z - Fix file permissions for bin/flowable

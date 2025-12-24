@@ -23,11 +23,3 @@ services:
       timeout: 5s
       retries: 10
       start_period: 60s
-# 2025-09-29T11:46:30Z - Read configuration from environment variables
-# 2025-10-20T08:07:58Z - Add history variable instances endpoint
-# 2025-11-11T15:09:42Z - Add filtering history by time and user
-# 2025-11-28T11:08:46Z - Add publish script with dry-run
-# 2025-09-26T09:35:03Z - Read configuration from environment variables
-# 2025-10-21T08:29:15Z - Add history variable instances endpoint
-# 2025-11-13T14:12:22Z - Add filtering history by time and user
-# 2025-12-09T10:14:00Z - Add publish script with dry-run# 2025-09-29T10:37:25Z - Add authorization header handling

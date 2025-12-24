@@ -93,9 +93,3 @@ class BpmnHistoryIntegrationTest < IntegrationTest
     assert_operator result['total'], :>=, 1
   end
 end
-# 2025-10-14T12:19:36Z - Add get task details
-# 2025-11-04T14:51:39Z - Support formProperties for tasks
-# 2025-11-24T12:37:23Z - Add integration tests with local Docker
-# 2025-10-10T11:49:09Z - Add get task details
-# 2025-11-04T14:57:57Z - Support formProperties for tasks
-# 2025-11-28T10:04:40Z - Add integration tests with local Docker

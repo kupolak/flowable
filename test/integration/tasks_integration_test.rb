@@ -161,9 +161,3 @@ class TasksIntegrationTest < IntegrationTest
     assert result.key?('data')
   end
 end
-# 2025-10-15T12:34:51Z - Document task usage examples
-# 2025-11-06T12:27:27Z - Refactor shared task logic with tasks module
-# 2025-11-26T16:02:52Z - Add auth error handling tests
-# 2025-10-15T11:06:09Z - Document task usage examples
-# 2025-11-10T15:43:08Z - Refactor shared task logic with tasks module
-# 2025-12-03T15:25:09Z - Add auth error handling tests

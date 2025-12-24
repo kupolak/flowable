@@ -229,9 +229,3 @@ class CaseDefinitionsTest < Minitest::Test
     assert_nil result
   end
 end
-# 2025-10-06T11:30:25Z - Add unit tests for case_definitions
-# 2025-10-27T12:02:12Z - Add unit tests for process_definitions
-# 2025-11-17T13:08:57Z - Document CLI usage in README
-# 2025-10-06T10:34:36Z - Add unit tests for case_definitions
-# 2025-10-29T11:38:22Z - Add unit tests for process_definitions
-# 2025-11-21T14:59:58Z - Document CLI usage in README

@@ -86,9 +86,3 @@ class ExecutionsIntegrationTest < IntegrationTest
     assert_kind_of Array, vars
   end
 end
-# 2025-10-14T07:37:03Z - Add delete task with reason
-# 2025-11-05T10:45:35Z - Add pagination/filtering for BPMN tasks
-# 2025-11-25T10:29:00Z - Add tests for workflow DSL parsing
-# 2025-10-14T14:12:28Z - Add delete task with reason
-# 2025-11-05T10:16:37Z - Add pagination/filtering for BPMN tasks
-# 2025-12-01T09:17:26Z - Add tests for workflow DSL parsing

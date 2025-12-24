@@ -226,9 +226,3 @@ module Flowable
     end
   end
 end
-# 2025-10-01T07:59:45Z - Add skip_ssl_verify option
-# 2025-10-21T11:21:54Z - Optionally cache historic results
-# 2025-11-13T13:22:11Z - Add tenant support in BPMN history
-# 2025-10-01T13:10:15Z - Add skip_ssl_verify option
-# 2025-10-22T10:45:52Z - Optionally cache historic results
-# 2025-11-19T15:05:48Z - Add tenant support in BPMN history

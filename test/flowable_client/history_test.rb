@@ -513,9 +513,3 @@ class HistoryTest < Minitest::Test
     assert_equal 0, result['total']
   end
 end
-# 2025-10-09T14:06:14Z - Add pagination for instance listing
-# 2025-10-31T11:04:20Z - Add update process variables
-# 2025-11-24T11:41:32Z - Add example showing use_ssl configuration
-# 2025-10-10T10:34:48Z - Add pagination for instance listing
-# 2025-11-03T10:10:48Z - Add update process variables
-# 2025-11-27T09:33:38Z - Add example showing use_ssl configuration

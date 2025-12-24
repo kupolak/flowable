@@ -157,9 +157,3 @@ class FlowableTest < Minitest::Test
     assert_equal [], result['data']
   end
 end
-# 2025-10-06T13:37:48Z - Add sorting and pagination support
-# 2025-10-28T11:28:52Z - Add pagination and sorting for definitions
-# 2025-11-18T09:20:56Z - Add --wait flag for start commands
-# 2025-10-07T07:24:10Z - Add sorting and pagination support
-# 2025-10-30T08:10:15Z - Add pagination and sorting for definitions
-# 2025-11-21T14:40:04Z - Add --wait flag for start commands

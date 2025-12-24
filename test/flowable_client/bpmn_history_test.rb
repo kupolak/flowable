@@ -515,9 +515,3 @@ class BpmnHistoryTest < Minitest::Test
     assert_equal 0, result['total']
   end
 end
-# 2025-10-07T12:37:49Z - Add terminate and delete case instance
-# 2025-10-29T14:19:30Z - Support variables on process start
-# 2025-11-19T09:13:11Z - Add README for examples directory
-# 2025-10-09T08:04:13Z - Add terminate and delete case instance
-# 2025-10-31T16:01:53Z - Support variables on process start
-# 2025-11-26T08:32:41Z - Add README for examples directory

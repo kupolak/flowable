@@ -215,9 +215,3 @@ class DeploymentsTest < Minitest::Test
     file.unlink
   end
 end
-# 2025-10-06T10:54:57Z - Add conversion of model to JSON
-# 2025-10-28T08:38:03Z - Document process definitions usage
-# 2025-11-18T14:14:27Z - Support JSON and human-readable output
-# 2025-10-07T13:00:18Z - Add conversion of model to JSON
-# 2025-10-30T14:34:44Z - Document process definitions usage
-# 2025-11-24T12:07:00Z - Support JSON and human-readable output

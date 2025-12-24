@@ -234,9 +234,3 @@ class PlanItemInstancesTest < Minitest::Test
     assert_equal 0, result['total']
   end
 end
-# 2025-10-07T08:08:13Z - Document case_definitions usage
-# 2025-10-28T10:04:14Z - Improve errors for missing process definitions
-# 2025-11-18T09:39:22Z - Allow piping CLI output to files
-# 2025-10-07T09:09:12Z - Document case_definitions usage
-# 2025-10-31T15:23:25Z - Improve errors for missing process definitions
-# 2025-11-24T10:30:49Z - Allow piping CLI output to files

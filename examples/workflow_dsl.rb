@@ -194,9 +194,3 @@ end
 
 puts "\n=== DSL Examples Complete ==="
 puts 'Uncomment the code sections to run actual workflows!'
-# 2025-09-29T14:09:15Z - Add integration test for authentication
-# 2025-10-20T14:41:16Z - Add integration tests for history
-# 2025-11-11T14:14:32Z - Add admin endpoint to purge history
-# 2025-09-30T12:53:43Z - Add integration test for authentication
-# 2025-10-21T14:58:01Z - Add integration tests for history
-# 2025-11-17T08:34:45Z - Add admin endpoint to purge history

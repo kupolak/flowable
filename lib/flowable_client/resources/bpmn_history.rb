@@ -226,9 +226,3 @@ module FlowableClient
     end
   end
 end
-# 2025-10-02T11:17:52Z - Document deployment example
-# 2025-10-24T11:24:20Z - Add example BPMN in examples/
-# 2025-11-14T11:24:19Z - Add DSL version validation
-# 2025-10-03T09:07:33Z - Document deployment example
-# 2025-10-27T15:52:08Z - Add example BPMN in examples/
-# 2025-11-20T14:39:48Z - Add DSL version validation

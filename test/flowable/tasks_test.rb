@@ -506,9 +506,3 @@ class TasksTest < Minitest::Test
     assert_equal 'newVar', result[0]['name']
   end
 end
-# 2025-10-07T11:39:55Z - Refactor method names for consistency
-# 2025-10-29T10:29:40Z - Migrate client API names for consistency
-# 2025-11-18T14:22:13Z - Refactor CLI onto Thor/OptionParser
-# 2025-10-08T13:09:54Z - Refactor method names for consistency
-# 2025-10-31T12:37:59Z - Migrate client API names for consistency
-# 2025-11-25T09:15:33Z - Refactor CLI onto Thor/OptionParser

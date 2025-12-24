@@ -344,9 +344,3 @@ class CaseInstancesTest < Minitest::Test
     assert_equal 'case-4', result['id']
   end
 end
-# 2025-10-06T09:46:21Z - Add tenant_id filtering
-# 2025-10-28T08:44:02Z - Add filtering by tenant and key
-# 2025-11-17T11:45:34Z - Add integration tests for CLI
-# 2025-10-07T11:03:28Z - Add tenant_id filtering
-# 2025-10-29T14:56:40Z - Add filtering by tenant and key
-# 2025-11-21T09:51:28Z - Add integration tests for CLI

@@ -229,9 +229,3 @@ class CaseDefinitionsTest < Minitest::Test
     assert_nil result
   end
 end
-# 2025-10-07T13:10:58Z - Support business_key and variables on start
-# 2025-10-29T10:21:59Z - Add pagination for process instances
-# 2025-11-19T11:59:13Z - Add script to run examples locally
-# 2025-10-09T07:52:10Z - Support business_key and variables on start
-# 2025-10-31T14:01:27Z - Add pagination for process instances
-# 2025-11-26T11:40:47Z - Add script to run examples locally

@@ -45,9 +45,3 @@ class FlowableTestCase < Minitest::Test
     )
   end
 end
-# 2025-10-15T09:50:08Z - Add list plan item instances
-# 2025-11-06T08:47:47Z - Add list executions endpoint
-# 2025-11-26T11:23:25Z - Expand README with logo section (added)
-# 2025-10-15T07:11:10Z - Add list plan item instances
-# 2025-11-10T08:10:34Z - Add list executions endpoint
-# 2025-12-03T12:33:44Z - Expand README with logo section (added)

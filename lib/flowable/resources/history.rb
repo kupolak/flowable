@@ -262,32 +262,3 @@ module Flowable
     end
   end
 end
-# 2025-10-20T07:20:16Z - Add history variable instances endpoint
-# 2025-10-20T08:03:56Z - Add date-range filtering for history queries
-# 2025-10-21T14:13:35Z - Add pagination and sorting for history
-# 2025-10-21T11:11:40Z - Document history query usage
-# 2025-10-21T09:56:48Z - Add integration tests for history
-# 2025-10-22T07:39:16Z - Add export history to JSON
-# 2025-10-22T09:00:00Z - Fix date field mapping in history
-# 2025-10-22T13:28:14Z - Add advanced query API for history
-# 2025-10-23T09:40:31Z - Add protections against expensive history queries
-# 2025-10-23T14:24:46Z - Optionally cache historic results
-# 2025-11-12T08:49:38Z - Add BPMN history endpoints
-# 2025-11-12T15:38:47Z - Add filtering history by time and user
-# 2025-11-12T12:18:47Z - Add pagination for BPMN history
-# 2025-11-13T15:22:05Z - Add export history to CSV/JSON
-# 2025-11-13T08:44:28Z - Add integration tests for BPMN history
-# 2025-11-13T10:05:07Z - Document BPMN history examples
-# 2025-11-13T15:18:19Z - Add admin endpoint to purge history
-# 2025-11-14T14:22:39Z - Add caching and rate limits for history
-# 2025-11-14T13:39:51Z - Fix mapping of historical statuses
-# 2025-11-17T15:09:53Z - Add reporting helper for history
-# 2025-11-17T13:11:37Z - Add tenant support in BPMN history
-# 2025-11-17T11:56:49Z - Add telemetry/logging for history queries
-# 2025-11-28T11:21:17Z - Add tests for history endpoints
-# 2025-10-01T10:38:11Z - Add delete deployment with cascade option
-# 2025-10-22T08:28:48Z - Add support for diagrams in resources
-# 2025-11-13T09:24:22Z - Integrate DSL with Flowable client
-# 2025-10-02T09:01:18Z - Add delete deployment with cascade option
-# 2025-10-24T12:23:57Z - Add support for diagrams in resources
-# 2025-11-19T15:56:44Z - Integrate DSL with Flowable client

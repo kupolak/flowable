@@ -123,9 +123,3 @@ class CaseInstancesIntegrationTest < IntegrationTest
     assert_operator result['total'], :>=, 1
   end
 end
-# 2025-10-14T07:08:56Z - Add complete task with variables and outcome
-# 2025-11-04T15:36:39Z - Add manual task creation for tests
-# 2025-11-25T10:36:51Z - Add tests for deployment CRUD
-# 2025-10-13T11:04:43Z - Add complete task with variables and outcome
-# 2025-11-04T09:08:23Z - Add manual task creation for tests
-# 2025-12-01T10:48:47Z - Add tests for deployment CRUD

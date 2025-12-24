@@ -233,9 +233,3 @@ class BpmnDeploymentsTest < Minitest::Test
     assert result
   end
 end
-# 2025-10-07T12:10:15Z - Add get case instance details
-# 2025-10-29T11:20:47Z - Add terminate/delete process instance
-# 2025-11-19T11:20:04Z - Add deploy+start examples in examples/cases
-# 2025-10-09T10:16:41Z - Add get case instance details
-# 2025-10-31T08:04:15Z - Add terminate/delete process instance
-# 2025-11-26T10:58:25Z - Add deploy+start examples in examples/cases

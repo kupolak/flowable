@@ -234,9 +234,3 @@ class PlanItemInstancesTest < Minitest::Test
     assert_equal 0, result['total']
   end
 end
-# 2025-10-09T10:02:59Z - Document start instance usage
-# 2025-11-03T11:06:57Z - Add fetching tasks related to a process instance
-# 2025-11-24T12:53:02Z - Add CLI usage example with output
-# 2025-10-10T11:01:40Z - Document start instance usage
-# 2025-11-03T15:15:11Z - Add fetching tasks related to a process instance
-# 2025-11-27T09:01:29Z - Add CLI usage example with output

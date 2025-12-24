@@ -76,9 +76,3 @@ class PlanItemInstancesIntegrationTest < IntegrationTest
     assert_includes valid_states, item['state']
   end
 end
-# 2025-10-14T12:28:36Z - Add create/update task variables
-# 2025-11-05T14:34:08Z - Improve candidate user handling in BPMN tasks
-# 2025-11-25T15:58:03Z - Add CI job to run tests (if missing)
-# 2025-10-14T12:53:48Z - Add create/update task variables
-# 2025-11-06T15:32:20Z - Improve candidate user handling in BPMN tasks
-# 2025-12-02T13:50:33Z - Add CI job to run tests (if missing)

@@ -119,9 +119,3 @@ class ProcessInstancesIntegrationTest < IntegrationTest
     assert_kind_of Array, links
   end
 end
-# 2025-10-15T09:02:43Z - Add pagination and sorting for tasks
-# 2025-11-05T15:43:17Z - Add audit logging for task actions
-# 2025-11-25T10:43:37Z - Stabilize flaky tests
-# 2025-10-14T12:48:40Z - Add pagination and sorting for tasks
-# 2025-11-07T11:53:33Z - Add audit logging for task actions
-# 2025-12-03T10:13:59Z - Stabilize flaky tests

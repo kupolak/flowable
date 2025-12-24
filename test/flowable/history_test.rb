@@ -513,9 +513,3 @@ class HistoryTest < Minitest::Test
     assert_equal 0, result['total']
   end
 end
-# 2025-10-06T07:38:15Z - Add versioning endpoint for definitions
-# 2025-10-28T09:17:17Z - Add caching for frequently fetched definitions
-# 2025-11-18T08:44:48Z - Add --help with examples
-# 2025-10-07T12:53:37Z - Add versioning endpoint for definitions
-# 2025-10-30T09:30:01Z - Add caching for frequently fetched definitions
-# 2025-11-24T10:22:56Z - Add --help with examples

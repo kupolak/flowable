@@ -210,11 +210,3 @@ Minitest/AssertEmptyLiteral:
 Minitest/TestFileName:
   Exclude:
     - 'test/integration/integration_test_helper.rb'
-# 2025-09-25T10:15:16Z - Refactor connection initialization
-# 2025-10-17T11:03:02Z - Fix mapping of status fields
-# 2025-11-07T08:58:26Z - Validate execution actions
-# 2025-11-27T11:25:53Z - Add Docker Compose examples for local Flowable
-# 2025-09-25T09:03:49Z - Refactor connection initialization
-# 2025-10-20T11:43:27Z - Fix mapping of status fields
-# 2025-11-12T11:39:36Z - Validate execution actions
-# 2025-12-05T09:57:53Z - Add Docker Compose examples for local Flowable

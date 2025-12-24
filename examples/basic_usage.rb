@@ -199,10 +199,3 @@ puts "Found #{historic_cases['total']} historic case instances"
 # })
 
 puts "\n=== Done ==="
-# 2025-09-29T13:11:28Z - Document environment variables
-# 2025-10-20T09:20:58Z - Add date-range filtering for history queries
-# 2025-11-11T11:28:35Z - Add export history to CSV/JSON
-# 2025-09-29T11:16:17Z - Document environment variables
-# 2025-10-21T09:14:28Z - Add date-range filtering for history queries
-# 2025-11-13T14:03:06Z - Add export history to CSV/JSON
-# 2025-12-10T11:22:06Z - # 2025-11-11T15:25:29Z - Add history tasks for BPMN

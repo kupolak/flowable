@@ -41,9 +41,3 @@ class VersionTest < Minitest::Test
     assert_equal '7.1.0', Flowable.flowable_api_version
   end
 end
-# 2025-10-07T07:57:17Z - Add start_by_key for case instances
-# 2025-10-29T11:08:46Z - Add start process by key and by id
-# 2025-11-18T10:40:02Z - Add basic_usage.rb example
-# 2025-10-08T07:32:57Z - Add start_by_key for case instances
-# 2025-10-31T09:23:24Z - Add start process by key and by id
-# 2025-11-25T14:14:00Z - Add basic_usage.rb example

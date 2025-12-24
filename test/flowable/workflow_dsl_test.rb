@@ -115,9 +115,3 @@ class WorkflowDslTest < Minitest::Test
     assert_respond_to stage, :ended?
   end
 end
-# 2025-10-07T09:44:04Z - Add start_by_id for case instances
-# 2025-10-29T11:10:04Z - Add list process instances
-# 2025-11-18T13:13:26Z - Add basic_usage_full.rb example
-# 2025-10-08T11:54:49Z - Add start_by_id for case instances
-# 2025-10-31T15:59:06Z - Add list process instances
-# 2025-11-25T12:35:21Z - Add basic_usage_full.rb example

@@ -186,17 +186,3 @@ module Flowable
     end
   end
 end
-# 2025-10-08T13:16:21Z - Add start_by_key for case instances
-# 2025-10-08T12:03:53Z - Add start_by_id for case instances
-# 2025-10-08T10:05:08Z - Add list case instances
-# 2025-10-08T13:38:32Z - Add get case instance details
-# 2025-10-08T13:38:39Z - Add terminate and delete case instance
-# 2025-10-10T14:45:07Z - Add get/set variables for case instances
-# 2025-10-20T11:55:41Z - Add history endpoints for case instances
-# 2025-10-21T13:35:13Z - Add endpoint to delete historic case instances
-# 2025-10-01T14:08:57Z - Add create deployment endpoint
-# 2025-10-21T13:06:15Z - Add BPMN deployment endpoints
-# 2025-11-13T11:41:53Z - Add core DSL in workflow_dsl.rb
-# 2025-10-01T11:07:05Z - Add create deployment endpoint
-# 2025-10-23T09:20:48Z - Add BPMN deployment endpoints
-# 2025-11-19T14:37:55Z - Add core DSL in workflow_dsl.rb

@@ -81,11 +81,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [Unreleased]: https://github.com/yourusername/flowable-ruby-client/compare/v1.0.0...HEAD
 [1.0.0]: https://github.com/yourusername/flowable-ruby-client/releases/tag/v1.0.0
-<!-- 2025-09-25T08:50:12Z - Add client configuration validation -->
-<!-- 2025-10-17T10:12:38Z - Add examples for plan items in examples/ -->
-<!-- 2025-11-07T12:21:22Z - Add logging for execution operations -->
-<!-- 2025-11-27T15:37:22Z - Improve README TOC structure -->
-<!-- 2025-09-26T08:56:29Z - Add client configuration validation -->
-<!-- 2025-10-20T12:43:14Z - Add examples for plan items in examples/ -->
-<!-- 2025-11-12T12:54:15Z - Add logging for execution operations -->
-<!-- 2025-12-05T10:59:08Z - Improve README TOC structure -->

@@ -81,9 +81,3 @@ class CaseDefinitionsIntegrationTest < IntegrationTest
     end
   end
 end
-# 2025-10-14T14:52:30Z - Add claim/unclaim task support
-# 2025-11-04T09:32:01Z - Add task event listener hooks for tests
-# 2025-11-24T09:21:25Z - Add test coverage config (simplecov)
-# 2025-10-13T07:02:57Z - Add claim/unclaim task support
-# 2025-11-04T08:44:46Z - Add task event listener hooks for tests
-# 2025-12-01T10:55:09Z - Add test coverage config (simplecov)

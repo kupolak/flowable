@@ -35,9 +35,3 @@ module Flowable
     end
   end
 end
-# 2025-10-02T13:44:34Z - Validate files before deployment
-# 2025-10-23T07:12:48Z - Add tenant support for BPMN deployments
-# 2025-11-14T10:27:24Z - Add advanced workflow examples
-# 2025-10-03T13:25:53Z - Validate files before deployment
-# 2025-10-27T09:42:05Z - Add tenant support for BPMN deployments
-# 2025-11-20T10:11:14Z - Add advanced workflow examples

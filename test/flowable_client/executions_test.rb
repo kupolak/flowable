@@ -298,9 +298,3 @@ class ExecutionsTest < Minitest::Test
     assert_equal({}, result)
   end
 end
-# 2025-10-09T09:57:02Z - Support outcome parameter on start
-# 2025-10-31T12:53:45Z - Support businessKey for processes
-# 2025-11-24T15:05:35Z - Add Docker Flowable integration example
-# 2025-10-09T08:39:45Z - Support outcome parameter on start
-# 2025-11-03T12:53:05Z - Support businessKey for processes
-# 2025-11-27T09:04:25Z - Add Docker Flowable integration example

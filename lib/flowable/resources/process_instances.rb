@@ -198,15 +198,3 @@ module Flowable
     end
   end
 end
-# 2025-11-05T15:42:43Z - Add list process instances
-# 2025-11-05T10:53:17Z - Add get process instance details
-# 2025-11-05T13:55:25Z - Add terminate/delete process instance
-# 2025-11-05T08:27:23Z - Add pagination for process instances
-# 2025-11-05T13:49:30Z - Add integration tests for process instances
-# 2025-11-06T11:42:52Z - Refactor process_instances module
-# 2025-10-02T13:37:28Z - Add tests for deployment CRUD
-# 2025-10-23T08:11:25Z - Add optional conversion of diagrams to PNG
-# 2025-11-14T10:44:19Z - Add dsl.run helper for tests
-# 2025-10-02T10:09:50Z - Add tests for deployment CRUD
-# 2025-10-24T08:00:59Z - Add optional conversion of diagrams to PNG
-# 2025-11-20T14:03:02Z - Add dsl.run helper for tests

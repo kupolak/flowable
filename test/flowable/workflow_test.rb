@@ -1020,9 +1020,3 @@ class WorkflowTest < Minitest::Test
     assert_equal workflow, result
   end
 end
-# 2025-10-07T11:16:39Z - Add list case instances
-# 2025-10-29T14:52:52Z - Add get process instance details
-# 2025-11-19T13:04:29Z - Add workflow_dsl.rb example case
-# 2025-10-08T11:58:10Z - Add list case instances
-# 2025-10-31T13:39:10Z - Add get process instance details
-# 2025-11-26T11:22:26Z - Add workflow_dsl.rb example case

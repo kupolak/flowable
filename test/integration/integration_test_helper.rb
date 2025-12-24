@@ -116,9 +116,3 @@ class IntegrationTest < Minitest::Test
     wait_for_flowable
   end
 end
-# 2025-10-14T09:30:33Z - Add candidate user/group handling
-# 2025-11-05T11:11:18Z - Add helper to assign tasks by group
-# 2025-11-25T12:09:02Z - Add edge-case tests for invalid API responses
-# 2025-10-14T12:22:04Z - Add candidate user/group handling
-# 2025-11-05T13:46:39Z - Add helper to assign tasks by group
-# 2025-12-01T15:15:13Z - Add edge-case tests for invalid API responses

@@ -421,9 +421,3 @@ class ProcessInstancesTest < Minitest::Test
     assert result
   end
 end
-# 2025-10-07T09:28:47Z - Implement caching for fetched models
-# 2025-10-29T14:17:46Z - Align method names with case_definitions
-# 2025-11-18T08:28:01Z - Add script to create flowable.png (already added)
-# 2025-10-08T09:15:08Z - Implement caching for fetched models
-# 2025-10-31T15:30:22Z - Align method names with case_definitions
-# 2025-11-25T12:16:34Z - Add script to create flowable.png (already added)

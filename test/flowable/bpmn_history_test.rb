@@ -515,9 +515,3 @@ class BpmnHistoryTest < Minitest::Test
     assert_equal 0, result['total']
   end
 end
-# 2025-10-03T08:26:04Z - Add get resource content for definitions
-# 2025-10-27T11:49:19Z - Add resource content retrieval for processes
-# 2025-11-17T08:23:13Z - Allow CLI configuration from env
-# 2025-10-06T11:54:57Z - Add get resource content for definitions
-# 2025-10-29T14:22:26Z - Add resource content retrieval for processes
-# 2025-11-21T13:23:41Z - Allow CLI configuration from env

@@ -298,9 +298,3 @@ class ExecutionsTest < Minitest::Test
     assert_equal({}, result)
   end
 end
-# 2025-10-06T11:44:03Z - Improve error handling for missing definitions
-# 2025-10-28T10:25:59Z - Add example fetching model in examples/
-# 2025-11-18T14:33:33Z - Add optional CLI autocompletion
-# 2025-10-07T13:41:02Z - Improve error handling for missing definitions
-# 2025-10-30T10:27:18Z - Add example fetching model in examples/
-# 2025-11-24T09:04:51Z - Add optional CLI autocompletion

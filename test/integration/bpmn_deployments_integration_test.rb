@@ -86,9 +86,3 @@ class BpmnDeploymentsIntegrationTest < IntegrationTest
     file&.unlink
   end
 end
-# 2025-10-13T14:03:53Z - Add list tasks endpoint
-# 2025-11-04T09:04:33Z - Add BPMN-specific task helpers
-# 2025-11-24T08:56:37Z - Add unit tests for flowable_client module
-# 2025-10-10T11:32:17Z - Add list tasks endpoint
-# 2025-11-04T11:38:54Z - Add BPMN-specific task helpers
-# 2025-11-28T10:45:51Z - Add unit tests for flowable_client module

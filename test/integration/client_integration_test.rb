@@ -37,9 +37,3 @@ class ClientIntegrationTest < IntegrationTest
     end
   end
 end
-# 2025-10-14T14:34:17Z - Add update task properties (assignee, priority)
-# 2025-11-05T12:26:37Z - Add form property update support
-# 2025-11-25T09:06:54Z - Add tests for tasks and task variables
-# 2025-10-13T09:25:14Z - Add update task properties (assignee, priority)
-# 2025-11-04T10:02:51Z - Add form property update support
-# 2025-12-01T12:16:13Z - Add tests for tasks and task variables

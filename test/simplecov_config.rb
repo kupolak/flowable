@@ -61,9 +61,3 @@ SimpleCov.at_exit do
     puts "\n✅ Coverage: #{SimpleCov.result.covered_percent.round(2)}%"
   end
 end
-# 2025-10-15T14:15:32Z - Add complete_and_fetch_next helper
-# 2025-11-06T15:19:42Z - Add BPMN task flow example in examples/
-# 2025-11-26T12:15:42Z - Update run_tests.sh with instructions
-# 2025-10-15T12:15:21Z - Add complete_and_fetch_next helper
-# 2025-11-10T11:56:26Z - Add BPMN task flow example in examples/
-# 2025-12-03T13:22:42Z - Update run_tests.sh with instructions

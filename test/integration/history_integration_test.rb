@@ -106,9 +106,3 @@ class HistoryIntegrationTest < IntegrationTest
     assert result.key?('data')
   end
 end
-# 2025-10-14T10:23:47Z - Add identity link endpoints for tasks
-# 2025-11-05T11:22:08Z - Document BPMN task examples
-# 2025-11-25T15:27:30Z - Add tests for basic CLI commands
-# 2025-10-14T08:42:03Z - Add identity link endpoints for tasks
-# 2025-11-05T09:27:54Z - Document BPMN task examples
-# 2025-12-01T09:41:16Z - Add tests for basic CLI commands

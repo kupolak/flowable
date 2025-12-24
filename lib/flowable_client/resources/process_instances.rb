@@ -198,9 +198,3 @@ module FlowableClient
     end
   end
 end
-# 2025-10-02T10:09:12Z - Improve 4xx/5xx error handling for deployments
-# 2025-10-24T09:13:54Z - Add bulk deploy endpoint
-# 2025-11-14T09:50:53Z - Refactor DSL to Workflow::DSL module
-# 2025-10-06T11:41:07Z - Improve 4xx/5xx error handling for deployments
-# 2025-10-28T12:05:19Z - Add bulk deploy endpoint
-# 2025-11-20T12:45:14Z - Refactor DSL to Workflow::DSL module
