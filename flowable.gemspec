@@ -52,9 +52,3 @@ Gem::Specification.new do |spec|
     Documentation: #{spec.homepage}
   MSG
 end
-# 2025-09-30T09:43:13Z - Improve error message for missing credentials
-# 2025-10-20T08:49:23Z - Add endpoint to delete historic case instances
-# 2025-11-12T08:15:09Z - Add caching and rate limits for history
-# 2025-09-30T14:35:47Z - Improve error message for missing credentials
-# 2025-10-21T07:20:31Z - Add endpoint to delete historic case instances
-# 2025-11-17T14:10:24Z - Add caching and rate limits for history

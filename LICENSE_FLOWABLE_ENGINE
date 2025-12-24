@@ -200,11 +200,3 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-# 2025-09-25T11:07:11Z - Allow swapping logger implementation
-# 2025-10-17T09:08:12Z - Improve action logging for plan items
-# 2025-11-10T08:15:12Z - Refactor executions client into clear methods
-# 2025-11-27T14:07:58Z - Add sample commit guidelines for contributors
-# 2025-09-26T07:48:47Z - Allow swapping logger implementation
-# 2025-10-20T09:27:27Z - Improve action logging for plan items
-# 2025-11-12T14:37:54Z - Refactor executions client into clear methods
-# 2025-12-08T14:45:32Z - Add sample commit guidelines for contributors

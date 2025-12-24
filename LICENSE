@@ -19,11 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-# 2025-09-25T13:06:10Z - Add proxy support
-# 2025-10-17T10:17:46Z - Validate actions (e.g., cannot start if not enabled)
-# 2025-11-10T14:29:33Z - Add execution statistics endpoint
-# 2025-11-27T15:45:24Z - Link to official Flowable docs
-# 2025-09-26T07:04:32Z - Add proxy support
-# 2025-10-20T14:58:41Z - Validate actions (e.g., cannot start if not enabled)
-# 2025-11-12T10:40:06Z - Add execution statistics endpoint
-# 2025-12-05T09:55:56Z - Link to official Flowable docs

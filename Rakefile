@@ -159,11 +159,3 @@ namespace :flowable do
     system('docker-compose logs -f flowable')
   end
 end
-# 2025-09-26T07:08:09Z - Improve connection error handling
-# 2025-10-17T11:44:26Z - Refactor plan_item_instances module
-# 2025-11-10T10:29:56Z - Add retry for transient execution errors
-# 2025-11-28T08:27:33Z - Add suggested versioning policy in README
-# 2025-09-26T11:53:01Z - Improve connection error handling
-# 2025-10-20T13:29:51Z - Refactor plan_item_instances module
-# 2025-11-12T12:34:19Z - Add retry for transient execution errors
-# 2025-12-09T11:53:21Z - Add suggested versioning policy in README
