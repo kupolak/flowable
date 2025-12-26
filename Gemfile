@@ -10,7 +10,7 @@ group :development, :test do
   gem 'webmock', '~> 3.0'
 
   # Code quality
-  gem 'rubocop', '~> 1.0'
+  gem 'rubocop', '~> 1.82'
   gem 'rubocop-minitest', '~> 0.35'
   gem 'rubocop-rake', '~> 0.6'
 
