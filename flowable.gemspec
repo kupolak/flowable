@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
                        'Supports deployments, case/process definitions, instances, tasks, variables, history, and more.'
   spec.homepage      = 'https://github.com/kupolak/flowable'
   spec.license       = 'MIT'
-  spec.required_ruby_version = '>= 2.7.0'
+  spec.required_ruby_version = '>= 3.1.0'
 
   # Explicit runtime dependency to silence stdlib future warnings (loaded by tests)
   spec.add_runtime_dependency 'base64', '>= 0'
