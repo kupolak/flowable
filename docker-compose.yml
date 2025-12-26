@@ -7,16 +7,15 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - FLOWABLE_REST_APP_ADMIN_USER_ID=rest-admin
+      - SERVER_PORT=8080
+      - FLOWABLE_REST_APP_ADMIN_USER-ID=rest-admin
       - FLOWABLE_REST_APP_ADMIN_PASSWORD=test
-      - FLOWABLE_REST_APP_ADMIN_FIRST_NAME=Rest
-      - FLOWABLE_REST_APP_ADMIN_LAST_NAME=Admin
-      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.h2.Driver
+      - FLOWABLE_REST_APP_ADMIN_FIRST-NAME=Rest
+      - FLOWABLE_REST_APP_ADMIN_LAST-NAME=Admin
+      - SPRING_DATASOURCE_DRIVER-CLASS-NAME=org.h2.Driver
       - SPRING_DATASOURCE_URL=jdbc:h2:mem:flowable;DB_CLOSE_DELAY=-1
       - SPRING_DATASOURCE_USERNAME=flowable
       - SPRING_DATASOURCE_PASSWORD=flowable
-      # Increase Jackson JSON nesting depth limit (default 1000 causes issues with CMMN model endpoint)
-      - SPRING_JACKSON_STREAMWRITECONSTRAINTS_MAXNESTINGDEPTH=5000
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/flowable-rest/actuator/health"]
       interval: 10s
