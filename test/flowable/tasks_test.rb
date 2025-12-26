@@ -457,7 +457,7 @@ class TasksTest < Minitest::Test
     assert_requested :post, 'http://localhost:8080/flowable-rest/cmmn-api/cmmn-runtime/tasks/task-1'
   end
 
-  def test_resolve_task
+  def test_resolve_task_coverage
     stub_request(:post, 'http://localhost:8080/flowable-rest/cmmn-api/cmmn-runtime/tasks/task-1')
       .with(body: { action: 'resolve' }.to_json)
       .to_return(status: 200, body: '{}', headers: { 'Content-Type' => 'application/json' })
@@ -474,7 +474,7 @@ class TasksTest < Minitest::Test
 
     result = @client.tasks.variables('task-1', scope: 'local')
 
-    assert_equal [], result
+    assert_empty result
   end
 
   def test_variable_with_scope

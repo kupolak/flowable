@@ -346,7 +346,7 @@ class ProcessInstancesTest < Minitest::Test
     assert_equal 'proc-4', result['id']
   end
 
-  def test_query_process_instances
+  def test_query_process_instances_with_process_key
     query = { processDefinitionKey: 'myProcess' }
 
     stub_request(:post, 'http://localhost:8080/flowable-rest/service/query/process-instances')

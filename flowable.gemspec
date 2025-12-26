@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 3.1.0'
 
   # Explicit runtime dependency to silence stdlib future warnings (loaded by tests)
-  spec.add_runtime_dependency 'base64', '>= 0'
+  spec.add_dependency 'base64', '>= 0'
 
   spec.files         = Dir['lib/**/*', 'bin/*', 'README.md', 'LICENSE', 'CHANGELOG.md']
   spec.bindir        = 'bin'

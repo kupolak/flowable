@@ -100,7 +100,7 @@ class WorkflowTest < Minitest::Test
 
     workflow = @client.case_workflow('myCase').load('case-123')
 
-    assert workflow.active?
+    assert_predicate workflow, :active?
   end
 
   def test_case_completed
@@ -111,7 +111,7 @@ class WorkflowTest < Minitest::Test
 
     workflow = @client.case_workflow('myCase').load('case-123')
 
-    assert workflow.completed?
+    assert_predicate workflow, :completed?
   end
 
   def test_case_variables
@@ -210,7 +210,7 @@ class WorkflowTest < Minitest::Test
     current = workflow.current_stage
 
     assert_equal 'Current Stage', current.name
-    assert current.current?
+    assert_predicate current, :current?
   end
 
   def test_case_tasks
@@ -352,7 +352,7 @@ class WorkflowTest < Minitest::Test
 
     workflow = @client.process_workflow('myProcess').load('proc-123')
 
-    assert workflow.ended?
+    assert_predicate workflow, :ended?
   end
 
   def test_process_suspended
@@ -363,7 +363,7 @@ class WorkflowTest < Minitest::Test
 
     workflow = @client.process_workflow('myProcess').load('proc-123')
 
-    assert workflow.suspended?
+    assert_predicate workflow, :suspended?
   end
 
   def test_process_variables
@@ -411,7 +411,7 @@ class WorkflowTest < Minitest::Test
     workflow = @client.process_workflow('myProcess').load('proc-123')
     workflow.suspend!
 
-    assert workflow.suspended?
+    assert_predicate workflow, :suspended?
   end
 
   def test_process_activate
@@ -430,7 +430,7 @@ class WorkflowTest < Minitest::Test
     workflow = @client.process_workflow('myProcess').load('proc-123')
     workflow.activate!
 
-    refute workflow.suspended?
+    refute_predicate workflow, :suspended?
   end
 
   def test_process_delete
@@ -480,13 +480,13 @@ class WorkflowTest < Minitest::Test
   def test_task_assigned
     task = Flowable::Workflow::Task.new(@client, { 'id' => 'task-1', 'assignee' => 'kermit' })
 
-    assert task.assigned?
+    assert_predicate task, :assigned?
   end
 
   def test_task_not_assigned
     task = Flowable::Workflow::Task.new(@client, { 'id' => 'task-1', 'assignee' => nil })
 
-    refute task.assigned?
+    refute_predicate task, :assigned?
   end
 
   def test_task_claim
@@ -649,8 +649,8 @@ class WorkflowTest < Minitest::Test
 
     assert_equal 'stage-1', stage.id
     assert_equal 'Initial Stage', stage.name
-    assert stage.current?
-    refute stage.ended?
+    assert_predicate stage, :current?
+    refute_predicate stage, :ended?
     assert_nil stage.end_time
   end
 
@@ -665,8 +665,8 @@ class WorkflowTest < Minitest::Test
 
     stage = Flowable::Workflow::Stage.new(stage_data)
 
-    refute stage.current?
-    assert stage.ended?
+    refute_predicate stage, :current?
+    assert_predicate stage, :ended?
     assert_equal '2024-01-15T12:00:00Z', stage.end_time
   end
 
@@ -691,31 +691,31 @@ class WorkflowTest < Minitest::Test
   def test_case_variables_without_id
     workflow = Flowable::Workflow::Case.new(@client, 'myCase')
 
-    assert_equal({}, workflow.variables)
+    assert_empty(workflow.variables)
   end
 
   def test_case_stages_without_id
     workflow = Flowable::Workflow::Case.new(@client, 'myCase')
 
-    assert_equal [], workflow.stages
+    assert_empty workflow.stages
   end
 
   def test_case_tasks_without_id
     workflow = Flowable::Workflow::Case.new(@client, 'myCase')
 
-    assert_equal [], workflow.tasks
+    assert_empty workflow.tasks
   end
 
   def test_case_involved_users_without_id
     workflow = Flowable::Workflow::Case.new(@client, 'myCase')
 
-    assert_equal [], workflow.involved_users
+    assert_empty workflow.involved_users
   end
 
   def test_process_variables_without_id
     workflow = Flowable::Workflow::Process.new(@client, 'myProcess')
 
-    assert_equal({}, workflow.variables)
+    assert_empty(workflow.variables)
   end
 
   def test_case_id_when_no_instance
@@ -774,16 +774,16 @@ class WorkflowTest < Minitest::Test
   def test_task_completed_without_end_time
     task = Flowable::Workflow::Task.new(@client, { 'id' => 'task-1', 'endTime' => nil })
 
-    refute task.completed?
+    refute_predicate task, :completed?
   end
 
   def test_task_completed_with_end_time
-    # Note: .present? is a Rails method. In pure Ruby, this may behave differently
+    # NOTE: .present? is a Rails method. In pure Ruby, this may behave differently
     task = Flowable::Workflow::Task.new(@client, { 'id' => 'task-1', 'endTime' => '2024-01-15' })
 
     # This will call endTime.present? which may fail in pure Ruby
     # The test documents expected behavior
-    assert task.completed?
+    assert_predicate task, :completed?
   end
 
   def test_case_refresh_without_id
@@ -807,7 +807,7 @@ class WorkflowTest < Minitest::Test
     workflow = @client.process_workflow('myProcess').load('proc-123')
     workflow.refresh!
 
-    assert workflow.suspended?
+    assert_predicate workflow, :suspended?
   end
 
   # ==================== wait_for_task Tests ====================
@@ -926,16 +926,16 @@ class WorkflowTest < Minitest::Test
   def test_case_completed_without_instance
     workflow = Flowable::Workflow::Case.new(@client, 'myCase')
 
-    refute workflow.completed?
+    refute_predicate workflow, :completed?
   end
 
-  def test_case_variables_without_id
+  def test_case_variables_without_id_coverage
     workflow = Flowable::Workflow::Case.new(@client, 'myCase')
 
-    assert_equal({}, workflow.variables)
+    assert_empty(workflow.variables)
   end
 
-  def test_process_id_without_instance
+  def test_process_id_without_instance_coverage
     workflow = Flowable::Workflow::Process.new(@client, 'myProcess')
 
     assert_nil workflow.id
@@ -944,19 +944,13 @@ class WorkflowTest < Minitest::Test
   def test_process_ended_without_instance
     workflow = Flowable::Workflow::Process.new(@client, 'myProcess')
 
-    refute workflow.ended?
+    refute_predicate workflow, :ended?
   end
 
   def test_process_suspended_without_instance
     workflow = Flowable::Workflow::Process.new(@client, 'myProcess')
 
-    refute workflow.suspended?
-  end
-
-  def test_process_variables_without_id
-    workflow = Flowable::Workflow::Process.new(@client, 'myProcess')
-
-    assert_equal({}, workflow.variables)
+    refute_predicate workflow, :suspended?
   end
 
   def test_case_completed_with_completed_field
@@ -967,7 +961,7 @@ class WorkflowTest < Minitest::Test
 
     workflow = @client.case_workflow('myCase').load('case-123')
 
-    assert workflow.completed?
+    assert_predicate workflow, :completed?
   end
 
   # Branch coverage: process_tasks! when task has no handler registered (handler&.call -> else)
@@ -988,18 +982,11 @@ class WorkflowTest < Minitest::Test
     assert_equal workflow, result
   end
 
-  # Branch coverage: id when instance is nil
-  def test_process_id_without_instance
+  # Branch coverage: variables when instance is nil
+  def test_process_variables_without_instance_coverage
     workflow = Flowable::Workflow::Process.new(@client, 'myProcess')
 
-    assert_nil workflow.id
-  end
-
-  # Branch coverage: ended? when instance is nil
-  def test_process_ended_without_instance
-    workflow = Flowable::Workflow::Process.new(@client, 'myProcess')
-
-    refute workflow.ended?
+    assert_empty(workflow.variables)
   end
 
   # Branch coverage: delete! when id is nil (else branch of `if id`)

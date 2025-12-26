@@ -18,11 +18,12 @@ class VersionTest < Minitest::Test
       patch: 0,
       pre: nil
     }
+
     assert_equal expected, Flowable::VERSION_INFO
   end
 
   def test_version_info_is_frozen
-    assert Flowable::VERSION_INFO.frozen?
+    assert_predicate Flowable::VERSION_INFO, :frozen?
   end
 
   def test_version_method
@@ -31,6 +32,7 @@ class VersionTest < Minitest::Test
 
   def test_version_info_method
     info = Flowable.version_info
+
     assert_equal 1, info[:major]
     assert_equal 0, info[:minor]
     assert_equal 0, info[:patch]

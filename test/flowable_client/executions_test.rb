@@ -250,7 +250,7 @@ class ExecutionsTest < Minitest::Test
 
     result = @client.executions.variables('exec-1', scope: 'local')
 
-    assert_equal [], result
+    assert_empty result
   end
 
   def test_variable_with_scope
@@ -284,7 +284,7 @@ class ExecutionsTest < Minitest::Test
 
     result = @client.executions.create_variables('exec-1', nil)
 
-    assert_equal [], result
+    assert_empty result
   end
 
   # Branch coverage: signal_event with empty variables
@@ -295,6 +295,6 @@ class ExecutionsTest < Minitest::Test
 
     result = @client.executions.signal_event('exec-1', 'mySignal', variables: {})
 
-    assert_equal({}, result)
+    assert_empty(result)
   end
 end

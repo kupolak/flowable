@@ -154,6 +154,6 @@ class FlowableClientTest < Minitest::Test
 
     result = @client.deployments.list
 
-    assert_equal [], result['data']
+    assert_empty result['data']
   end
 end
