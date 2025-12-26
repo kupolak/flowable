@@ -1,0 +1,25 @@
+# Dependency directories
+vendor/
+.bundle/
+
+# Gemfile.lock - not tracked for gems/libraries
+# This allows users to install compatible versions for their Ruby version
+Gemfile.lock
+
+# Test coverage
+coverage/
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.iml
