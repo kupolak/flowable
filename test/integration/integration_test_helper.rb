@@ -45,7 +45,7 @@ module IntegrationTestHelper
         request.basic_auth(FLOWABLE_USER, FLOWABLE_PASSWORD)
         response = http.request(request)
         return true if response.code == '200'
-      rescue Errno::ECONNREFUSED, Errno::ECONNRESET, SocketError, Net::OpenTimeout, Net::ReadTimeout
+      rescue Errno::ECONNREFUSED, Errno::ECONNRESET, SocketError, Net::OpenTimeout, Net::ReadTimeout, EOFError
         # Server not ready yet
       end
 

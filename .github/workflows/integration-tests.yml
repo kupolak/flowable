@@ -35,5 +35,8 @@ jobs:
         ruby-version: '3.3'
         bundler-cache: true
 
+    - name: Wait for Flowable initialization
+      run: sleep 20
+
     - name: Run integration tests
       run: bundle exec rake test:integration
