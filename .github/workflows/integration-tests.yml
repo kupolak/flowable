@@ -16,16 +16,10 @@ jobs:
         ports:
           - 8080:8080
         env:
-          FLOWABLE_REST_APP_ADMIN_USER_ID: rest-admin
+          FLOWABLE_REST_APP_ADMIN_USER-ID: rest-admin
           FLOWABLE_REST_APP_ADMIN_PASSWORD: test
-          FLOWABLE_REST_APP_ADMIN_FIRST_NAME: Rest
-          FLOWABLE_REST_APP_ADMIN_LAST_NAME: Admin
-          SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.h2.Driver
-          SPRING_DATASOURCE_URL: jdbc:h2:mem:flowable;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-          SPRING_DATASOURCE_USERNAME: flowable
-          SPRING_DATASOURCE_PASSWORD: flowable
-          SPRING_JPA_HIBERNATE_DDL_AUTO: update
-          FLOWABLE_IDM_LDAP_ENABLED: "false"
+          FLOWABLE_REST_APP_ADMIN_FIRST-NAME: Rest
+          FLOWABLE_REST_APP_ADMIN_LAST-NAME: Admin
 
     steps:
     - uses: actions/checkout@v4
@@ -39,16 +33,13 @@ jobs:
     - name: Wait for Flowable to be ready
       run: |
         echo "Waiting for Flowable to be ready..."
-        for i in {1..3}; do
-          if curl -s http://localhost:8080/flowable-rest/actuator/health 2>/dev/null | grep -q "UP"; then
-            echo "Flowable is ready!"
-            exit 0
-          fi
-          echo "Attempt $i/3: Flowable not ready yet..."
-          sleep 30
-        done
-        echo "Flowable failed to start after 90 seconds"
-        exit 1
+        sleep 15
+        if curl -s http://localhost:8080/flowable-rest/actuator/health 2>/dev/null | grep -q "UP"; then
+          echo "Flowable is ready!"
+        else
+          echo "Flowable failed to start"
+          exit 1
+        fi
 
     - name: Run integration tests
       run: bundle exec rake test:integration
