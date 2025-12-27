@@ -24,8 +24,9 @@ module Flowable
         return [] unless variables
 
         variables.map do |name, value|
-          var = { name: name.to_s, value: value }
-          var[:type] = infer_type(value)
+          var_type = infer_type(value)
+          var_value = var_type == 'date' ? value.iso8601 : value
+          var = { name: name.to_s, value: var_value, type: var_type }
           var
         end
       end
