@@ -3,7 +3,7 @@
 module Flowable
   module Resources
     class Tasks < Base
-      BASE_PATH = 'cmmn-runtime/tasks'
+      BASE_PATH = 'runtime/tasks'
 
       # List all tasks
       # @param options [Hash] Query parameters
