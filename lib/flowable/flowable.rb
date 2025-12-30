@@ -127,7 +127,7 @@ module Flowable
 
     def build_uri(path, params = {})
       # Determine base path - BPMN resources use service path
-      effective_base_path = path.start_with?('service/') || path.start_with?('repository/') || path.start_with?('runtime/') || (path.start_with?('history/') && !path.include?('cmmn')) ? @bpmn_base_path : @base_path
+      effective_base_path = path.start_with?('service/', 'repository/', 'runtime/') || (path.start_with?('history/') && path.exclude?('cmmn')) ? @bpmn_base_path : @base_path
 
       # For BPMN paths, strip the 'service/' prefix if present since it's in base path
       adjusted_path = path.start_with?('service/') ? path.sub('service/', '') : path
@@ -194,7 +194,7 @@ module Flowable
     end
 
     def parse_response(response)
-      return nil if response.body.nil? || response.body.empty?
+      return nil if response.body.blank?
 
       body = response.body
       content_type = response['Content-Type'] || ''
@@ -222,7 +222,7 @@ module Flowable
     end
 
     def parse_error_message(response)
-      return response.message if response.body.nil? || response.body.empty?
+      return response.message if response.body.blank?
 
       parsed = JSON.parse(response.body)
       parsed['errorMessage'] || parsed['message'] || response.body

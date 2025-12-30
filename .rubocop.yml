@@ -4,6 +4,8 @@
 plugins:
   - rubocop-minitest
   - rubocop-rake
+  - rubocop-rspec
+  - rubocop-rails
 
 AllCops:
   TargetRubyVersion: 3.1
@@ -16,6 +18,9 @@ AllCops:
     - 'pkg/**/*'
     - 'Gemfile.lock'
     - 'flowable-example/**/*'
+    - 'flowable-rails/**/*'
+    - 'bin/**/*'
+    - 'test/**/*'
 
 # ============================================
 # Layout
@@ -212,3 +217,18 @@ Minitest/AssertEmptyLiteral:
 Minitest/TestFileName:
   Exclude:
     - 'test/integration/integration_test_helper.rb'
+
+# Prevent RSpec cops from running on Minitest files
+RSpec:
+  Exclude:
+    - 'test/**/*'
+
+# Disable specific Rails cops at top-level to avoid runtime/internal errors when scanning non-Rails code
+Rails/ActionFilter:
+  Enabled: false
+Rails/ActionOrder:
+  Enabled: false
+Rails/TimeZone:
+  Enabled: false
+Rails/FilePath:
+  Enabled: false
